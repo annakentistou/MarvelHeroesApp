@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="TextButtonDimen">14sp</dimen>
+    <dimen name="TextButtonSize">40dp</dimen>
+    <dimen name="EditTextWidth">350dp</dimen>
+    <dimen name="TextFieldWidth">320dp</dimen>
+    <dimen name="MicroIconsWidth">40dp</dimen>
+</resources>

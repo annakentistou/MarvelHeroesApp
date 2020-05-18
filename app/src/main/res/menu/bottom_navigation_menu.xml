@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/home_page"
+        android:enabled="true"
+        android:icon="@drawable/home_48"
+        android:title="@string/home_page"/>
+    <item
+        android:id="@+id/search_view"
+        android:enabled="true"
+        android:icon="@drawable/search_50"
+        android:title="@string/search_view"/>
+    <item
+        android:id="@+id/myfavoriteList"
+        android:enabled="true"
+        android:icon="@drawable/search_50"
+        android:title="@string/my_favorite_heroes"/>
+</menu>

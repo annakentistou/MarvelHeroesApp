@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Marvel Heroes</string>
+    <string name="new_user_register_now">New User? Register now!</string>
+    <string name="home_page"></string>
+    <string name="search_view"></string>
+    <string name="my_favorite_heroes"></string>
+</resources>
