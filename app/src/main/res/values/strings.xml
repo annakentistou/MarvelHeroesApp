@@ -1,7 +1,18 @@
 <resources>
     <string name="app_name">Marvel Heroes</string>
     <string name="new_user_register_now">New User? Register now!</string>
-    <string name="home_page"></string>
-    <string name="search_view"></string>
-    <string name="my_favorite_heroes"></string>
+    <string name="already_registered"> Already have an account? <u>Sign in!</u> </string>
+    <string name="First_Name">First Name</string>
+    <string name="Last_Name">Last Name</string>
+    <string name="Email">Email</string>
+    <string name="Username">Username</string>
+    <string name="Password">Password</string>
+    <string name="Confirm_Password">Confirm Password</string>
+    <string name="Home">Home Page</string>
+    <string name="Search">Search</string>
+    <string name="Favorites">Favorites</string>
+    <string name="Notifications">Notifications</string>
+    <string name="All_Heroes">All</string>
+    <string name="Comics">Comics</string>
+    <string name="Series">Series</string>
 </resources>

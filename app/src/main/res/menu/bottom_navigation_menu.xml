@@ -3,16 +3,22 @@
     <item
         android:id="@+id/home_page"
         android:enabled="true"
-        android:icon="@drawable/home_48"
-        android:title="@string/home_page"/>
+        android:icon="@drawable/ic_home_black_24dp"
+        android:title="@string/Home"/>
     <item
         android:id="@+id/search_view"
         android:enabled="true"
-        android:icon="@drawable/search_50"
-        android:title="@string/search_view"/>
+        android:icon="@drawable/ic_search_black_24dp"
+        android:title="@string/Search"/>
     <item
         android:id="@+id/myfavoriteList"
         android:enabled="true"
-        android:icon="@drawable/search_50"
-        android:title="@string/my_favorite_heroes"/>
+        android:icon="@drawable/ic_favorite_black_24dp"
+        android:title="@string/Favorites"/>
+
+    <item
+        android:id="@+id/notifications"
+        android:enabled="true"
+        android:icon="@drawable/ic_notifications_black_24dp"
+        android:title="@string/Notifications"/>
 </menu>

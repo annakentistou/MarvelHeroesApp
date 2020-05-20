@@ -4,7 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".LoginActivity">
+    tools:context=".LoginActivity"
+    android:fitsSystemWindows="true"
+    android:background="#D32020">
 
     <ImageView
         android:id="@+id/marvel_logo"
@@ -20,36 +22,22 @@
         tools:ignore="HardcodedText,MissingConstraints"
         android:contentDescription="logo" />
 
-  <!--  <ImageView
-        android:id="@+id/user_icon"
-        android:layout_width="@dimen/MicroIconsWidth"
-        android:layout_height="@dimen/MicroIconsWidth"
-        android:layout_margin="@dimen/TextButtonDimen"
-        android:contentDescription="username_icon"
-        app:layout_constraintBottom_toBottomOf="@+id/username"
-        app:layout_constraintEnd_toStartOf="@+id/username"
-        app:layout_constraintHorizontal_bias="0.296"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/username"
-        app:srcCompat="@drawable/user_img"
-        tools:ignore="MissingConstraints" />-->
-
-
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/username"
         android:layout_width="@dimen/TextFieldWidth"
         android:layout_height="wrap_content"
+        android:layout_marginTop="200dp"
         android:gravity="center"
         android:ems="10"
-        android:hint="Username"
+        android:hint="@string/Username"
         android:inputType="textPersonName"
         android:radius="8dp"
         android:shape="rectangle"
         android:textColorHint="@color/colorForegroundTint"
-        app:layout_constraintTop_toBottomOf="@+id/marvel_logo"
+        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toTopOf="@+id/password"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.802"
+        app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
         tools:ignore="MissingConstraints,UnknownId">
 
@@ -65,13 +53,13 @@
         android:layout_height="wrap_content"
         android:gravity="center"
         android:ems="10"
-        android:hint="Password"
+        android:hint="@string/Password"
         android:radius="8dp"
         android:textColorHint="@color/colorForegroundTint"
         app:endIconMode="password_toggle"
         app:layout_constraintBottom_toTopOf="@+id/login_button"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.801"
+        app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/username"
         app:layout_constraintVertical_bias="0.003"
@@ -85,23 +73,7 @@
     </com.google.android.material.textfield.TextInputLayout>
 
 
-<!--    <ImageView
-        android:id="@+id/lock"
-        android:layout_width="@dimen/MicroIconsWidth"
-        android:layout_height="@dimen/MicroIconsWidth"
-        android:layout_marginTop="11dp"
-        android:contentDescription="lock_password"
-        app:layout_constraintBottom_toBottomOf="@+id/password"
-        app:layout_constraintEnd_toStartOf="@+id/password"
-        app:layout_constraintHorizontal_bias="0.484"
-        app:layout_constraintRight_toLeftOf="@+id/password"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/password"
-        app:layout_constraintVertical_bias="0.6"
-        app:srcCompat="@drawable/lock_img"
-        tools:ignore="MissingConstraints,UnknownId" />-->
-
-     <Button
+     <com.google.android.material.button.MaterialButton
          android:id="@+id/register_now"
          style="@style/Widget.MaterialComponents.Button.TextButton"
          android:layout_width="wrap_content"
@@ -109,8 +81,8 @@
          android:text="@string/new_user_register_now"
          android:textAllCaps="false"
          android:textSize="@dimen/TextButtonDimen"
-         android:layout_margin="@dimen/cardview_compat_inset_shadow"
-         android:foregroundTint="@color/cardview_shadow_start_color"
+         android:layout_margin="@dimen/TextButtonMargin"
+         android:foregroundTint="@color/gray_400"
          android:textColor="#FFFFFF"
          android:textStyle="bold"
          app:layout_constraintBottom_toBottomOf="parent"
@@ -127,10 +99,10 @@
          android:layout_width="wrap_content"
          android:layout_height="@dimen/TextButtonSize"
          android:textSize="@dimen/TextButtonDimen"
-         android:layout_margin="@dimen/cardview_compat_inset_shadow"
+         android:layout_margin="@dimen/TextButtonMargin"
          android:text="Forgot your Password?"
          android:textAllCaps="false"
-         android:foregroundTint="@color/cardview_shadow_start_color"
+         android:foregroundTint="@color/gray_400"
          android:textColor="#FFFFFF"
          android:textStyle="bold"
          app:layout_constraintBottom_toBottomOf="parent"
@@ -145,7 +117,7 @@
         android:layout_width="@dimen/TextFieldWidth"
         android:gravity="center"
         android:layout_height="wrap_content"
-        android:foregroundTint="@color/cardview_shadow_start_color"
+        android:foregroundTint="@color/gray_400"
         android:background="#84A17878"
         android:text="Login"
         android:textAllCaps="false"

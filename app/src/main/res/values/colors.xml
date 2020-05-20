@@ -3,6 +3,15 @@
     <color name="colorPrimary">#6200EE</color>
     <color name="colorPrimaryDark">#3700B3</color>
     <color name="colorAccent">#03DAC5</color>
-    <color name="colorForegroundTint">#C7C2C2</color>
+    <color name="colorForegroundTint">#9E9E9E</color>
     <color name="orange">#C0B83636</color>
+    <color name="gray_100">#F5F5F5</color>
+    <color name="gray_400">#BDBDBD</color>
+    <color name="gray_700">#616161</color>
+    <color name="gray_800">#424242</color>
+    <color name="RED_A700">#D50000</color>
+    <color name="text_color_in_buttons">#D0FFFFFF</color>
+
+
+
 </resources>

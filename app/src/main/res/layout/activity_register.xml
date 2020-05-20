@@ -4,7 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#D32020"
     tools:context=".RegisterActivity">
+
 
     <TextView
         android:layout_width="match_parent"
@@ -12,7 +14,7 @@
         android:text="CREATE YOUR ACCOUNT"
         android:textAlignment="center"
         android:textColor="#FFFFFF"
-        android:textSize="18dp"
+        android:textSize="18sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -20,13 +22,14 @@
         app:layout_constraintVertical_bias="0.084"
         tools:ignore="MissingConstraints" />
 
+
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/name"
         android:layout_width="@dimen/TextFieldWidth"
         android:layout_height="0dp"
-        android:layout_marginTop="140dp"
+        android:layout_marginTop="100dp"
         android:ems="10"
-        android:hint="First Name"
+        android:hint="@string/First_Name"
         android:inputType="textPersonName"
         android:radius="8dp"
         android:shape="rectangle"
@@ -49,7 +52,7 @@
         android:layout_height="0dp"
         android:layout_marginTop="8dp"
         android:ems="10"
-        android:hint="Last name"
+        android:hint="@string/Last_Name"
         android:inputType="textPersonName"
         android:radius="8dp"
         android:shape="rectangle"
@@ -72,7 +75,7 @@
         android:layout_height="0dp"
         android:layout_marginTop="8dp"
         android:ems="10"
-        android:hint="Email"
+        android:hint="@string/Email"
         android:inputType="textEmailAddress"
         android:radius="8dp"
         android:shape="rectangle"
@@ -95,7 +98,7 @@
         android:layout_height="0dp"
         android:layout_marginTop="8dp"
         android:ems="10"
-        android:hint="Username"
+        android:hint="@string/Username"
         android:inputType="textPersonName"
         android:radius="8dp"
         android:shape="rectangle"
@@ -118,7 +121,7 @@
         android:layout_height="0dp"
         android:layout_marginTop="8dp"
         android:ems="10"
-        android:hint="Password"
+        android:hint="@string/Password"
         android:inputType="textPassword"
         android:radius="8dp"
         android:textColorHint="#C7C2C2"
@@ -140,7 +143,7 @@
         android:layout_height="0dp"
         android:layout_marginTop="8dp"
         android:ems="10"
-        android:hint="Confirm Password"
+        android:hint="@string/Confirm_Password"
         android:inputType="textPassword"
         android:radius="8dp"
         android:shape="rectangle"
@@ -164,9 +167,9 @@
         android:layout_height="wrap_content"
         android:background="#84A17878"
         android:gravity="center"
-        android:text="Sign in"
+        android:text="Register Now"
         android:textAllCaps="false"
-        android:textColor="#80FFFFFF"
+        android:textColor="@color/text_color_in_buttons"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.494"
@@ -175,4 +178,25 @@
         app:layout_constraintVertical_bias="0.189"
         tools:ignore="HardcodedText,MissingConstraints" />
 
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/sign_in"
+        style="@style/Widget.MaterialComponents.Button.TextButton"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/TextButtonSize"
+        android:layout_margin="@dimen/TextButtonMargin"
+        android:foregroundTint="@color/gray_400"
+        android:text="@string/already_registered"
+        android:textAllCaps="false"
+        android:textColor="#FFFFFF"
+        android:textSize="@dimen/TextButtonDimen"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/register_button"
+        app:layout_constraintVertical_bias="0.718"
+        tools:ignore="MissingConstraints" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
+

@@ -15,8 +15,11 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
-        <!--<item name="android:windowBackground">@drawable/ic_launcher_marvel2</item>-->
-        <item name="android:background">#C0B83636</item>
+        <!--<item name="android:windowBackground">@drawable/ic_launcher_marvel</item>-->  <!--change app background-->
+        <!--<item name="android:background">#C0B83636</item>-->
+        <item name="bottomNavigationStyle">@style/Widget.MaterialComponents.BottomNavigationView.Colored</item>
+        <item name="android:windowTranslucentStatus">true</item>
+
 </style>
 
 
