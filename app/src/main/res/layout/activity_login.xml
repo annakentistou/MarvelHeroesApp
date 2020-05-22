@@ -6,7 +6,8 @@
     android:layout_height="match_parent"
     tools:context=".LoginActivity"
     android:fitsSystemWindows="true"
-    android:background="#D32020">
+    android:background="@drawable/red_background"
+    >
 
     <ImageView
         android:id="@+id/marvel_logo"
@@ -129,3 +130,5 @@
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <!--android:background="#D32020"-->

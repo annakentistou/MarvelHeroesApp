@@ -6,4 +6,6 @@
     <dimen name="TextFieldWidth">320dp</dimen>
     <dimen name="MicroIconsWidth">40dp</dimen>
     <dimen name="TextButtonMargin">1dp</dimen>
+    <dimen name="margins_in_listview">10dp</dimen>
+    <dimen name="thumnails_dimens">75dp</dimen>
 </resources>

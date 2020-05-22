@@ -46,6 +46,9 @@ dependencies {
     implementation 'com.google.android.material:material:1.2.0-alpha02'
     implementation 'com.android.support:design:29.0.0'
 
+    implementation 'com.android.support.constraint:constraint-layout:1.1.2'
+
+    implementation 'com.squareup.picasso:picasso:2.71828' //Picasso library is used in Adapter to parse image
 
  /*   //new versions
     implementation 'com.google.android.material:material:1.2.0-alpha06'
