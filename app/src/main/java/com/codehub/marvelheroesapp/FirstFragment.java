@@ -6,6 +6,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -31,29 +32,79 @@ import java.util.List;
  */
 public class FirstFragment extends Fragment {
 
+    View view;
+    RecyclerView recyclerView;
+    private List<HeroesModel> heroes;
+    private static String JSON_URL="https://gateway.marvel.com/v1/public/characters?nameStartsWith=M&limit=100&ts=1&apikey=94bd7ab20112da5e1ae5f197769ecd7a&hash=49b68d02a0d6bbeed0553ccf47ab7d68";
+    private static String JSON_URL1="https://gateway.marvel.com/v1/public/characters?nameStartsWith=S&ts=1&apikey=94bd7ab20112da5e1ae5f197769ecd7a&hash=49b68d02a0d6bbeed0553ccf47ab7d68";
+    private static String JSON_URL2="https://gateway.marvel.com/v1/public/characters?nameStartsWith=D&ts=1&apikey=94bd7ab20112da5e1ae5f197769ecd7a&hash=49b68d02a0d6bbeed0553ccf47ab7d68";
+    Adapter myadapter;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_first, container, false);
+         view =  inflater.inflate(R.layout.fragment_first, container, false);
+        return view;
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState){
         super.onViewCreated(view,savedInstanceState);
-        /*getView().findViewById(R.id.recycler_view_for_all);*/
+
     }
 
     @Override
     public void onResume() {
         super.onResume();
 
-       /* View view = getView();
+        View view = getView();
         if(view != null) {
-            ImageView img = view.findViewById(R.id.imageView); //
-            img.setImageResource(R.drawable.app_logo_for_launch_screen);
-        }*///set an image to img
+            recyclerView = (RecyclerView) view.findViewById(R.id.recycler_view_for_all);
+            /*ImageView img = view.findViewById(R.id.imageView);
+            img.setImageResource(R.drawable.app_logo_for_launch_screen);*/
+        }//set an image to img
+        heroes = new ArrayList<>();
+        extractHeroesInfo();
     }
+        private void extractHeroesInfo() {
+            RequestQueue queue = Volley.newRequestQueue(getContext());
+
+            StringRequest stringRequest= new StringRequest(Request.Method.GET, JSON_URL, new Response.Listener<String>() {
+                @Override
+                public void onResponse(String response) {
+                    try {
+                        DataModel dataModel = new Gson().fromJson(response, DataModel.class);
+
+                        List<HeroesModel> array = new ArrayList<>();
+                        array = dataModel.getData().getResults();
+                        for (int i = 0; i < array.size(); i++) {
+                            HeroesModel model = array.get(i);
+                            heroes.add(model);
+                        }
+
+                        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+                        myadapter = new Adapter(getContext(), heroes);
+                        recyclerView.setAdapter(myadapter);
+
+                        Log.i("response", dataModel.toString());
+
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+
+                }
+            }, new Response.ErrorListener() {
+                @Override
+                public void onErrorResponse(VolleyError error) {
+                    error.printStackTrace();
+                }
+            }) ;
+
+            queue.add(stringRequest);
+
+        }
+
 
     @Override
     public void onPause() {
