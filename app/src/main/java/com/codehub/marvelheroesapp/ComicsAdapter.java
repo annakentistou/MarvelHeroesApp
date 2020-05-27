@@ -10,44 +10,41 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.codehub.marvelheroesapp.json.HeroesModel;
-import com.google.android.material.button.MaterialButton;
+import com.codehub.marvelheroesapp.json.ComicsModel;
+import com.codehub.marvelheroesapp.json.CreatorsNameModel;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder> {
+public class ComicsAdapter extends RecyclerView.Adapter<ComicsAdapter.ViewHolder>{
 
     LayoutInflater inflater;
-    private List<HeroesModel> heroes;
-    private List<HeroesModel> heroesListFull; //for search
+    private List<ComicsModel> comics;
+    private List<CreatorsNameModel> creators;
 
-    public Adapter(Context ctx, List<HeroesModel> heroes) {
+    public ComicsAdapter(Context ctx, List<ComicsModel> comics) {
         this.inflater = LayoutInflater.from(ctx);
-        this.heroes = heroes;
-        heroesListFull = new ArrayList<>(heroes);
+        this.comics = comics;
     }
 
     @NonNull
     @Override
-    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public ComicsAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = inflater.inflate(R.layout.custom_list_view, parent, false);
-        return new ViewHolder(view);
+        return new ComicsAdapter.ViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-
-        holder.Name.setText(heroes.get(position).getName());
-        holder.subtitle.setText(heroes.get(position).getDescription());
-        Picasso.get().load(heroes.get(position).getThumbnail().getPath() + ".jpg").into(holder.image);
-
+        holder.Name.setText(comics.get(position).getTitle());
+        holder.subtitle.setText(comics.get(position).getDescription());
+        Picasso.get().load(comics.get(position).getThumbnail().getPath() + ".jpg").into(holder.image);
     }
 
     @Override
     public int getItemCount() {
-        return heroes.size();
+        return comics.size();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {

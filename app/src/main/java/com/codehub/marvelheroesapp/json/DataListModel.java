@@ -1,5 +1,7 @@
 package com.codehub.marvelheroesapp.json;
 
+import androidx.annotation.Nullable;
+
 import java.util.List;
 
 public class DataListModel {
@@ -12,6 +14,7 @@ public class DataListModel {
         this.results = results;
     }
 
+    @Nullable
     public List<HeroesModel> getResults() {
         return results;
     }

@@ -34,11 +34,11 @@ public class FirstFragment extends Fragment {
 
     View view;
     RecyclerView recyclerView;
+    Adapter myadapter;
     private List<HeroesModel> heroes;
     private static String JSON_URL="https://gateway.marvel.com/v1/public/characters?nameStartsWith=M&limit=100&ts=1&apikey=94bd7ab20112da5e1ae5f197769ecd7a&hash=49b68d02a0d6bbeed0553ccf47ab7d68";
     private static String JSON_URL1="https://gateway.marvel.com/v1/public/characters?nameStartsWith=S&ts=1&apikey=94bd7ab20112da5e1ae5f197769ecd7a&hash=49b68d02a0d6bbeed0553ccf47ab7d68";
     private static String JSON_URL2="https://gateway.marvel.com/v1/public/characters?nameStartsWith=D&ts=1&apikey=94bd7ab20112da5e1ae5f197769ecd7a&hash=49b68d02a0d6bbeed0553ccf47ab7d68";
-    Adapter myadapter;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -60,10 +60,8 @@ public class FirstFragment extends Fragment {
 
         View view = getView();
         if(view != null) {
-            recyclerView = (RecyclerView) view.findViewById(R.id.recycler_view_for_all);
-            /*ImageView img = view.findViewById(R.id.imageView);
-            img.setImageResource(R.drawable.app_logo_for_launch_screen);*/
-        }//set an image to img
+            recyclerView = view.findViewById(R.id.recycler_view_for_all);
+        }
         heroes = new ArrayList<>();
         extractHeroesInfo();
     }
@@ -104,7 +102,6 @@ public class FirstFragment extends Fragment {
             queue.add(stringRequest);
 
         }
-
 
     @Override
     public void onPause() {

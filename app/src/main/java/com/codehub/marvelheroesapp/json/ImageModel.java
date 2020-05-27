@@ -1,9 +1,12 @@
 package com.codehub.marvelheroesapp.json;
 
+import androidx.annotation.Nullable;
+
 public class ImageModel {
     private String path;
     private String extension;
 
+    @Nullable
     public String getPath() {
         return path;
     }
@@ -12,6 +15,7 @@ public class ImageModel {
         this.path = path;
     }
 
+    @Nullable
     public String getExtension() {
         return extension;
     }
