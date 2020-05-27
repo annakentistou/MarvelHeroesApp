@@ -10,6 +10,6 @@
         android:id="@+id/frag3"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="ANTE GEIA" />
+        android:text="One more test" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

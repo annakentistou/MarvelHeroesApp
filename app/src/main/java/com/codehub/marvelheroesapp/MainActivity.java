@@ -84,14 +84,20 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
     }
 
+    //Manage side menu items
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+        //close nside menu when you select an item
         if(item.getItemId() == R.id.users_info){
 
         }
         if(item.getItemId() == R.id.profile){
 
         }
+        if(item.getItemId() == R.id.sign_out){
+
+        }
+
         return true;
     }
 }

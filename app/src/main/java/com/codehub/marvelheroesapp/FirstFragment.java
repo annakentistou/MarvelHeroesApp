@@ -31,10 +31,6 @@ import java.util.List;
  */
 public class FirstFragment extends Fragment {
 
-    public FirstFragment() {
-        // Required empty public constructor
-    }
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {

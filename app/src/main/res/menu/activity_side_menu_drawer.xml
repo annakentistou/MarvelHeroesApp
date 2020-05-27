@@ -15,7 +15,7 @@
         android:title="@string/other_users" />
 
     <item
-        android:id="@+id/favor"
+        android:id="@+id/sign_out"
         android:icon="@drawable/sign_in"
         android:title="@string/sign_out" />
     <!--</group>-->
