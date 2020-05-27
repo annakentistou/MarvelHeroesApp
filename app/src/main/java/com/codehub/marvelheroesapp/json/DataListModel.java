@@ -1,4 +1,4 @@
-package com.codehub.marvelheroes.json;
+package com.codehub.marvelheroesapp.json;
 
 import java.util.List;
 

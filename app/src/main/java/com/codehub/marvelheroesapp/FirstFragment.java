@@ -19,8 +19,8 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-import com.codehub.marvelheroes.json.DataModel;
-import com.codehub.marvelheroes.json.HeroesModel;
+import com.codehub.marvelheroesapp.json.DataModel;
+import com.codehub.marvelheroesapp.json.HeroesModel;
 import com.google.gson.Gson;
 
 import java.util.ArrayList;
@@ -42,7 +42,6 @@ public class FirstFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState){
         super.onViewCreated(view,savedInstanceState);
         /*getView().findViewById(R.id.recycler_view_for_all);*/
-
     }
 
     @Override
