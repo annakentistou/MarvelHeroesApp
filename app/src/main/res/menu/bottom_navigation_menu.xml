@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
         android:id="@+id/home_page"
         android:enabled="true"
@@ -9,7 +10,10 @@
         android:id="@+id/search_view"
         android:enabled="true"
         android:icon="@drawable/ic_search_black_24dp"
-        android:title="@string/Search"/>
+        android:title="@string/Search"
+        app:actionViewClass="android.widget.SearchView"
+        app:showAsAction="ifRoom|collapseActionView"
+        />
     <item
         android:id="@+id/myfavoriteList"
         android:enabled="true"

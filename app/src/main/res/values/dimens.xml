@@ -6,6 +6,13 @@
     <dimen name="TextFieldWidth">320dp</dimen>
     <dimen name="MicroIconsWidth">40dp</dimen>
     <dimen name="TextButtonMargin">1dp</dimen>
-    <dimen name="margins_in_listview">10dp</dimen>
-    <dimen name="thumnails_dimens">75dp</dimen>
+    <dimen name="margins_in_listview">5dp</dimen>
+    <dimen name="thumnails_dimens">100dp</dimen>
+    <dimen name="padding_top">5dp</dimen>
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+    <dimen name="nav_header_vertical_spacing">8dp</dimen>
+    <dimen name="nav_header_height">176dp</dimen>
+    <dimen name="fab_margin">16dp</dimen>
 </resources>

@@ -12,6 +12,9 @@
     <color name="RED_A700">#D50000</color>
     <color name="text_color_in_buttons">#D0FFFFFF</color>
     <color name="black">#232222</color>
+    <color name="PrimaryRed">#b71c1c</color>
+    <color name="DarkRed">#7f0000</color>
+    <color name="LightRed">#f05545</color>
 
 
 

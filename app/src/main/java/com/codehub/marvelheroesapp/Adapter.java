@@ -1,4 +1,4 @@
-package com.codehub.marvelheroes;
+package com.codehub.marvelheroesapp;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -10,19 +10,22 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.google.android.material.button.MaterialButton;
+import com.codehub.marvelheroesapp.json.HeroesModel;
 import com.squareup.picasso.Picasso;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder> {
 
     LayoutInflater inflater;
-    List<HeroesInfo> heroes;
+    private List<HeroesModel> heroes;
+    private List<HeroesModel> heroesListFull; //for search
 
-    public Adapter(Context ctx, List<HeroesInfo> heroes) {
+    public Adapter(Context ctx, List<HeroesModel> heroes) {
         this.inflater = LayoutInflater.from(ctx);
         this.heroes = heroes;
+        heroesListFull = new ArrayList<>(heroes);
     }
 
     @NonNull
@@ -35,9 +38,10 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder> {
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
 
-        holder.heroesName.setText(heroes.get(position).getName());
-        /*holder.subTitle.setText(heroes.get(position).getExtension());*/
-        /*Picasso.get().load(heroes.get(position).getPath()).into(holder.thumbnail);*/
+        holder.Name.setText(heroes.get(position).getName());
+        holder.subtitle.setText(heroes.get(position).getDescription());
+        Picasso.get().load(heroes.get(position).getThumbnail().getPath() + ".jpg").into(holder.image);
+
     }
 
     @Override
@@ -46,17 +50,15 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder> {
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        TextView heroesName;
-        /*TextView subTitle;*/
-        /*ImageView thumbnail;*/
+        TextView Name, subtitle;
+        ImageView image;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
 
-            heroesName = itemView.findViewById(R.id.heroesName);
-            /*subTitle = itemView.findViewById(R.id.subTitle);*/
-            /*thumbnail = itemView.findViewById(R.id.thumbnail);*/
+            Name = itemView.findViewById(R.id.title);
+            subtitle = itemView.findViewById(R.id.subTitle);
+            image = itemView.findViewById(R.id.thumbnail);
         }
-
     }
 }

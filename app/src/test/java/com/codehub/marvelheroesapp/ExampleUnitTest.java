@@ -1,4 +1,4 @@
-package com.codehub.marvelheroes;
+package com.codehub.marvelheroesapp;
 
 import org.junit.Test;
 

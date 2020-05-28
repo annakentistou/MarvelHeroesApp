@@ -1,11 +1,14 @@
-package com.codehub.marvelheroes;
-
-import androidx.appcompat.app.AppCompatActivity;
+package com.codehub.marvelheroesapp;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+
+import androidx.appcompat.app.AppCompatActivity;
+
+import com.codehub.marvelheroesapp.MainActivity;
+import com.codehub.marvelheroesapp.R;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -14,31 +17,25 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        final Button register_now = findViewById(R.id.register_now);
-
+        Button register_now = findViewById(R.id.register_now);
         register_now.setOnClickListener(new View.OnClickListener() {
-
             @Override
             public void onClick(View v) {
-
-                Intent intent = new Intent(LoginActivity.this, RegisterActivity.class);
-                startActivity(intent);
+                gotoActivity(RegisterActivity.class);
             }
-
         });
 
-        final Button login = findViewById(R.id.login_button);
-
+        Button login = findViewById(R.id.login_button);
         login.setOnClickListener(new View.OnClickListener() {
-
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(LoginActivity.this, MainMenuActivity.class);
-                startActivity(intent);
+                gotoActivity(MainActivity.class);
             }
-
         });
+    }
 
-
+    private void gotoActivity(Class activityName) {
+        Intent intent = new Intent(LoginActivity.this, activityName);
+        startActivity(intent);
     }
 }
