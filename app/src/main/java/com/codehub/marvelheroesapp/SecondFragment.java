@@ -20,6 +20,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.codehub.marvelheroesapp.json.ComicsModel;
+import com.codehub.marvelheroesapp.json.CreatorsNameModel;
 import com.codehub.marvelheroesapp.json.DataComicsModel;
 import com.codehub.marvelheroesapp.json.DataModel;
 import com.codehub.marvelheroesapp.json.HeroesModel;
@@ -32,12 +33,14 @@ import java.util.List;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class SecondFragment extends Fragment {
+public class SecondFragment extends Fragment{
 
     View view;
     RecyclerView recyclerView;
     ComicsAdapter myadapter;
+    private ItemOnClickListener itemOnClickListener;
     private List<ComicsModel> comics;
+    private List<CreatorsNameModel> items;
     private static String JSON_URL="https://gateway.marvel.com/v1/public/comics?ts=1&apikey=94bd7ab20112da5e1ae5f197769ecd7a&hash=49b68d02a0d6bbeed0553ccf47ab7d68";
 
     public SecondFragment() {

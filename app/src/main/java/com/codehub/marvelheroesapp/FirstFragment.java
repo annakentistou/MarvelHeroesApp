@@ -32,9 +32,9 @@ import java.util.List;
  */
 public class FirstFragment extends Fragment {
 
-    View view;
-    RecyclerView recyclerView;
-    Adapter myadapter;
+    private View view;
+    private RecyclerView recyclerView;
+    private Adapter myadapter;
     private List<HeroesModel> heroes;
     private static String JSON_URL="https://gateway.marvel.com/v1/public/characters?nameStartsWith=M&limit=100&ts=1&apikey=94bd7ab20112da5e1ae5f197769ecd7a&hash=49b68d02a0d6bbeed0553ccf47ab7d68";
     private static String JSON_URL1="https://gateway.marvel.com/v1/public/characters?nameStartsWith=S&ts=1&apikey=94bd7ab20112da5e1ae5f197769ecd7a&hash=49b68d02a0d6bbeed0553ccf47ab7d68";
@@ -117,6 +117,7 @@ public class FirstFragment extends Fragment {
     public void onDestroy(){
         super.onDestroy();
     }
+
 
 }
 

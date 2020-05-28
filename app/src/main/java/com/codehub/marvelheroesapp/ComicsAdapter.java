@@ -1,6 +1,9 @@
 package com.codehub.marvelheroesapp;
 
+import android.content.ClipData;
 import android.content.Context;
+import android.content.Intent;
+import android.os.Parcelable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,18 +17,19 @@ import com.codehub.marvelheroesapp.json.ComicsModel;
 import com.codehub.marvelheroesapp.json.CreatorsNameModel;
 import com.squareup.picasso.Picasso;
 
-import java.util.ArrayList;
+import java.io.Serializable;
 import java.util.List;
 
-public class ComicsAdapter extends RecyclerView.Adapter<ComicsAdapter.ViewHolder>{
+public class ComicsAdapter extends RecyclerView.Adapter<ComicsAdapter.ViewHolder> {
 
     LayoutInflater inflater;
     private List<ComicsModel> comics;
-    private List<CreatorsNameModel> creators;
+    private List<CreatorsNameModel> items;
 
     public ComicsAdapter(Context ctx, List<ComicsModel> comics) {
         this.inflater = LayoutInflater.from(ctx);
         this.comics = comics;
+
     }
 
     @NonNull
@@ -37,15 +41,34 @@ public class ComicsAdapter extends RecyclerView.Adapter<ComicsAdapter.ViewHolder
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        holder.Name.setText(comics.get(position).getTitle());
-        holder.subtitle.setText(comics.get(position).getDescription());
-        Picasso.get().load(comics.get(position).getThumbnail().getPath() + ".jpg").into(holder.image);
+        final String title = comics.get(position).getTitle();
+        final String description = comics.get(position).getDescription();
+        final String image = comics.get(position).getThumbnail().getPath() + ".jpg";
+
+        holder.Name.setText(title);
+        /*holder.subtitle.setText(description);*/
+        Picasso.get().load(image).into(holder.image);
+
+        //set onClickListener to item
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //new Intent
+                Intent intent = new Intent(v.getContext(), ItemDetails.class);
+                intent.putExtra("title", title);//sending title of custom of list view
+                intent.putExtra("subtitle",description);
+                intent.putExtra("image",image);
+                v.getContext().startActivity(intent);
+            }
+        });
+
     }
 
     @Override
     public int getItemCount() {
         return comics.size();
     }
+
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         TextView Name, subtitle;
@@ -54,9 +77,10 @@ public class ComicsAdapter extends RecyclerView.Adapter<ComicsAdapter.ViewHolder
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
 
-            Name = itemView.findViewById(R.id.Name);
+            Name = itemView.findViewById(R.id.title);
             subtitle = itemView.findViewById(R.id.subTitle);
             image = itemView.findViewById(R.id.thumbnail);
+
         }
     }
 }

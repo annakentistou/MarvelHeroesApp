@@ -11,7 +11,6 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.codehub.marvelheroesapp.json.HeroesModel;
-import com.google.android.material.button.MaterialButton;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -57,7 +56,7 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder> {
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
 
-            Name = itemView.findViewById(R.id.Name);
+            Name = itemView.findViewById(R.id.title);
             subtitle = itemView.findViewById(R.id.subTitle);
             image = itemView.findViewById(R.id.thumbnail);
         }
