@@ -9,7 +9,8 @@
 <!--
     app:titleTextColor="@color/text_color_in_buttons"
 -->
-    <androidx.appcompat.widget.Toolbar
+
+    <com.google.android.material.appbar.MaterialToolbar
         android:id="@+id/topAppBar"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
@@ -21,6 +22,8 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
          />
+    <!---->"
+
    <!-- <include
         android:id="@+id/tabs"
         layout="@layout/tab_layout_menu"

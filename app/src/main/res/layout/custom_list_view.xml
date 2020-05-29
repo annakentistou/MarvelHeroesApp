@@ -75,7 +75,7 @@
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:padding="5dp"
-                android:src="@drawable/ic_favorite_black_24dp"
+                android:src="@drawable/ic_favorite_border_black_24dp"
                 android:background="@null"
                 android:foregroundTint="@color/gray_400"
                 app:layout_constraintStart_toEndOf="@id/title"

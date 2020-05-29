@@ -4,6 +4,8 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Filter;
+import android.widget.Filterable;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -49,6 +51,8 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder> {
         return heroes.size();
     }
 
+    //ViewHolder creation
+
     public class ViewHolder extends RecyclerView.ViewHolder {
         TextView Name, subtitle;
         ImageView image;
@@ -61,4 +65,38 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder> {
             image = itemView.findViewById(R.id.thumbnail);
         }
     }
+
+    //29/5/2020 For Searching...
+//    @Override
+//    public Filter getFilter() {
+//        return searchFilter;
+//    }
+//
+//   private Filter searchFilter = new Filter() {
+//       @Override
+//       protected FilterResults performFiltering(CharSequence constraint) {
+//           List<HeroesModel> filteredList = new ArrayList<>();
+//
+//           if (constraint == null || constraint.length() == 0){
+//               filteredList.addAll(heroesListFull);
+//           } else {
+//               String filterPattern = constraint.toString().toLowerCase().trim();
+//               for (HeroesModel item: heroesListFull) {
+//                   if (item.getName().toLowerCase().contains(filterPattern)){
+//                       filteredList.add(item);
+//                   }
+//               }
+//           }
+//           FilterResults results = new FilterResults();
+//           results.values = filteredList;
+//           return results;
+//       }
+//
+//       @Override
+//       protected void publishResults(CharSequence constraint, FilterResults results) {
+//            heroes.clear();
+//            heroes.addAll((List) results.values);
+//            notifyDataSetChanged();
+//       }
+//   };
 }

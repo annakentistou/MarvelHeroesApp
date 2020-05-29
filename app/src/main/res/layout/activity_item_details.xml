@@ -9,9 +9,9 @@
 
     <ImageView
         android:id="@+id/thumbnail"
-        android:layout_width="200dp"
-        android:layout_height="200dp"
-        android:padding="5dp"
+        android:layout_width="300dp"
+        android:layout_height="250dp"
+        android:padding="15dp"
         android:paddingStart="@dimen/padding_top"
         android:paddingTop="@dimen/padding_top"
         android:src="@drawable/ic_launcher_background"
@@ -24,10 +24,10 @@
 
     <TextView
         android:id="@+id/title"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="44dp"
-        android:padding="15dp"
+        android:layout_margin="5dp"
+        android:padding="5dp"
         android:text="Title"
         android:textAlignment="textStart"
         android:textAllCaps="false"
@@ -39,15 +39,14 @@
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.45" />
+        app:layout_constraintVertical_bias="0.60" />
 
     <TextView
         android:id="@+id/subTitle"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/margins_in_listview"
-        android:layout_marginTop="@dimen/margins_in_listview"
-        android:padding="15dp"
+        android:layout_margin="5dp"
+        android:padding="5dp"
         android:textSize="15sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/title"

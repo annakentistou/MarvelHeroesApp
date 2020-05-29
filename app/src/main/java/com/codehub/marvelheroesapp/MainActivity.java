@@ -4,49 +4,40 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.SearchView;
 import androidx.appcompat.widget.Toolbar;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
 import androidx.fragment.app.FragmentTransaction;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.ViewPager;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
-
-import com.android.volley.Request;
-import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.StringRequest;
-import com.android.volley.toolbox.Volley;
-import com.codehub.marvelheroesapp.json.DataModel;
-import com.codehub.marvelheroesapp.json.HeroesModel;
 import com.google.android.material.appbar.MaterialToolbar;
+import com.google.android.material.bottomnavigation.BottomNavigationMenuView;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.tabs.TabItem;
 import com.google.android.material.tabs.TabLayout;
-import com.google.gson.Gson;
 
-import java.util.ArrayList;
-import java.util.List;
 
-public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
+public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     DrawerLayout drawerLayout;
     ActionBarDrawerToggle actionBarDrawerToggle;
-    Toolbar toolbar;
+    MaterialToolbar toolbar;
     NavigationView navigationView;
     FragmentManager fragmentManager;
     FragmentTransaction fragmentTransaction;
     TabLayout tabLayout;
-    TabItem all,comics,series;
+    TabItem all, comics, series;
     TabsAdapter tabsAdapter;
     ViewPager viewPager;
-
+    Adapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,8 +55,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         drawerLayout = findViewById(R.id.main_drawer);
         navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
-        //No operation?????
-        actionBarDrawerToggle = new ActionBarDrawerToggle(this,drawerLayout,toolbar,R.string.open,R.string.close);
+
+        actionBarDrawerToggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.open, R.string.close);
         drawerLayout.addDrawerListener(actionBarDrawerToggle);
         actionBarDrawerToggle.setDrawerIndicatorEnabled(true);
         actionBarDrawerToggle.syncState();
@@ -78,8 +69,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         all = findViewById(R.id.tab_all);
         comics = findViewById(R.id.tab_comics);
         series = findViewById(R.id.tab_series);
-        tabsAdapter = new TabsAdapter(getSupportFragmentManager(), FragmentPagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT,tabLayout.getTabCount());
+        tabsAdapter = new TabsAdapter(getSupportFragmentManager(), FragmentPagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT, tabLayout.getTabCount());
         viewPager.setAdapter(tabsAdapter);
+
+        //Bottom Navigation Menu management management
+        /*BottomNavigationView bottomNav = findViewById(R.id.bottom_navigation);*/
+        /*bottomNav.setOnNavigationItemSelectedListener(navigationListener);*/
 
         tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
@@ -98,22 +93,71 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             }
         });
         viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
+
     }
 
     //Manage side menu items
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-        //close nside menu when you select an item
-        if(item.getItemId() == R.id.users_info){
+        //close side menu when you select an item
+        if (item.getItemId() == R.id.users_info) {
 
         }
-        if(item.getItemId() == R.id.profile){
+        if (item.getItemId() == R.id.profile) {
 
         }
-        if(item.getItemId() == R.id.sign_out){
+        if (item.getItemId() == R.id.sign_out) {
 
         }
 
+        return true;
+    }
+
+    //BottomNavigation items management
+    /*private BottomNavigationView.OnNavigationItemSelectedListener
+            navigationListener = new BottomNavigationView.OnNavigationItemSelectedListener() {
+
+        @Override
+        public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+            if (item.getItemId() == R.id.home_page) {
+
+            }
+            if (item.getItemId() == R.id.search_view) {
+
+            }
+            if (item.getItemId() == R.id.myfavoriteList) {
+
+            }
+            if (item.getItemId() == R.id.notifications) {
+
+            }
+            return true;
+        }
+    };*/
+
+
+
+//Search area
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.top_app_bar, menu);
+
+      /*  MenuItem searchItem = menu.findItem(R.id.search_view);
+        SearchView searchView = (SearchView) searchItem.getActionView();
+
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                adapter.getFilter().filter(newText);
+                return false;
+            }
+        });*/
         return true;
     }
 
