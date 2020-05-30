@@ -29,15 +29,14 @@ import com.google.gson.Gson;
 import java.util.ArrayList;
 import java.util.List;
 
-
 /**
  * A simple {@link Fragment} subclass.
  */
 public class SecondFragment extends Fragment{
 
-    View view;
-    RecyclerView recyclerView;
-    ComicsAdapter myadapter;
+    private View view;
+    private RecyclerView recyclerView;
+    private ComicsAdapter myadapter;
     private ItemOnClickListener itemOnClickListener;
     private List<ComicsModel> comics;
     private List<CreatorsNameModel> items;
@@ -46,7 +45,6 @@ public class SecondFragment extends Fragment{
     public SecondFragment() {
         // Required empty public constructor
     }
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -59,7 +57,6 @@ public class SecondFragment extends Fragment{
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState){
         super.onViewCreated(view,savedInstanceState);
-
     }
 
     @Override

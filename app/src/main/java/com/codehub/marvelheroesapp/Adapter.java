@@ -1,6 +1,7 @@
 package com.codehub.marvelheroesapp;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,7 +21,7 @@ import java.util.List;
 
 public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder> {
 
-    LayoutInflater inflater;
+    private LayoutInflater inflater;
     private List<HeroesModel> heroes;
     private List<HeroesModel> heroesListFull; //for search
 
@@ -39,11 +40,26 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+        final String title = heroes.get(position).getName();
+        final String description = heroes.get(position).getDescription();
+        final String image = heroes.get(position).getThumbnail().getPath() + ".jpg";
 
-        holder.Name.setText(heroes.get(position).getName());
-        holder.subtitle.setText(heroes.get(position).getDescription());
-        Picasso.get().load(heroes.get(position).getThumbnail().getPath() + ".jpg").into(holder.image);
+        holder.Name.setText(title);
+        /*holder.subtitle.setText(description);*/
+        Picasso.get().load(image).into(holder.image);
 
+        //set onClickListener to item
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //new Intent
+                Intent intent = new Intent(v.getContext(), ItemDetails.class);
+                intent.putExtra("title", title);//sending title of "custom of list view"
+                intent.putExtra("subtitle",description);
+                intent.putExtra("image",image);
+                v.getContext().startActivity(intent);
+            }
+        });
     }
 
     @Override
@@ -54,8 +70,8 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder> {
     //ViewHolder creation
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        TextView Name, subtitle;
-        ImageView image;
+        private TextView Name, subtitle;
+        private ImageView image;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);

@@ -22,7 +22,7 @@ import java.util.List;
 
 public class ComicsAdapter extends RecyclerView.Adapter<ComicsAdapter.ViewHolder> {
 
-    LayoutInflater inflater;
+    private LayoutInflater inflater;
     private List<ComicsModel> comics;
     private List<CreatorsNameModel> items;
 
@@ -60,9 +60,7 @@ public class ComicsAdapter extends RecyclerView.Adapter<ComicsAdapter.ViewHolder
                 v.getContext().startActivity(intent);
             }
         });
-
     }
-
     @Override
     public int getItemCount() {
         return comics.size();
