@@ -13,19 +13,21 @@
     <string name="Username">Username</string>
     <string name="Password">Password</string>
     <string name="Confirm_Password">Confirm Password</string>
+    <string name="set_new_pass">SET A NEW PASSWORD</string>
+    <string name="new_Password">New Password</string>
     <!--All about Bottom Navigation menu-->
     <string name="Home">Home Page</string>
     <string name="Search">Search</string>
     <string name="Favorites">Favorites</string>
     <string name="Notifications">Notifications</string>
     <!--All about Tabs-->
-    <string name="All_Heroes">All</string>
+    <string name="All_Heroes">Characters</string>
     <string name="Comics">Comics</string>
     <string name="Series">Series</string>
     <string name="Hero_Name"> <u>Hero Name</u> </string>
 
-    <string name="open"></string>
-    <string name="close"></string>
+    <string name="open"/>
+    <string name="close"/>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>

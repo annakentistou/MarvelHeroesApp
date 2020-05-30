@@ -32,6 +32,14 @@ public class LoginActivity extends AppCompatActivity {
                 gotoActivity(MainActivity.class);
             }
         });
+
+        Button forgot_pass = findViewById(R.id.forgot_pass);
+        forgot_pass.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                gotoActivity(ConfirmPassActivity.class);
+            }
+        });
     }
 
     private void gotoActivity(Class activityName) {
