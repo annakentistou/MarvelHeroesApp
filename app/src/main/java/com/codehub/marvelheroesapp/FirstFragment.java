@@ -10,6 +10,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -100,7 +102,6 @@ public class FirstFragment extends Fragment {
             queue.add(stringRequest);
 
         }
-
 
     @Override
     public void onPause() {

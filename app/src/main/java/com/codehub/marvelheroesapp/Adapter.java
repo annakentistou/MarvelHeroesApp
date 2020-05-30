@@ -67,36 +67,36 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder> {
     }
 
     //29/5/2020 For Searching...
-//    @Override
-//    public Filter getFilter() {
-//        return searchFilter;
-//    }
-//
-//   private Filter searchFilter = new Filter() {
-//       @Override
-//       protected FilterResults performFiltering(CharSequence constraint) {
-//           List<HeroesModel> filteredList = new ArrayList<>();
-//
-//           if (constraint == null || constraint.length() == 0){
-//               filteredList.addAll(heroesListFull);
-//           } else {
-//               String filterPattern = constraint.toString().toLowerCase().trim();
-//               for (HeroesModel item: heroesListFull) {
-//                   if (item.getName().toLowerCase().contains(filterPattern)){
-//                       filteredList.add(item);
-//                   }
-//               }
-//           }
-//           FilterResults results = new FilterResults();
-//           results.values = filteredList;
-//           return results;
-//       }
-//
-//       @Override
-//       protected void publishResults(CharSequence constraint, FilterResults results) {
-//            heroes.clear();
-//            heroes.addAll((List) results.values);
-//            notifyDataSetChanged();
-//       }
-//   };
+   /*@Override
+   public Filter getFilter() {
+       return searchFilter;
+   }
+
+  private Filter searchFilter = new Filter() {
+      @Override
+      protected FilterResults performFiltering(CharSequence constraint) {
+         List<HeroesModel> filteredList = new ArrayList<>();
+
+         if (constraint == null || constraint.length() == 0){
+               filteredList.addAll(heroesListFull);
+           } else {
+               String filterPattern = constraint.toString().toLowerCase().trim();
+              for (HeroesModel item: heroesListFull) {
+                   if (item.getName().toLowerCase().contains(filterPattern)){
+                      filteredList.add(item);
+                   }
+               }
+           }
+           FilterResults results = new FilterResults();
+           results.values = filteredList;
+           return results;
+      }
+
+      @Override
+       protected void publishResults(CharSequence constraint, FilterResults results) {
+            heroes.clear();
+            heroes.addAll((List) results.values);
+            notifyDataSetChanged();
+       }
+   };*/
 }

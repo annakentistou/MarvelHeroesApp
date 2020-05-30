@@ -7,7 +7,13 @@ public class HeroesModel {
     private String description;
     private ImageModel thumbnail;
 
-@Nullable
+    public HeroesModel(String name, String description, ImageModel thumbnail) {
+        this.name = name;
+        this.description = description;
+        this.thumbnail = thumbnail;
+    }
+
+    @Nullable
     public String getName() {
         return name;
     }
