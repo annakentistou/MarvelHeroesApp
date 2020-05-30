@@ -38,10 +38,14 @@ public class FirstFragment extends Fragment {
     private RecyclerView recyclerView;
     private Adapter myadapter;
     private List<HeroesModel> heroes;
-    private static String JSON_URL="https://gateway.marvel.com/v1/public/characters?nameStartsWith=M&limit=100&ts=1&apikey=94bd7ab20112da5e1ae5f197769ecd7a&hash=49b68d02a0d6bbeed0553ccf47ab7d68";
-    private static String JSON_URL1="https://gateway.marvel.com/v1/public/characters?nameStartsWith=S&ts=1&apikey=94bd7ab20112da5e1ae5f197769ecd7a&hash=49b68d02a0d6bbeed0553ccf47ab7d68";
-    private static String JSON_URL2="https://gateway.marvel.com/v1/public/characters?nameStartsWith=D&ts=1&apikey=94bd7ab20112da5e1ae5f197769ecd7a&hash=49b68d02a0d6bbeed0553ccf47ab7d68";
-
+    private static String JSON_URL="https://gateway.marvel.com/v1/public/characters?nameStartsWith=Bi&limit=100&ts=1&apikey=94bd7ab20112da5e1ae5f197769ecd7a&hash=49b68d02a0d6bbeed0553ccf47ab7d68";
+    private static String JSON_URL1="https://gateway.marvel.com/v1/public/characters?nameStartsWith=Dr&ts=1&apikey=94bd7ab20112da5e1ae5f197769ecd7a&hash=49b68d02a0d6bbeed0553ccf47ab7d68";
+    private static String JSON_URL2="https://gateway.marvel.com/v1/public/characters?nameStartsWith=H&ts=1&apikey=94bd7ab20112da5e1ae5f197769ecd7a&hash=49b68d02a0d6bbeed0553ccf47ab7d68";
+    private static String JSON_URL3="https://gateway.marvel.com/v1/public/characters?nameStartsWith=I&ts=1&apikey=94bd7ab20112da5e1ae5f197769ecd7a&hash=49b68d02a0d6bbeed0553ccf47ab7d68";
+    private static String JSON_URL4="https://gateway.marvel.com/v1/public/characters?nameStartsWith=M&ts=1&apikey=94bd7ab20112da5e1ae5f197769ecd7a&hash=49b68d02a0d6bbeed0553ccf47ab7d68";
+    private static String JSON_URL5="https://gateway.marvel.com/v1/public/characters?nameStartsWith=S&ts=1&apikey=94bd7ab20112da5e1ae5f197769ecd7a&hash=49b68d02a0d6bbeed0553ccf47ab7d68";
+    private static String JSON_URL6="https://gateway.marvel.com/v1/public/characters?nameStartsWith=Th&ts=1&apikey=94bd7ab20112da5e1ae5f197769ecd7a&hash=49b68d02a0d6bbeed0553ccf47ab7d68";
+    private static String JSON_URL7="https://gateway.marvel.com/v1/public/characters?nameStartsWith=W&ts=1&apikey=94bd7ab20112da5e1ae5f197769ecd7a&hash=49b68d02a0d6bbeed0553ccf47ab7d68";
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -81,6 +85,214 @@ public class FirstFragment extends Fragment {
                             heroes.add(model);
                         }
 
+                        Log.i("response", dataModel.toString());
+
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+
+                }
+            }, new Response.ErrorListener() {
+                @Override
+                public void onErrorResponse(VolleyError error) {
+                    error.printStackTrace();
+                }
+            }) ;
+
+            queue.add(stringRequest);
+
+            //add stringRequest1
+            StringRequest stringRequest1= new StringRequest(Request.Method.GET, JSON_URL1, new Response.Listener<String>() {
+                @Override
+                public void onResponse(String response) {
+                    try {
+                        DataModel dataModel = new Gson().fromJson(response, DataModel.class);
+
+                        List<HeroesModel> array = new ArrayList<>();
+                        array = dataModel.getData().getResults();
+                        for (int i = 0; i < array.size(); i++) {
+                            HeroesModel model = array.get(i);
+                            heroes.add(model);
+                        }
+                        Log.i("response", dataModel.toString());
+
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+
+                }
+            }, new Response.ErrorListener() {
+                @Override
+                public void onErrorResponse(VolleyError error) {
+                    error.printStackTrace();
+                }
+            }) ;
+
+            queue.add(stringRequest1);
+
+            //add stringRequest2
+            StringRequest stringRequest2= new StringRequest(Request.Method.GET, JSON_URL2, new Response.Listener<String>() {
+                @Override
+                public void onResponse(String response) {
+                    try {
+                        DataModel dataModel = new Gson().fromJson(response, DataModel.class);
+
+                        List<HeroesModel> array = new ArrayList<>();
+                        array = dataModel.getData().getResults();
+                        for (int i = 0; i < array.size(); i++) {
+                            HeroesModel model = array.get(i);
+                            heroes.add(model);
+                        }
+                        Log.i("response", dataModel.toString());
+
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+
+                }
+            }, new Response.ErrorListener() {
+                @Override
+                public void onErrorResponse(VolleyError error) {
+                    error.printStackTrace();
+                }
+            }) ;
+
+            queue.add(stringRequest2);
+
+            //add stringRequest3
+            StringRequest stringRequest3= new StringRequest(Request.Method.GET, JSON_URL3, new Response.Listener<String>() {
+                @Override
+                public void onResponse(String response) {
+                    try {
+                        DataModel dataModel = new Gson().fromJson(response, DataModel.class);
+
+                        List<HeroesModel> array = new ArrayList<>();
+                        array = dataModel.getData().getResults();
+                        for (int i = 0; i < array.size(); i++) {
+                            HeroesModel model = array.get(i);
+                            heroes.add(model);
+                        }
+
+                        Log.i("response", dataModel.toString());
+
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+
+                }
+            }, new Response.ErrorListener() {
+                @Override
+                public void onErrorResponse(VolleyError error) {
+                    error.printStackTrace();
+                }
+            }) ;
+
+            queue.add(stringRequest3);
+
+            //add stringRequest4
+            StringRequest stringRequest4= new StringRequest(Request.Method.GET, JSON_URL4, new Response.Listener<String>() {
+                @Override
+                public void onResponse(String response) {
+                    try {
+                        DataModel dataModel = new Gson().fromJson(response, DataModel.class);
+
+                        List<HeroesModel> array = new ArrayList<>();
+                        array = dataModel.getData().getResults();
+                        for (int i = 0; i < array.size(); i++) {
+                            HeroesModel model = array.get(i);
+                            heroes.add(model);
+                        }
+
+                        Log.i("response", dataModel.toString());
+
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+
+                }
+            }, new Response.ErrorListener() {
+                @Override
+                public void onErrorResponse(VolleyError error) {
+                    error.printStackTrace();
+                }
+            }) ;
+
+            queue.add(stringRequest4);
+
+            //add stringRequest5
+            StringRequest stringRequest5= new StringRequest(Request.Method.GET, JSON_URL5, new Response.Listener<String>() {
+                @Override
+                public void onResponse(String response) {
+                    try {
+                        DataModel dataModel = new Gson().fromJson(response, DataModel.class);
+
+                        List<HeroesModel> array = new ArrayList<>();
+                        array = dataModel.getData().getResults();
+                        for (int i = 0; i < array.size(); i++) {
+                            HeroesModel model = array.get(i);
+                            heroes.add(model);
+                        }
+
+                        Log.i("response", dataModel.toString());
+
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+
+                }
+            }, new Response.ErrorListener() {
+                @Override
+                public void onErrorResponse(VolleyError error) {
+                    error.printStackTrace();
+                }
+            }) ;
+
+            queue.add(stringRequest5);
+
+            //add stringRequest6
+            StringRequest stringRequest6= new StringRequest(Request.Method.GET, JSON_URL6, new Response.Listener<String>() {
+                @Override
+                public void onResponse(String response) {
+                    try {
+                        DataModel dataModel = new Gson().fromJson(response, DataModel.class);
+
+                        List<HeroesModel> array = new ArrayList<>();
+                        array = dataModel.getData().getResults();
+                        for (int i = 0; i < array.size(); i++) {
+                            HeroesModel model = array.get(i);
+                            heroes.add(model);
+                        }
+
+                        Log.i("response", dataModel.toString());
+
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+
+                }
+            }, new Response.ErrorListener() {
+                @Override
+                public void onErrorResponse(VolleyError error) {
+                    error.printStackTrace();
+                }
+            }) ;
+
+            queue.add(stringRequest6);
+
+            //add stringRequest7
+            StringRequest stringRequest7= new StringRequest(Request.Method.GET, JSON_URL7, new Response.Listener<String>() {
+                @Override
+                public void onResponse(String response) {
+                    try {
+                        DataModel dataModel = new Gson().fromJson(response, DataModel.class);
+
+                        List<HeroesModel> array = new ArrayList<>();
+                        array = dataModel.getData().getResults();
+                        for (int i = 0; i < array.size(); i++) {
+                            HeroesModel model = array.get(i);
+                            heroes.add(model);
+                        }
+
                         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
                         myadapter = new Adapter(getContext(), heroes);
                         recyclerView.setAdapter(myadapter);
@@ -99,10 +311,8 @@ public class FirstFragment extends Fragment {
                 }
             }) ;
 
-            queue.add(stringRequest);
-
+            queue.add(stringRequest7);
         }
-        
 
     @Override
     public void onPause() {
