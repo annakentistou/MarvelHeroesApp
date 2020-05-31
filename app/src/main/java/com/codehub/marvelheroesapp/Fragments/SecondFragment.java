@@ -19,14 +19,12 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-import com.codehub.marvelheroesapp.ComicsAdapter;
+import com.codehub.marvelheroesapp.Adapters.ComicsAdapter;
 import com.codehub.marvelheroesapp.ItemOnClickListener;
 import com.codehub.marvelheroesapp.R;
 import com.codehub.marvelheroesapp.json.ComicsModel;
 import com.codehub.marvelheroesapp.json.CreatorsNameModel;
 import com.codehub.marvelheroesapp.json.DataComicsModel;
-import com.codehub.marvelheroesapp.json.DataModel;
-import com.codehub.marvelheroesapp.json.HeroesModel;
 import com.google.gson.Gson;
 
 import java.util.ArrayList;

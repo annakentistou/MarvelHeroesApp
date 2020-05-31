@@ -11,13 +11,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.inputmethod.EditorInfo;
-import android.widget.ImageView;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -25,7 +20,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-import com.codehub.marvelheroesapp.Adapter;
+import com.codehub.marvelheroesapp.Adapters.Adapter;
 import com.codehub.marvelheroesapp.R;
 import com.codehub.marvelheroesapp.json.DataModel;
 import com.codehub.marvelheroesapp.json.HeroesModel;

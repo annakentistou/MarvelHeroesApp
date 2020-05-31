@@ -12,10 +12,6 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".ConfirmPassActivity"
-            android:theme="@style/AppTheme.Login"/>
-        <activity android:name=".ItemDetails" />
-        <activity
             android:name=".LoginActivity"
             android:theme="@style/AppTheme.Login">
             <intent-filter>
@@ -31,7 +27,14 @@
             android:name=".RegisterActivity"
             android:theme="@style/AppTheme.Login" />
         <activity
+            android:name=".ConfirmPassActivity"
+            android:theme="@style/AppTheme.Login"/>
+        <activity android:name=".ItemDetails" />
+        <activity
             android:name=".SearchActivity"
+            android:theme="@style/MainActivity.Theme" />
+        <activity
+            android:name=".FavoritesList"
             android:theme="@style/MainActivity.Theme" />
     </application>
 

@@ -1,18 +1,18 @@
-package com.codehub.marvelheroesapp;
+package com.codehub.marvelheroesapp.Adapters;
 
 import android.content.Context;
 import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Filter;
-import android.widget.Filterable;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.codehub.marvelheroesapp.ItemDetails;
+import com.codehub.marvelheroesapp.R;
 import com.codehub.marvelheroesapp.json.HeroesModel;
 import com.squareup.picasso.Picasso;
 

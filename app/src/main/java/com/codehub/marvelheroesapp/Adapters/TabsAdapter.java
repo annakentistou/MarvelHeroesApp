@@ -1,4 +1,4 @@
-package com.codehub.marvelheroesapp;
+package com.codehub.marvelheroesapp.Adapters;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
