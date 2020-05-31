@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/list_item"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:layout_marginStart="@dimen/margins_in_listview"
+        android:layout_marginTop="@dimen/margins_in_listview"
+        android:layout_marginEnd="@dimen/margins_in_listview"
+        android:layout_marginBottom="@dimen/margins_in_listview"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="MissingConstraints">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/thumbnail"
+                android:layout_width="@dimen/thumnails_dimens"
+                android:layout_height="@dimen/thumnails_dimens"
+                android:padding="5dp"
+                android:paddingStart="@dimen/padding_top"
+                android:paddingTop="@dimen/padding_top"
+                android:src="@drawable/ic_launcher_background"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/title"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="1.0"></ImageView>
+
+            <TextView
+                android:id="@+id/title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/margins_in_listview"
+                android:layout_marginTop="@dimen/margins_in_listview"
+                android:text="title"
+                android:textAlignment="textStart"
+                android:textAllCaps="false"
+                android:textColor="@color/gray_700"
+                android:textSize="15sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toEndOf="@+id/thumbnail"
+                app:layout_constraintTop_toTopOf="@id/thumbnail" />
+
+            <androidx.appcompat.widget.AppCompatImageButton
+                android:id="@+id/bin"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:background="@null"
+                android:foregroundTint="@color/gray_400"
+                android:padding="5dp"
+                android:src="@drawable/ic_delete_sweep_black_24dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toEndOf="@id/title"
+                app:layout_constraintTop_toTopOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

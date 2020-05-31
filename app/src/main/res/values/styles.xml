@@ -26,12 +26,10 @@
         </item>
     </style>
 
-    <style name="DetailsActivity.Theme" parent="Theme.AppCompat.Light">
+    <style name="DetailsActivity.Theme" parent="Theme.AppCompat.Light.DarkActionBar">
         <item name="colorPrimary">@color/PrimaryRed</item>
         <item name="colorPrimaryDark">@color/DarkRed</item>
         <item name="colorAccent">@color/LightRed</item>
-        <item name="android:windowTranslucentStatus">true</item>
-        <item name="actionBarStyle">@color/PrimaryRed</item>
     </style>
 
     <style name="AppTheme.AppBarOverlay" parent="Theme.AppCompat.Light.DarkActionBar">

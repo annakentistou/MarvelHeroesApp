@@ -125,9 +125,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         //close side menu when you select an item
-        if (item.getItemId() == R.id.users_info) {
 
-        }
         if (item.getItemId() == R.id.profile) {
 
         }

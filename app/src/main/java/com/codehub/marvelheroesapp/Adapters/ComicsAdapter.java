@@ -5,6 +5,8 @@ import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -23,7 +25,8 @@ public class ComicsAdapter extends RecyclerView.Adapter<ComicsAdapter.ViewHolder
 
     private LayoutInflater inflater;
     private List<ComicsModel> comics;
-    private List<CreatorsNameModel> items;
+    private List<CreatorsNameModel> creators;
+
 
     public ComicsAdapter(Context ctx, List<ComicsModel> comics) {
         this.inflater = LayoutInflater.from(ctx);
@@ -38,9 +41,9 @@ public class ComicsAdapter extends RecyclerView.Adapter<ComicsAdapter.ViewHolder
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull final ViewHolder holder, int position) {
         final String title = comics.get(position).getTitle();
-        /*final String subTitle = items.get(position).getName();*/
+        /*final String subTitle = creators.get(position).getName();*/
         final String description = comics.get(position).getDescription();
         final String image = comics.get(position).getThumbnail().getPath() + ".jpg";
 
@@ -55,19 +58,14 @@ public class ComicsAdapter extends RecyclerView.Adapter<ComicsAdapter.ViewHolder
                 //new Intent
                 Intent intent = new Intent(v.getContext(), ItemDetails.class);
                 intent.putExtra("title", title);//sending title of "custom of list view"
-                intent.putExtra("subtitle",description);
+                if(description !=null) {
+                    intent.putExtra("subtitle", "DESCRIPTION: " + description);
+                }else
+                    intent.putExtra("subtitle", "There is No description");
                 intent.putExtra("image",image);
                 v.getContext().startActivity(intent);
             }
         });
-
-        //set onCLickListener to heart icon
-     /*   holder.add_to_fav.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-            }
-        });*/
 
     }
 
@@ -78,7 +76,8 @@ public class ComicsAdapter extends RecyclerView.Adapter<ComicsAdapter.ViewHolder
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         TextView Name, subtitle;
-        ImageView image,add_to_fav;
+        ImageView image;
+        ImageButton add_to_fav,share;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -87,6 +86,7 @@ public class ComicsAdapter extends RecyclerView.Adapter<ComicsAdapter.ViewHolder
             subtitle = itemView.findViewById(R.id.subTitle);
             image = itemView.findViewById(R.id.thumbnail);
             add_to_fav = itemView.findViewById(R.id.heart);
+            share = itemView.findViewById(R.id.share);
 
         }
     }

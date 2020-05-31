@@ -29,7 +29,9 @@
         <activity
             android:name=".ConfirmPassActivity"
             android:theme="@style/AppTheme.Login"/>
-        <activity android:name=".ItemDetails" />
+        <activity
+            android:name=".ItemDetails"
+            android:theme="@style/DetailsActivity.Theme"/>
         <activity
             android:name=".SearchActivity"
             android:theme="@style/MainActivity.Theme" />

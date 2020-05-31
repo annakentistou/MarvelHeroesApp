@@ -23,8 +23,10 @@ import com.codehub.marvelheroesapp.Adapters.ComicsAdapter;
 import com.codehub.marvelheroesapp.ItemOnClickListener;
 import com.codehub.marvelheroesapp.R;
 import com.codehub.marvelheroesapp.json.ComicsModel;
+import com.codehub.marvelheroesapp.json.CreatorsModel;
 import com.codehub.marvelheroesapp.json.CreatorsNameModel;
 import com.codehub.marvelheroesapp.json.DataComicsModel;
+import com.codehub.marvelheroesapp.json.DataListModel;
 import com.google.gson.Gson;
 
 import java.util.ArrayList;
@@ -38,7 +40,6 @@ public class SecondFragment extends Fragment{
     private View view;
     private RecyclerView recyclerView;
     private ComicsAdapter myadapter;
-    private ItemOnClickListener itemOnClickListener;
     private List<ComicsModel> comics;
     private List<CreatorsNameModel> creators;
     private static String JSON_URL="https://gateway.marvel.com/v1/public/comics?ts=1&apikey=94bd7ab20112da5e1ae5f197769ecd7a&hash=49b68d02a0d6bbeed0553ccf47ab7d68";
