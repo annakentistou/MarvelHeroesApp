@@ -5,6 +5,10 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
 
+import com.codehub.marvelheroesapp.Fragments.FirstFragment;
+import com.codehub.marvelheroesapp.Fragments.SecondFragment;
+import com.codehub.marvelheroesapp.Fragments.ThirdFragment;
+
 public class TabsAdapter extends FragmentPagerAdapter {
     private int tabsNumber;
 
@@ -32,4 +36,5 @@ public class TabsAdapter extends FragmentPagerAdapter {
     public int getCount() {
         return tabsNumber;
     }
+
 }

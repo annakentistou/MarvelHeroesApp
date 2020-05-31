@@ -30,6 +30,9 @@
         <activity
             android:name=".RegisterActivity"
             android:theme="@style/AppTheme.Login" />
+        <activity
+            android:name=".SearchActivity"
+            android:theme="@style/MainActivity.Theme" />
     </application>
 
 </manifest>

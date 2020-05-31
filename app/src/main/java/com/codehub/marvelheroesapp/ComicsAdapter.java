@@ -41,11 +41,12 @@ public class ComicsAdapter extends RecyclerView.Adapter<ComicsAdapter.ViewHolder
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         final String title = comics.get(position).getTitle();
+        /*final String subTitle = items.get(position).getName();*/
         final String description = comics.get(position).getDescription();
         final String image = comics.get(position).getThumbnail().getPath() + ".jpg";
 
         holder.Name.setText(title);
-        /*holder.subtitle.setText(description);*/
+        /*holder.subtitle.setText(subTitle);*/
         Picasso.get().load(image).into(holder.image);
 
         //set onClickListener to item
@@ -61,11 +62,11 @@ public class ComicsAdapter extends RecyclerView.Adapter<ComicsAdapter.ViewHolder
             }
         });
     }
+
     @Override
     public int getItemCount() {
         return comics.size();
     }
-
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         TextView Name, subtitle;

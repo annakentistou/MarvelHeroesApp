@@ -26,8 +26,8 @@
     <string name="Series">Series</string>
     <string name="Hero_Name"> <u>Hero Name</u> </string>
 
-    <string name="open"/>
-    <string name="close"/>
+    <string name="open" />
+    <string name="close" />
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>

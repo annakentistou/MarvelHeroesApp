@@ -1,9 +1,10 @@
-package com.codehub.marvelheroesapp;
+package com.codehub.marvelheroesapp.Fragments;
 
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.widget.SearchView;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -12,8 +13,10 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.EditorInfo;
 import android.widget.ImageView;
 
 import com.android.volley.Request;
@@ -22,6 +25,8 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.codehub.marvelheroesapp.Adapter;
+import com.codehub.marvelheroesapp.R;
 import com.codehub.marvelheroesapp.json.DataModel;
 import com.codehub.marvelheroesapp.json.HeroesModel;
 import com.google.gson.Gson;
@@ -33,6 +38,9 @@ import java.util.List;
  * A simple {@link Fragment} subclass.
  */
 public class FirstFragment extends Fragment {
+
+    private SearchView searchView = null;
+    private SearchView.OnQueryTextListener queryTextListener;
 
     private View view;
     private RecyclerView recyclerView;
@@ -73,6 +81,7 @@ public class FirstFragment extends Fragment {
             RequestQueue queue = Volley.newRequestQueue(getContext());
 
             StringRequest stringRequest= new StringRequest(Request.Method.GET, JSON_URL, new Response.Listener<String>() {
+                //onResponse it's the same with in all requests
                 @Override
                 public void onResponse(String response) {
                     try {
@@ -313,6 +322,29 @@ public class FirstFragment extends Fragment {
 
             queue.add(stringRequest7);
         }
+
+        //31/5/2020 search area
+ /*   @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        inflater.inflate(R.menu.top_app_bar, menu);
+
+        MenuItem searchItem = menu.findItem(R.id.search_view_top_bar);
+        SearchView searchView = (SearchView) searchItem.getActionView();
+        searchView.setImeOptions(EditorInfo.IME_ACTION_DONE);
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                myadapter.getFilter().filter(newText);
+                return false;
+            }
+        });
+
+    }*/
 
     @Override
     public void onPause() {

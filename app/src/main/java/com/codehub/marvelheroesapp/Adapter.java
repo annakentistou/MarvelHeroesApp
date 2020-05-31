@@ -19,7 +19,7 @@ import com.squareup.picasso.Picasso;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder> {
+public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder> implements Filterable{
 
     private LayoutInflater inflater;
     private List<HeroesModel> heroes;
@@ -83,7 +83,7 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder> {
     }
 
     //29/5/2020 For Searching...
-   /*@Override
+   @Override
    public Filter getFilter() {
        return searchFilter;
    }
@@ -114,5 +114,5 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder> {
             heroes.addAll((List) results.values);
             notifyDataSetChanged();
        }
-   };*/
+   };
 }

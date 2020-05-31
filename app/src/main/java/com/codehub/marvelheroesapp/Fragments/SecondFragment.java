@@ -1,4 +1,4 @@
-package com.codehub.marvelheroesapp;
+package com.codehub.marvelheroesapp.Fragments;
 
 import android.os.Bundle;
 
@@ -19,6 +19,9 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.codehub.marvelheroesapp.ComicsAdapter;
+import com.codehub.marvelheroesapp.ItemOnClickListener;
+import com.codehub.marvelheroesapp.R;
 import com.codehub.marvelheroesapp.json.ComicsModel;
 import com.codehub.marvelheroesapp.json.CreatorsNameModel;
 import com.codehub.marvelheroesapp.json.DataComicsModel;
@@ -39,7 +42,7 @@ public class SecondFragment extends Fragment{
     private ComicsAdapter myadapter;
     private ItemOnClickListener itemOnClickListener;
     private List<ComicsModel> comics;
-    private List<CreatorsNameModel> items;
+    private List<CreatorsNameModel> creators;
     private static String JSON_URL="https://gateway.marvel.com/v1/public/comics?ts=1&apikey=94bd7ab20112da5e1ae5f197769ecd7a&hash=49b68d02a0d6bbeed0553ccf47ab7d68";
 
     public SecondFragment() {
@@ -68,6 +71,7 @@ public class SecondFragment extends Fragment{
             recyclerView = view.findViewById(R.id.recycler_view_for_all);
         }
         comics = new ArrayList<>();
+        /*creators = new ArrayList<>();*/
         extractComicsInfo();
     }
     private void extractComicsInfo() {
@@ -80,10 +84,13 @@ public class SecondFragment extends Fragment{
                     DataComicsModel dataModel = new Gson().fromJson(response, DataComicsModel.class);
 
                     List<ComicsModel> array = new ArrayList<>();
+                   /* List<CreatorsNameModel> creatorsList = new ArrayList<>();*/
+
                     array = dataModel.getData().getResults();
                     for (int i = 0; i < array.size(); i++) {
                         ComicsModel model = array.get(i);
                         comics.add(model);
+
                     }
 
                     recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
