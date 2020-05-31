@@ -34,7 +34,7 @@ public class SearchFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_search, container, false);
+        View view = inflater.inflate(R.layout.activity_search, container, false);
 
         recyclerView = view.findViewById(R.id.recycler_view_for_all);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));

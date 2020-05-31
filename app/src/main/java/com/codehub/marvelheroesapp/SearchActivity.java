@@ -1,16 +1,15 @@
 package com.codehub.marvelheroesapp;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.view.inputmethod.EditorInfo;
 import android.widget.EditText;
-import android.widget.SearchView;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -25,13 +24,14 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.codehub.marvelheroesapp.json.DataModel;
 import com.codehub.marvelheroesapp.json.HeroesModel;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.gson.Gson;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class SearchActivity extends AppCompatActivity {
-
+    BottomNavigationView bottomNav;
     ViewPager viewPager;
     RecyclerView recyclerView;
     Adapter myadapter;
@@ -48,7 +48,7 @@ public class SearchActivity extends AppCompatActivity {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.fragment_search); //actually it's not a fragment, just an activity
+        setContentView(R.layout.activity_search); //actually it's not a fragment, just an activity
         recyclerView = findViewById(R.id.recycler_view_for_all);
     }
 
@@ -79,19 +79,47 @@ public class SearchActivity extends AppCompatActivity {
     //filter for search view 31/5/2020
     private void filter(String text) {
         List<HeroesModel> filteredList = new ArrayList<>();
-        for (HeroesModel item: heroes) {
+        for (HeroesModel item : heroes) {
             if (item.getName().toLowerCase().contains(text.toLowerCase())) {
                 filteredList.add(item);
             }
         }
         myadapter.filterList(filteredList);
     }
-    
+
     @Override
     public void onPostResume() {
         super.onPostResume();
         heroes = new ArrayList<>();
         extractHeroesInfo();
+
+        //Bottom Navigation Menu management  31/5/2020
+        bottomNav = findViewById(R.id.bottom_navigation);
+        Menu menu = bottomNav.getMenu();
+        MenuItem menuItem = menu.getItem(1);
+        menuItem.setChecked(true);
+        bottomNav.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                switch (item.getItemId()) {
+                    case R.id.home_page:
+                        Intent intent = new Intent(SearchActivity.this, MainActivity.class);
+                        startActivity(intent);
+                        break;
+                    case R.id.search_view:
+                        break;
+                    case R.id.myfavoriteList:
+                        Intent fav_intent = new Intent(SearchActivity.this, FavoritesList.class);
+                        startActivity(fav_intent);
+                        break;
+                    /*case R.id.notifications:
+                        Intent not_intent = new Intent(MainActivity.this, NotificationActivity.class);
+                        startActivity(not_intent);
+                        break;*/
+                }
+                return false;
+            }
+        });
     }
 
     private void extractHeroesInfo() {
