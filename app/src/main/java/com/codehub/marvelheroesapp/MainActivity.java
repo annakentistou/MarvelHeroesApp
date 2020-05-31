@@ -23,6 +23,8 @@ import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
 
+import com.codehub.marvelheroesapp.Fragments.FirstFragment;
+import com.codehub.marvelheroesapp.Fragments.SearchFragment;
 import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.bottomnavigation.BottomNavigationMenuView;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -97,7 +99,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         });
         viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
 
-        //Bottom Navigation Menu management management
+        //Bottom Navigation Menu management  31/5/2020
         bottomNav = findViewById(R.id.bottom_navigation);
         bottomNav.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
@@ -111,11 +113,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                         Intent search_intent = new Intent(MainActivity.this, SearchActivity.class);
                         startActivity(search_intent);
                         break;
-                   /* case R.id.myfavoriteList:
-                        Intent fav_intent = new Intent(MainActivity.this,FavoritesListActivity.class);
+                   case R.id.myfavoriteList:
+                        Intent fav_intent = new Intent(MainActivity.this,FavoritesList.class);
                         startActivity(fav_intent);
                         break;
-                    case R.id.notifications:
+                    /*case R.id.notifications:
                         Intent not_intent = new Intent(MainActivity.this, NotificationActivity.class);
                         startActivity(not_intent);
                         break;*/
@@ -123,7 +125,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 return false;
             }
         });
-
     }
 
     //Manage side menu items
@@ -141,7 +142,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             Intent intent = new Intent(MainActivity.this, LoginActivity.class);
             startActivity(intent);
         }
-
         return true;
     }
 
