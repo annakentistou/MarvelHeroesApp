@@ -44,4 +44,8 @@
     <string name="home_second">Home Second</string>
     <string name="other_users">Other Users</string>
     <string name="profile">My Profile</string>
+
+    <!--KeyHash-->
+    <string name="app_id">563705977662214</string>
+    <string name="facebook_login_protocol">fb563705977662214</string>
 </resources>

@@ -11,12 +11,21 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+
+        <meta-data
+            android:name="com.facebook.sdk.ApplicationId"
+            android:value="@string/app_id" />
+        <!--Facebook Provider, setup Facebook Share-->
+        <provider
+            android:authorities="com.facebook.app.FacebookContentProvider563705977662214"
+            android:name="com.facebook.FacebookContentProvider"
+            android:exported="true" />
+
         <activity
             android:name=".LoginActivity"
             android:theme="@style/AppTheme.Login">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
@@ -28,10 +37,10 @@
             android:theme="@style/AppTheme.Login" />
         <activity
             android:name=".ConfirmPassActivity"
-            android:theme="@style/AppTheme.Login"/>
+            android:theme="@style/AppTheme.Login" />
         <activity
             android:name=".ItemDetails"
-            android:theme="@style/DetailsActivity.Theme"/>
+            android:theme="@style/DetailsActivity.Theme" />
         <activity
             android:name=".SearchActivity"
             android:theme="@style/MainActivity.Theme" />

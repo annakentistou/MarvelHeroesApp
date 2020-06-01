@@ -5,8 +5,20 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/gray_400"
+    android:fitsSystemWindows="true"
     tools:context=".ItemDetails">
 
+    <com.google.android.material.appbar.MaterialToolbar
+        android:id="@+id/topAppBar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/DarkRed"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+        app:title="More Info"
+        app:menu="@menu/top_app_bar"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        />
     <ImageView
         android:id="@+id/thumbnail"
         android:layout_width="300dp"
@@ -19,8 +31,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.08"
-        app:layout_constraintHorizontal_bias="0.5"></ImageView>
+        app:layout_constraintVertical_bias="0.20"
+        app:layout_constraintHorizontal_bias="0.5"/>
 
     <TextView
         android:id="@+id/title"

@@ -1,21 +1,36 @@
 package com.codehub.marvelheroesapp.Adapters;
 
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.ApplicationInfo;
+import android.graphics.Bitmap;
+import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.codehub.marvelheroesapp.Fragments.FirstFragment;
 import com.codehub.marvelheroesapp.ItemDetails;
+import com.codehub.marvelheroesapp.MainActivity;
 import com.codehub.marvelheroesapp.R;
 import com.codehub.marvelheroesapp.json.HeroesModel;
+import com.facebook.CallbackManager;
+import com.facebook.FacebookCallback;
+import com.facebook.FacebookException;
+import com.facebook.share.Sharer;
+import com.facebook.share.model.SharePhoto;
+import com.facebook.share.model.SharePhotoContent;
+import com.facebook.share.widget.ShareDialog;
 import com.squareup.picasso.Picasso;
+import com.squareup.picasso.Target;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,6 +40,9 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder> {
     private LayoutInflater inflater;
     private List<HeroesModel> heroes;
     private List<HeroesModel> heroesListFull; //for search
+
+    CallbackManager callbackManager;
+    ShareDialog shareDialog;
 
     public Adapter(Context ctx, List<HeroesModel> heroes) {
         this.inflater = LayoutInflater.from(ctx);
@@ -73,14 +91,30 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder> {
                 holder.add_to_fav.setBackgroundResource(R.drawable.ic_favorite_black_24dp);
             }
         });
+
+
+        //set onCLickListener to Share icon
+        holder.share.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent share_intent = new Intent(Intent.ACTION_SEND);
+                /*Picasso.get().load(image).into(target);*/
+                /*share_intent.setType("application/vnd.android.package-archive");*/
+                share_intent.setType("image/jpeg");
+                share_intent.putExtra(Intent.EXTRA_SUBJECT, title); //for subject take the Heros' name
+                share_intent.putExtra(Intent.EXTRA_TEXT, image); //for body take the image url
+                v.getContext().startActivity(Intent.createChooser(share_intent, "Share"));
+
+            }
+        });
     }
 
     @Override
     public int getItemCount() {
         return heroes.size();
     }
-
-    //ViewHolder creation
+    //Create ViewHolder
     public class ViewHolder extends RecyclerView.ViewHolder {
         TextView Name, subtitle;
         ImageView image;
@@ -97,7 +131,7 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder> {
         }
     }
 
-    //31/5/2020 For Searching...
+    //31/5/2020 Used For Searching...
     public void filterList(List<HeroesModel> filteredList) {
         heroes = filteredList;
         notifyDataSetChanged();
