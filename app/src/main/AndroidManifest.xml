@@ -43,10 +43,12 @@
             android:theme="@style/DetailsActivity.Theme" />
         <activity
             android:name=".SearchActivity"
-            android:theme="@style/MainActivity.Theme" />
+            android:theme="@style/MainActivity.Theme"
+            android:windowSoftInputMode="adjustPan"/>
         <activity
             android:name=".FavoritesList"
-            android:theme="@style/MainActivity.Theme" />
+            android:theme="@style/MainActivity.Theme"
+            android:windowSoftInputMode="adjustPan"/>
     </application>
 
 </manifest>

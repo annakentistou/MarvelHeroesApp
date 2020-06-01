@@ -48,8 +48,9 @@ public class ItemDetails extends AppCompatActivity {
             share_intent.putExtra(Intent.EXTRA_SUBJECT, "Hello"); //for subject take the Heros' name
             share_intent.putExtra(Intent.EXTRA_TEXT, "Hello too"); //for body take the image url
             startActivity(Intent.createChooser(share_intent, "Share"));
+            return true;
         }
-        return true;
+        return false;
     }
 
     //get values from recycler view and set them to ItemDetails

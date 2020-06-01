@@ -74,7 +74,7 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder> {
                 //new Intent
                 Intent intent = new Intent(v.getContext(), ItemDetails.class);
                 intent.putExtra("title", title);//sending title of "custom of list view"
-                if (description != null) {
+                if (description != null && description != "") {
                     intent.putExtra("subtitle", "DESCRIPTION : " + description);
                 } else
                     intent.putExtra("subtitle", "There is No description");
