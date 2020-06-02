@@ -8,12 +8,16 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
 import android.media.Image;
+import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.facebook.share.model.ShareHashtag;
+import com.facebook.share.model.ShareLinkContent;
 import com.facebook.share.model.SharePhoto;
 import com.facebook.share.model.SharePhotoContent;
 import com.facebook.share.widget.ShareDialog;
@@ -32,6 +36,7 @@ public class ItemDetails extends AppCompatActivity {
         setContentView(R.layout.activity_item_details);
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true); //display back button in toolbar
+
     }
 
     @Override
@@ -40,7 +45,7 @@ public class ItemDetails extends AppCompatActivity {
 
         getIncomingIntent();
 
-        Target target = new Target() {
+       /* Target target = new Target() {
             @Override
             public void onBitmapLoaded(Bitmap bitmap, Picasso.LoadedFrom from) {
                 SharePhoto sharePhoto = new SharePhoto.Builder().
@@ -61,7 +66,7 @@ public class ItemDetails extends AppCompatActivity {
             public void onPrepareLoad(Drawable placeHolderDrawable) {
 
             }
-        };
+        };*/
     }
 
     @Override
@@ -78,13 +83,24 @@ public class ItemDetails extends AppCompatActivity {
                 Intent Home = new Intent(ItemDetails.this, MainActivity.class);
                 startActivity(Home);
                 return true;
-            case R.id.share:
-                Intent share_intent = new Intent(Intent.ACTION_SEND);
+            /*case R.id.share:*/
+                //Sharing just for Facebook
+              /*  ShareHashtag shareHashTag = new ShareHashtag.Builder().setHashtag("Heroes Name").build();
+                ShareLinkContent shareLinkContent = new ShareLinkContent.Builder()
+                        .setShareHashtag(shareHashTag)
+                        .setQuote("Your Description")
+                        .setContentUrl(Uri.parse("http://i.annihil.us/u/prod/marvel/i/mg/6/f0/5239b5e7d7f70.jpg?fbclid=IwAR3UUOLPXqLECGsS8Usq7bt0iWLMrWjrxkMd6uoXxXjHdA_WXndIvF2hfdM"))
+                        .build();
+
+                ShareDialog.show(ItemDetails.this,shareLinkContent);*/
+
+                //sharing as text
+            /*    Intent share_intent = new Intent(Intent.ACTION_SEND);
                 share_intent.setType("image/*");
                 share_intent.putExtra(Intent.EXTRA_SUBJECT, "Heroes Name: "); //for subject take the Heros' name
                 share_intent.putExtra(Intent.EXTRA_TEXT, "image"); //for body take the image url
                 startActivity(Intent.createChooser(share_intent, "Share"));
-                return true;
+                return true;*/
             default:
                 return super.onOptionsItemSelected(item);
         }

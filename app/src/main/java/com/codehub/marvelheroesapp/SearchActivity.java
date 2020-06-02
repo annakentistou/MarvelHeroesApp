@@ -74,7 +74,6 @@ public class SearchActivity extends AppCompatActivity {
                 filter(s.toString());
             }
         });
-
     }
 
     //filter for search view 31/5/2020

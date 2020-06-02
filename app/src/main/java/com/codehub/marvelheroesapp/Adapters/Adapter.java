@@ -1,7 +1,9 @@
 package com.codehub.marvelheroesapp.Adapters;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,12 +12,19 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.codehub.marvelheroesapp.Fragments.FirstFragment;
 import com.codehub.marvelheroesapp.ItemDetails;
+import com.codehub.marvelheroesapp.MainActivity;
 import com.codehub.marvelheroesapp.R;
 import com.codehub.marvelheroesapp.json.HeroesModel;
 import com.facebook.CallbackManager;
+import com.facebook.share.model.ShareHashtag;
+import com.facebook.share.model.ShareLinkContent;
+import com.facebook.share.model.SharePhoto;
 import com.facebook.share.widget.ShareDialog;
 import com.squareup.picasso.Picasso;
 
@@ -83,13 +92,22 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder> {
         holder.share.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent share_intent = new Intent(Intent.ACTION_SEND);
-                /*Picasso.get().load(image).into(target);*/
-                /*share_intent.setType("application/vnd.android.package-archive");*/
+                //share a LINK in Facebook
+                ShareHashtag shareHashTag = new ShareHashtag.Builder().setHashtag(title).build();
+                ShareLinkContent shareLinkContent = new ShareLinkContent.Builder()
+                        .setShareHashtag(shareHashTag)
+                        .setQuote("Marvel Hero")
+                        .setContentUrl(Uri.parse(image))
+                        .build();
+
+                ShareDialog.show((Activity) v.getContext(),shareLinkContent);
+
+                //share direct Message
+               /* Intent share_intent = new Intent(Intent.ACTION_SEND);
                 share_intent.setType("image/jpeg");
                 share_intent.putExtra(Intent.EXTRA_SUBJECT, title); //for subject take the Heros' name
                 share_intent.putExtra(Intent.EXTRA_TEXT, image); //for body take the image url
-                v.getContext().startActivity(Intent.createChooser(share_intent, "Share"));
+                v.getContext().startActivity(Intent.createChooser(share_intent, "Share"));*/
             }
         });
     }

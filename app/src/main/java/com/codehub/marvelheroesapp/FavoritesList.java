@@ -17,6 +17,21 @@ public class FavoritesList extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_favorites_list);
+
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true); //display back button in toolbar
+    }
+//back button in Action Bar
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                Intent Home = new Intent(FavoritesList.this, MainActivity.class);
+                startActivity(Home);
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
 
     @Override
@@ -52,4 +67,5 @@ public class FavoritesList extends AppCompatActivity {
             }
         });
     }
+
 }

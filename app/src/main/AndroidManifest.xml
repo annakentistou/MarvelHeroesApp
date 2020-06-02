@@ -23,7 +23,9 @@
 
         <activity
             android:name=".LoginActivity"
-            android:theme="@style/AppTheme.Login">
+            android:theme="@style/AppTheme.Login"
+            android:windowSoftInputMode="adjustPan"
+            >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
@@ -34,7 +36,8 @@
             android:theme="@style/MainActivity.Theme" />
         <activity
             android:name=".RegisterActivity"
-            android:theme="@style/AppTheme.Login" />
+            android:theme="@style/AppTheme.Login"
+            android:windowSoftInputMode="adjustPan"/>
         <activity
             android:name=".ConfirmPassActivity"
             android:theme="@style/AppTheme.Login" />
@@ -47,7 +50,7 @@
             android:windowSoftInputMode="adjustPan"/>
         <activity
             android:name=".FavoritesList"
-            android:theme="@style/MainActivity.Theme"
+            android:theme="@style/DetailsActivity.Theme"
             android:windowSoftInputMode="adjustPan"/>
     </application>
 
