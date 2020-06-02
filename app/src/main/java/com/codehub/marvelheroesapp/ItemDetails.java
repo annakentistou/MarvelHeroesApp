@@ -1,22 +1,14 @@
 package com.codehub.marvelheroesapp;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
-import android.widget.Toolbar;
 
-import com.google.android.material.appbar.MaterialToolbar;
-import com.google.android.material.navigation.NavigationView;
 import com.squareup.picasso.Picasso;
 
 public class ItemDetails extends AppCompatActivity {
@@ -53,11 +45,11 @@ public class ItemDetails extends AppCompatActivity {
         return false;
     }
 
-    //get values from recycler view and set them to ItemDetails
+    //get values from recycler view and set them to ItemDetails layout
     private void getIncomingIntent() {
         imageview = findViewById(R.id.thumbnail);
         Title = findViewById(R.id.title);
-        subtitle = findViewById(R.id.subTitle);
+        subtitle = findViewById(R.id.subtitle);
         Intent intent = getIntent();
 
         if (getIntent().hasExtra("title") && getIntent().hasExtra("subtitle") && getIntent().hasExtra("image")) {

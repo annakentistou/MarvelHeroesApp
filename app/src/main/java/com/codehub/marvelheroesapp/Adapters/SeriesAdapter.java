@@ -82,7 +82,7 @@ public class SeriesAdapter extends RecyclerView.Adapter<SeriesAdapter.ViewHolder
                 super(itemView);
 
                 Name = itemView.findViewById(R.id.title);
-                subtitle = itemView.findViewById(R.id.subTitle);
+                subtitle = itemView.findViewById(R.id.subtitle);
                 image = itemView.findViewById(R.id.thumbnail);
                 add_to_fav = itemView.findViewById(R.id.heart);
                 share = itemView.findViewById(R.id.share);

@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -19,6 +18,7 @@ import com.codehub.marvelheroesapp.json.ComicsModel;
 import com.codehub.marvelheroesapp.json.CreatorsNameModel;
 import com.squareup.picasso.Picasso;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class ComicsAdapter extends RecyclerView.Adapter<ComicsAdapter.ViewHolder> {
@@ -43,12 +43,16 @@ public class ComicsAdapter extends RecyclerView.Adapter<ComicsAdapter.ViewHolder
     @Override
     public void onBindViewHolder(@NonNull final ViewHolder holder, int position) {
         final String title = comics.get(position).getTitle();
-        /*final String subTitle = creators.get(position).getName();*/
         final String description = comics.get(position).getDescription();
         final String image = comics.get(position).getThumbnail().getPath() + ".jpg";
+     /*   final String creator = comics.get(position).getCreators().getItems().get(position).getName();
 
+        List<CreatorsNameModel> creators = new ArrayList<>();
+        creators = comics.get(position).getCreators().getItems();*/
+        /*if(creators.size() !=0) {
+            holder.Creator.setText(creator);
+        }*/
         holder.Name.setText(title);
-        /*holder.subtitle.setText(subTitle);*/
         Picasso.get().load(image).into(holder.image);
 
         //set onClickListener to item
@@ -66,7 +70,6 @@ public class ComicsAdapter extends RecyclerView.Adapter<ComicsAdapter.ViewHolder
                 v.getContext().startActivity(intent);
             }
         });
-
     }
 
     @Override
@@ -75,7 +78,7 @@ public class ComicsAdapter extends RecyclerView.Adapter<ComicsAdapter.ViewHolder
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        TextView Name, subtitle;
+        TextView Name, Creator;
         ImageView image;
         ImageButton add_to_fav,share;
 
@@ -83,7 +86,7 @@ public class ComicsAdapter extends RecyclerView.Adapter<ComicsAdapter.ViewHolder
             super(itemView);
 
             Name = itemView.findViewById(R.id.title);
-            subtitle = itemView.findViewById(R.id.subTitle);
+            Creator = itemView.findViewById(R.id.numOfComics);
             image = itemView.findViewById(R.id.thumbnail);
             add_to_fav = itemView.findViewById(R.id.heart);
             share = itemView.findViewById(R.id.share);

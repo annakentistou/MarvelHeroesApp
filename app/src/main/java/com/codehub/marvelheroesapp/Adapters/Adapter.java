@@ -1,36 +1,23 @@
 package com.codehub.marvelheroesapp.Adapters;
 
-import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
-import android.content.pm.ApplicationInfo;
-import android.graphics.Bitmap;
-import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.codehub.marvelheroesapp.Fragments.FirstFragment;
 import com.codehub.marvelheroesapp.ItemDetails;
-import com.codehub.marvelheroesapp.MainActivity;
 import com.codehub.marvelheroesapp.R;
 import com.codehub.marvelheroesapp.json.HeroesModel;
 import com.facebook.CallbackManager;
-import com.facebook.FacebookCallback;
-import com.facebook.FacebookException;
-import com.facebook.share.Sharer;
-import com.facebook.share.model.SharePhoto;
-import com.facebook.share.model.SharePhotoContent;
 import com.facebook.share.widget.ShareDialog;
 import com.squareup.picasso.Picasso;
-import com.squareup.picasso.Target;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -62,9 +49,12 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder> {
         final String title = heroes.get(position).getName();
         final String description = heroes.get(position).getDescription();
         final String image = heroes.get(position).getThumbnail().getPath() + ".jpg";
+        final int numOfComics = heroes.get(position).getComics().getAvailable();
+        final int numOfSeries = heroes.get(position).getSeries().getAvailable();
 
         holder.Name.setText(title);
-        /*holder.subtitle.setText(description);*/
+        holder.NumOfComics.setText("Comics: "+numOfComics);
+        holder.NumOfSeries.setText("Series: "+numOfSeries);
         Picasso.get().load(image).into(holder.image);
 
         //set onClickListener to item
@@ -78,6 +68,7 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder> {
                     intent.putExtra("subtitle", "DESCRIPTION : " + description);
                 } else
                     intent.putExtra("subtitle", "There is No description");
+
                 intent.putExtra("image", image);
                 v.getContext().startActivity(intent);
             }
@@ -114,9 +105,10 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder> {
     public int getItemCount() {
         return heroes.size();
     }
+
     //Create ViewHolder
     public class ViewHolder extends RecyclerView.ViewHolder {
-        TextView Name, subtitle;
+        TextView Name, NumOfComics, NumOfSeries;
         ImageView image;
         ImageButton add_to_fav, share;
 
@@ -124,10 +116,11 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder> {
             super(itemView);
 
             Name = itemView.findViewById(R.id.title);
-            subtitle = itemView.findViewById(R.id.subTitle);
             image = itemView.findViewById(R.id.thumbnail);
             add_to_fav = itemView.findViewById(R.id.heart);
             share = itemView.findViewById(R.id.share);
+            NumOfComics = itemView.findViewById(R.id.numOfComics);
+            NumOfSeries = itemView.findViewById(R.id.numOfSeries);
         }
     }
 
