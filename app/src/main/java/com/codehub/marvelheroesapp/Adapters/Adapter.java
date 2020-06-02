@@ -53,8 +53,8 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder> {
         final int numOfSeries = heroes.get(position).getSeries().getAvailable();
 
         holder.Name.setText(title);
-        holder.NumOfComics.setText("Comics: "+numOfComics);
-        holder.NumOfSeries.setText("Series: "+numOfSeries);
+        holder.NumOfComics.setText("Comics: " + numOfComics);
+        holder.NumOfSeries.setText("Series: " + numOfSeries);
         Picasso.get().load(image).into(holder.image);
 
         //set onClickListener to item
@@ -64,11 +64,7 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder> {
                 //new Intent
                 Intent intent = new Intent(v.getContext(), ItemDetails.class);
                 intent.putExtra("title", title);//sending title of "custom of list view"
-                if (description != null && description != "") {
-                    intent.putExtra("subtitle", "DESCRIPTION : " + description);
-                } else
-                    intent.putExtra("subtitle", "There is No description");
-
+                intent.putExtra("subtitle", description);
                 intent.putExtra("image", image);
                 v.getContext().startActivity(intent);
             }
@@ -83,12 +79,10 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder> {
             }
         });
 
-
         //set onCLickListener to Share icon
         holder.share.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 Intent share_intent = new Intent(Intent.ACTION_SEND);
                 /*Picasso.get().load(image).into(target);*/
                 /*share_intent.setType("application/vnd.android.package-archive");*/
@@ -96,7 +90,6 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder> {
                 share_intent.putExtra(Intent.EXTRA_SUBJECT, title); //for subject take the Heros' name
                 share_intent.putExtra(Intent.EXTRA_TEXT, image); //for body take the image url
                 v.getContext().startActivity(Intent.createChooser(share_intent, "Share"));
-
             }
         });
     }
