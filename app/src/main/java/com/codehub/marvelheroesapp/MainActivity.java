@@ -23,7 +23,6 @@ import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.tabs.TabItem;
 import com.google.android.material.tabs.TabLayout;
 
-
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     DrawerLayout drawerLayout;
@@ -100,8 +99,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch (item.getItemId()) {
                     case R.id.home_page:
-                        Intent intent = new Intent(MainActivity.this, MainActivity.class);
-                        startActivity(intent);
+
                         break;
                     case R.id.search_view:
                         Intent search_intent = new Intent(MainActivity.this, SearchActivity.class);
@@ -126,9 +124,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         //close side menu when you select an item
 
-        if (item.getItemId() == R.id.profile) {
+       /* if (item.getItemId() == R.id.profile) {
 
-        }
+        }*/
         if (item.getItemId() == R.id.sign_out) {
 
             Intent intent = new Intent(MainActivity.this, LoginActivity.class);
@@ -136,27 +134,4 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         }
         return true;
     }
-
-    //BottomNavigation items management
-/*    private BottomNavigationView.OnNavigationItemSelectedListener
-            navigationListener = new BottomNavigationView.OnNavigationItemSelectedListener() {
-        @Override
-        public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-            if (item.getItemId() == R.id.home_page) {
-                *//*Intent intent = new Intent(MainActivity.this, LoginActivity.class);
-                startActivity(intent);*//*
-            }
-            if (item.getItemId() == R.id.search_view) {
-
-            }
-            if (item.getItemId() == R.id.myfavoriteList) {
-
-            }
-            if (item.getItemId() == R.id.notifications) {
-
-            }
-            return true;
-        }
-    };*/
-
 }

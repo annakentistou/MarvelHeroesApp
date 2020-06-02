@@ -14,6 +14,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.codehub.marvelheroesapp.Fragments.FirstFragment;
@@ -37,9 +38,6 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder> {
     private List<HeroesModel> heroes;
     private List<HeroesModel> heroesListFull; //for search
 
-    CallbackManager callbackManager;
-    ShareDialog shareDialog;
-
     public Adapter(Context ctx, List<HeroesModel> heroes) {
         this.inflater = LayoutInflater.from(ctx);
         this.heroes = heroes;
@@ -61,9 +59,9 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder> {
         final int numOfComics = heroes.get(position).getComics().getAvailable();
         final int numOfSeries = heroes.get(position).getSeries().getAvailable();
 
-        holder.Name.setText(title);
-        holder.NumOfComics.setText("Comics: " + numOfComics);
-        holder.NumOfSeries.setText("Series: " + numOfSeries);
+        holder.name.setText(title);
+        holder.numOfComics.setText("Comics: " + numOfComics);
+        holder.numOfSeries.setText("Series: " + numOfSeries);
         Picasso.get().load(image).into(holder.image);
 
         //set onClickListener to item
@@ -119,19 +117,19 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder> {
 
     //Create ViewHolder
     public class ViewHolder extends RecyclerView.ViewHolder {
-        TextView Name, NumOfComics, NumOfSeries;
+        TextView name, numOfComics, numOfSeries;
         ImageView image;
         ImageButton add_to_fav, share;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
 
-            Name = itemView.findViewById(R.id.title);
+            name = itemView.findViewById(R.id.title);
             image = itemView.findViewById(R.id.thumbnail);
             add_to_fav = itemView.findViewById(R.id.heart);
             share = itemView.findViewById(R.id.share);
-            NumOfComics = itemView.findViewById(R.id.numOfComics);
-            NumOfSeries = itemView.findViewById(R.id.numOfSeries);
+            numOfComics = itemView.findViewById(R.id.numOfComics);
+            numOfSeries = itemView.findViewById(R.id.numOfSeries);
         }
     }
 

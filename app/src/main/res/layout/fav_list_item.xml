@@ -13,6 +13,7 @@
         android:layout_marginTop="@dimen/margins_in_listview"
         android:layout_marginEnd="@dimen/margins_in_listview"
         android:layout_marginBottom="@dimen/margins_in_listview"
+        app:cardCornerRadius="7dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -28,13 +29,14 @@
                 android:layout_height="@dimen/thumnails_dimens"
                 android:padding="5dp"
                 android:paddingStart="@dimen/padding_top"
+                android:paddingEnd="@dimen/padding_top"
                 android:paddingTop="@dimen/padding_top"
                 android:src="@drawable/ic_launcher_background"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@id/title"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="1.0"></ImageView>
+                app:layout_constraintVertical_bias="1.0"/>
 
             <TextView
                 android:id="@+id/title"
@@ -50,6 +52,32 @@
                 android:textStyle="bold"
                 app:layout_constraintStart_toEndOf="@+id/thumbnail"
                 app:layout_constraintTop_toTopOf="@id/thumbnail" />
+
+            <TextView
+                android:id="@+id/numOfComics"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/margins_in_listview"
+                android:layout_marginTop="@dimen/margins_in_listview"
+                android:textAlignment="textStart"
+                android:padding="2dp"
+                android:textSize="13sp"
+                app:layout_constraintStart_toEndOf="@id/thumbnail"
+                app:layout_constraintTop_toBottomOf="@id/title"
+                tools:text="Subtitle1" />
+
+            <TextView
+                android:id="@+id/numOfSeries"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/margins_in_listview"
+                android:layout_marginBottom="5dp"
+                android:textAlignment="textStart"
+                android:padding="2dp"
+                android:textSize="13sp"
+                app:layout_constraintStart_toEndOf="@id/thumbnail"
+                app:layout_constraintTop_toBottomOf="@id/numOfComics"
+                tools:text="Subtitle2" />
 
             <androidx.appcompat.widget.AppCompatImageButton
                 android:id="@+id/bin"

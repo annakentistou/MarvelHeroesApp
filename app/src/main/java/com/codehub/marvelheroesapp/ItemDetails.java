@@ -44,29 +44,6 @@ public class ItemDetails extends AppCompatActivity {
         super.onPostCreate(savedInstanceState);
 
         getIncomingIntent();
-
-       /* Target target = new Target() {
-            @Override
-            public void onBitmapLoaded(Bitmap bitmap, Picasso.LoadedFrom from) {
-                SharePhoto sharePhoto = new SharePhoto.Builder().
-                        setBitmap(bitmap).
-                        build();
-                if (ShareDialog.canShow(SharePhotoContent.class)) {
-                    SharePhotoContent photoContent = new SharePhotoContent.Builder().addPhoto(sharePhoto).build();
-                    shareDialog.show(photoContent);
-                }
-            }
-
-            @Override
-            public void onBitmapFailed(Exception e, Drawable errorDrawable) {
-
-            }
-
-            @Override
-            public void onPrepareLoad(Drawable placeHolderDrawable) {
-
-            }
-        };*/
     }
 
     @Override
@@ -78,32 +55,37 @@ public class ItemDetails extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
 
-        switch (item.getItemId()) {
+        if(item.getItemId() == android.R.id.home) {
+            Intent Home = new Intent(ItemDetails.this, MainActivity.class);
+            startActivity(Home);
+        }
+        return true;
+/*        switch (item.getItemId()) {
             case android.R.id.home:
                 Intent Home = new Intent(ItemDetails.this, MainActivity.class);
                 startActivity(Home);
                 return true;
-            /*case R.id.share:*/
+            case R.id.share:
                 //Sharing just for Facebook
-              /*  ShareHashtag shareHashTag = new ShareHashtag.Builder().setHashtag("Heroes Name").build();
+                ShareHashtag shareHashTag = new ShareHashtag.Builder().setHashtag("Heroes Name").build();
                 ShareLinkContent shareLinkContent = new ShareLinkContent.Builder()
                         .setShareHashtag(shareHashTag)
                         .setQuote("Your Description")
                         .setContentUrl(Uri.parse("http://i.annihil.us/u/prod/marvel/i/mg/6/f0/5239b5e7d7f70.jpg?fbclid=IwAR3UUOLPXqLECGsS8Usq7bt0iWLMrWjrxkMd6uoXxXjHdA_WXndIvF2hfdM"))
                         .build();
 
-                ShareDialog.show(ItemDetails.this,shareLinkContent);*/
+                ShareDialog.show(ItemDetails.this,shareLinkContent);
 
                 //sharing as text
-            /*    Intent share_intent = new Intent(Intent.ACTION_SEND);
+            *//*    Intent share_intent = new Intent(Intent.ACTION_SEND);
                 share_intent.setType("image/*");
                 share_intent.putExtra(Intent.EXTRA_SUBJECT, "Heroes Name: "); //for subject take the Heros' name
                 share_intent.putExtra(Intent.EXTRA_TEXT, "image"); //for body take the image url
                 startActivity(Intent.createChooser(share_intent, "Share"));
-                return true;*/
+                return true;*//*
             default:
-                return super.onOptionsItemSelected(item);
-        }
+                return super.onOptionsItemSelected(item);*/
+
     }
 
     //get values from View Holder and set them to ItemDetails layout
