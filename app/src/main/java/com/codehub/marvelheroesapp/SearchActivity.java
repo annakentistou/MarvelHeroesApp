@@ -58,8 +58,6 @@ public class SearchActivity extends AppCompatActivity {
         super.onPostCreate(savedInstanceState);
         EditText editText = findViewById(R.id.search_bar);
 
-        extractHeroesInfo();
-
         editText.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -93,7 +91,7 @@ public class SearchActivity extends AppCompatActivity {
     public void onPostResume() {
         super.onPostResume();
         heroes = new ArrayList<>();
-        /*extractHeroesInfo();*/
+        extractHeroesInfo();
 
         //Bottom Navigation Menu management  31/5/2020
         bottomNav = findViewById(R.id.bottom_navigation);
@@ -136,17 +134,16 @@ public class SearchActivity extends AppCompatActivity {
 
                     List<HeroesModel> array = new ArrayList<>();
                     array = dataModel.getData().getResults();
-                    for (int i = 0; i < array.size(); i++) {
-                        HeroesModel model = array.get(i);
-                        heroes.add(model);
-                    }
+                        for (int i = 0; i < array.size(); i++) {
+                            HeroesModel model = array.get(i);
+                            heroes.add(model);
+                        }
 
                     Log.i("response", dataModel.toString());
 
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
-
             }
         }, new Response.ErrorListener() {
             @Override
