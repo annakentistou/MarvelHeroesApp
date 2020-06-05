@@ -1,12 +1,10 @@
 package com.codehub.marvelheroesapp.Adapters;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,13 +15,10 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.widget.AppCompatImageButton;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.codehub.marvelheroesapp.DatabaseFiles.FavDB;
 import com.codehub.marvelheroesapp.Activities.ItemDetails;
+import com.codehub.marvelheroesapp.DatabaseFiles.FavDB;
 import com.codehub.marvelheroesapp.R;
 import com.codehub.marvelheroesapp.json.HeroesModel;
-import com.facebook.share.model.ShareHashtag;
-import com.facebook.share.model.ShareLinkContent;
-import com.facebook.share.widget.ShareDialog;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
