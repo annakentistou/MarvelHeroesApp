@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/gray_400"
-    tools:context=".ItemDetails">
+    tools:context=".Activities.ItemDetails">
 <!--    android:fitsSystemWindows="true"-->
 
     <com.google.android.material.appbar.MaterialToolbar
@@ -16,10 +16,10 @@
         android:background="@color/DarkRed"
         android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
         app:title="More Info"
-        app:menu="@menu/top_app_bar"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         />
+    <!--app:menu="@menu/top_app_bar"-->
     <ImageView
         android:id="@+id/thumbnail"
         android:layout_width="300dp"

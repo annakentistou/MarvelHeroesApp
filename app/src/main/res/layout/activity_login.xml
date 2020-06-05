@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".LoginActivity"
+    tools:context=".Activities.LoginActivity"
     android:fitsSystemWindows="true"
     android:background="@drawable/red_background"
     >
@@ -40,8 +40,7 @@
         app:layout_constraintBottom_toTopOf="@+id/password"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.495"
-        app:layout_constraintStart_toStartOf="parent"
-        tools:ignore="MissingConstraints,UnknownId">
+        app:layout_constraintStart_toStartOf="parent">
 
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="@dimen/TextFieldWidth"
@@ -64,8 +63,7 @@
         app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/username"
-        app:layout_constraintVertical_bias="0.003"
-        tools:ignore="MissingConstraints,UnknownId">
+        app:layout_constraintVertical_bias="0.003">
 
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="@dimen/TextFieldWidth"
@@ -121,7 +119,7 @@
         android:layout_height="wrap_content"
         android:foregroundTint="@color/gray_400"
         android:background="#84A17878"
-        android:text="Login"
+        android:text="Sign in"
         android:textAllCaps="false"
         android:textColor="#D0FFFFFF"
         app:layout_constraintBottom_toTopOf="@+id/register_now"

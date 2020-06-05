@@ -3,20 +3,18 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="wrap_content">
 
     <androidx.cardview.widget.CardView
         android:id="@+id/list_item"
         android:layout_width="match_parent"
         android:layout_height="100dp"
-        android:layout_marginStart="@dimen/margins_in_listview"
-        android:layout_marginTop="@dimen/margins_in_listview"
-        android:layout_marginEnd="@dimen/margins_in_listview"
-        android:layout_marginBottom="@dimen/margins_in_listview"
+        android:layout_margin="3dp"
         app:cardCornerRadius="7dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
         tools:ignore="MissingConstraints">
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -40,7 +38,7 @@
 
             <TextView
                 android:id="@+id/title"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/margins_in_listview"
                 android:layout_marginTop="@dimen/margins_in_listview"
@@ -51,6 +49,7 @@
                 android:textSize="15sp"
                 android:textStyle="bold"
                 app:layout_constraintStart_toEndOf="@+id/thumbnail"
+                app:layout_constraintEnd_toStartOf="@+id/bin"
                 app:layout_constraintTop_toTopOf="@id/thumbnail" />
 
             <TextView
@@ -81,8 +80,8 @@
 
             <androidx.appcompat.widget.AppCompatImageButton
                 android:id="@+id/bin"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
                 android:background="@null"
                 android:foregroundTint="@color/gray_400"
                 android:padding="5dp"

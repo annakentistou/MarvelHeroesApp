@@ -47,10 +47,10 @@ public class ThirdFragment extends Fragment {
     private List<CreatorsNameModel> creators;
     private static String JSON_URL="https://gateway.marvel.com/v1/public/series?ts=1&apikey=cbc3143464c6ede991022c465a83c158&hash=96b097677f87d6beb9af6fd11c1bd405";
 
-    public ThirdFragment() {
-        // Required empty public constructor
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
     }
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,

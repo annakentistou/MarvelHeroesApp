@@ -2,6 +2,8 @@
 <resources>
     <dimen name="TextButtonDimen">14sp</dimen>
     <dimen name="TextButtonSize">40dp</dimen>
+    <dimen name="ImageButtonSize">28dp</dimen>
+    <dimen name="ImageButtonPad">15dp</dimen>
     <dimen name="EditTextWidth">350dp</dimen>
     <dimen name="TextFieldWidth">320dp</dimen>
     <dimen name="MicroIconsWidth">40dp</dimen>

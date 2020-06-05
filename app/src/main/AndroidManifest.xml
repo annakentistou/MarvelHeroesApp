@@ -22,7 +22,7 @@
             android:exported="true" />
 
         <activity
-            android:name=".LoginActivity"
+            android:name=".Activities.LoginActivity"
             android:theme="@style/AppTheme.Login"
             android:windowSoftInputMode="adjustPan"
             >
@@ -32,24 +32,24 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".MainActivity"
+            android:name=".Activities.MainActivity"
             android:theme="@style/MainActivity.Theme" />
         <activity
-            android:name=".RegisterActivity"
+            android:name=".Activities.RegisterActivity"
             android:theme="@style/AppTheme.Login"
             android:windowSoftInputMode="adjustPan"/>
         <activity
-            android:name=".ConfirmPassActivity"
+            android:name=".Activities.ConfirmPassActivity"
             android:theme="@style/AppTheme.Login" />
         <activity
-            android:name=".ItemDetails"
+            android:name=".Activities.ItemDetails"
             android:theme="@style/DetailsActivity.Theme" />
         <activity
-            android:name=".SearchActivity"
+            android:name=".Activities.SearchActivity"
             android:theme="@style/MainActivity.Theme"
             android:windowSoftInputMode="adjustPan"/>
         <activity
-            android:name=".FavoritesList"
+            android:name=".Activities.FavoritesList"
             android:theme="@style/DetailsActivity.Theme"
             android:windowSoftInputMode="adjustPan"/>
     </application>

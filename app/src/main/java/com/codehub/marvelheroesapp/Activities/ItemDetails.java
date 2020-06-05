@@ -1,34 +1,21 @@
-package com.codehub.marvelheroesapp;
+package com.codehub.marvelheroesapp.Activities;
 
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.drawable.Drawable;
-import android.media.Image;
-import android.net.Uri;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.facebook.share.model.ShareHashtag;
-import com.facebook.share.model.ShareLinkContent;
-import com.facebook.share.model.SharePhoto;
-import com.facebook.share.model.SharePhotoContent;
-import com.facebook.share.widget.ShareDialog;
+import com.codehub.marvelheroesapp.R;
 import com.squareup.picasso.Picasso;
-import com.squareup.picasso.Target;
 
 public class ItemDetails extends AppCompatActivity {
 
     TextView Title, subtitle;
     ImageView imageview;
-    ShareDialog shareDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,11 +33,12 @@ public class ItemDetails extends AppCompatActivity {
         getIncomingIntent();
     }
 
-    @Override
+//Inflate what top_app_bar menu has
+  /*  @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.top_app_bar, menu);
         return true;
-    }
+    }*/
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {

@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@color/gray_400"
     android:fitsSystemWindows="true"
-    tools:context=".SearchActivity">
+    tools:context=".Activities.SearchActivity">
 
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/app_bar"

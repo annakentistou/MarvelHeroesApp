@@ -7,7 +7,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/red_background"
-    tools:context=".RegisterActivity">
+    tools:context=".Activities.RegisterActivity">
     <!--android:background="#D32020"-->
 
     <TextView
@@ -126,6 +126,7 @@
         android:inputType="textPassword"
         android:radius="8dp"
         android:textColorHint="#C7C2C2"
+        app:endIconMode="password_toggle"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.504"
         app:layout_constraintStart_toStartOf="parent"
@@ -135,7 +136,7 @@
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="@dimen/TextFieldWidth"
             android:layout_height="wrap_content"
-            android:inputType="text" />
+            android:inputType="textPassword" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
@@ -149,16 +150,16 @@
         android:radius="8dp"
         android:shape="rectangle"
         android:textColorHint="#C7C2C2"
+        app:endIconMode="password_toggle"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.504"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/password"
-        tools:ignore="MissingConstraints">
+        app:layout_constraintTop_toBottomOf="@+id/password">
 
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="@dimen/TextFieldWidth"
             android:layout_height="wrap_content"
-            android:inputType="text" />
+            android:inputType="textPassword" />
     </com.google.android.material.textfield.TextInputLayout>
 
 

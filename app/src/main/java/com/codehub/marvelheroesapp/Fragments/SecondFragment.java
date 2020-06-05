@@ -44,8 +44,9 @@ public class SecondFragment extends Fragment{
     private List<CreatorsNameModel> creators;
     private static String JSON_URL="https://gateway.marvel.com/v1/public/comics?ts=1&apikey=94bd7ab20112da5e1ae5f197769ecd7a&hash=49b68d02a0d6bbeed0553ccf47ab7d68";
 
-    public SecondFragment() {
-        // Required empty public constructor
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
     }
 
     @Override

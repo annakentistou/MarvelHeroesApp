@@ -1,4 +1,4 @@
-package com.codehub.marvelheroesapp;
+package com.codehub.marvelheroesapp.Activities;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -17,6 +17,7 @@ import android.view.MenuItem;
 
 import com.codehub.marvelheroesapp.Adapters.Adapter;
 import com.codehub.marvelheroesapp.Adapters.TabsAdapter;
+import com.codehub.marvelheroesapp.R;
 import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
@@ -106,7 +107,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                         startActivity(search_intent);
                         break;
                    case R.id.myfavoriteList:
-                        Intent fav_intent = new Intent(MainActivity.this,FavoritesList.class);
+                        Intent fav_intent = new Intent(MainActivity.this, FavoritesList.class);
                         startActivity(fav_intent);
                         break;
                     /*case R.id.notifications:

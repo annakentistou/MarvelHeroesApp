@@ -84,24 +84,25 @@
 
             <androidx.appcompat.widget.AppCompatImageButton
                 android:id="@+id/heart"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:padding="5dp"
-                android:src="@drawable/ic_favorite_border_black_24dp"
-                android:background="@null"
-                android:foregroundTint="@color/gray_400"
+                android:layout_width="@dimen/ImageButtonSize"
+                android:layout_height="@dimen/ImageButtonSize"
+                android:layout_margin="@dimen/padding_top"
+                android:padding="10dp"
+                android:background="@drawable/ic_favorite_border_black_24dp"
                 app:layout_constraintStart_toEndOf="@id/title"
                 app:layout_constraintEnd_toStartOf="@+id/share"
                 app:layout_constraintTop_toTopOf="parent"
                 />
+            <!-- android:background="@null"
+            android:foregroundTint="@color/gray_400"-->
             <!--app:layout_constraintBottom_toTopOf="@id/subTitle"-->
             <androidx.appcompat.widget.AppCompatImageButton
                 android:id="@+id/share"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:padding="5dp"
-                android:src="@drawable/ic_share_black_24dp"
-                android:background="@null"
+                android:layout_width="@dimen/ImageButtonSize"
+                android:layout_height="@dimen/ImageButtonSize"
+                android:layout_margin="@dimen/padding_top"
+                android:padding="10dp"
+                android:background="@drawable/ic_share_black_24dp"
                 android:foregroundTint="@color/gray_400"
                 app:layout_constraintStart_toEndOf="@+id/heart"
                 app:layout_constraintEnd_toEndOf="parent"
