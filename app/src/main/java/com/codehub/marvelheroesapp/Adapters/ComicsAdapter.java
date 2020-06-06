@@ -26,7 +26,6 @@ public class ComicsAdapter extends RecyclerView.Adapter<ComicsAdapter.ViewHolder
     private List<ComicsModel> comics;
     private List<CreatorsNameModel> creators;
 
-
     public ComicsAdapter(Context ctx, List<ComicsModel> comics) {
         this.inflater = LayoutInflater.from(ctx);
         this.comics = comics;
@@ -96,7 +95,7 @@ public class ComicsAdapter extends RecyclerView.Adapter<ComicsAdapter.ViewHolder
                     int position = getAdapterPosition();
                     ComicsModel comicsModel = comics.get(position);
                     Intent share_intent = new Intent(Intent.ACTION_SEND);
-                    share_intent.setType("image/*");
+                    share_intent.setType("text/plain");
                     share_intent.putExtra(Intent.EXTRA_TITLE, "Marvel Hero");
                     share_intent.putExtra(Intent.EXTRA_SUBJECT, comicsModel.getTitle());
                     share_intent.putExtra(Intent.EXTRA_TEXT, comicsModel.getThumbnail().getPath() + ".jpg");

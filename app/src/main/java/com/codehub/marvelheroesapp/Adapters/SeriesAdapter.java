@@ -50,7 +50,6 @@ public class SeriesAdapter extends RecyclerView.Adapter<SeriesAdapter.ViewHolder
 
         Picasso.get().load(image).into(holder.image);
 
-
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -93,7 +92,7 @@ public class SeriesAdapter extends RecyclerView.Adapter<SeriesAdapter.ViewHolder
                         int position = getAdapterPosition();
                         SeriesModel seriesModel = series.get(position);
                         Intent share_intent = new Intent(Intent.ACTION_SEND);
-                        share_intent.setType("image/*");
+                        share_intent.setType("text/plain");
                         share_intent.putExtra(Intent.EXTRA_TITLE, "Marvel Hero");
                         share_intent.putExtra(Intent.EXTRA_SUBJECT, seriesModel.getTitle());
                         share_intent.putExtra(Intent.EXTRA_TEXT, seriesModel.getThumbnail().getPath() + ".jpg");
@@ -101,7 +100,6 @@ public class SeriesAdapter extends RecyclerView.Adapter<SeriesAdapter.ViewHolder
 
                     }
                 });
-
             }
         }
     }

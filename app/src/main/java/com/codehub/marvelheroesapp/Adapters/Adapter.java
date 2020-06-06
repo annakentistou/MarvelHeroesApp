@@ -127,7 +127,7 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder> {
                     int position = getAdapterPosition();
                     HeroesModel heroesModel = heroes.get(position);
                     Intent share_intent = new Intent(Intent.ACTION_SEND);
-                    share_intent.setType("image/*");
+                    share_intent.setType("text/plain");
                     share_intent.putExtra(Intent.EXTRA_TITLE,"Marvel Hero");
                     share_intent.putExtra(Intent.EXTRA_SUBJECT,heroesModel.getName());
                     share_intent.putExtra(Intent.EXTRA_TEXT, heroesModel.getThumbnail().getPath()+".jpg");

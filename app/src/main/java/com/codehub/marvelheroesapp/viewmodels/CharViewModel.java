@@ -25,10 +25,10 @@ import java.util.List;
 public class CharViewModel extends ViewModel {
     private List<HeroesModel> heroes;
     private static String JSON_URL="https://gateway.marvel.com/v1/public/characters?nameStartsWith=B&limit=100&ts=1&apikey=94bd7ab20112da5e1ae5f197769ecd7a&hash=49b68d02a0d6bbeed0553ccf47ab7d68";
-    private static String JSON_URL1="https://gateway.marvel.com/v1/public/characters?nameStartsWith=Dr&ts=1&apikey=94bd7ab20112da5e1ae5f197769ecd7a&hash=49b68d02a0d6bbeed0553ccf47ab7d68";
-    private static String JSON_URL2="https://gateway.marvel.com/v1/public/characters?nameStartsWith=H&ts=1&apikey=94bd7ab20112da5e1ae5f197769ecd7a&hash=49b68d02a0d6bbeed0553ccf47ab7d68";
-    private static String JSON_URL3="https://gateway.marvel.com/v1/public/characters?nameStartsWith=Iro&ts=1&apikey=94bd7ab20112da5e1ae5f197769ecd7a&hash=49b68d02a0d6bbeed0553ccf47ab7d68";
-    private static String JSON_URL4="https://gateway.marvel.com/v1/public/characters?nameStartsWith=M&ts=1&apikey=94bd7ab20112da5e1ae5f197769ecd7a&hash=49b68d02a0d6bbeed0553ccf47ab7d68";
+    private static String JSON_URL1="https://gateway.marvel.com/v1/public/characters?nameStartsWith=H&ts=1&apikey=94bd7ab20112da5e1ae5f197769ecd7a&hash=49b68d02a0d6bbeed0553ccf47ab7d68";
+    private static String JSON_URL2="https://gateway.marvel.com/v1/public/characters?nameStartsWith=Dr&ts=1&apikey=94bd7ab20112da5e1ae5f197769ecd7a&hash=49b68d02a0d6bbeed0553ccf47ab7d68";
+    private static String JSON_URL3="https://gateway.marvel.com/v1/public/characters?nameStartsWith=M&ts=1&apikey=94bd7ab20112da5e1ae5f197769ecd7a&hash=49b68d02a0d6bbeed0553ccf47ab7d68";
+    private static String JSON_URL4="https://gateway.marvel.com/v1/public/characters?nameStartsWith=Ir&ts=1&apikey=94bd7ab20112da5e1ae5f197769ecd7a&hash=49b68d02a0d6bbeed0553ccf47ab7d68";
     private static String JSON_URL5="https://gateway.marvel.com/v1/public/characters?nameStartsWith=Sp&ts=1&apikey=94bd7ab20112da5e1ae5f197769ecd7a&hash=49b68d02a0d6bbeed0553ccf47ab7d68";
     private static String JSON_URL6="https://gateway.marvel.com/v1/public/characters?nameStartsWith=Th&ts=1&apikey=94bd7ab20112da5e1ae5f197769ecd7a&hash=49b68d02a0d6bbeed0553ccf47ab7d68";
     private static String JSON_URL7="https://gateway.marvel.com/v1/public/characters?nameStartsWith=W&ts=1&apikey=94bd7ab20112da5e1ae5f197769ecd7a&hash=49b68d02a0d6bbeed0553ccf47ab7d68";
@@ -48,7 +48,7 @@ public class CharViewModel extends ViewModel {
                 try {
                     DataModel dataModel = new Gson().fromJson(response, DataModel.class);
                     heroes = new ArrayList<>();
-                    List<HeroesModel> array = new ArrayList<>();
+                    List<HeroesModel> array;
                     array = dataModel.getData().getResults();
                     for (int i = 0; i < array.size(); i++) {
                         HeroesModel model = array.get(i);
@@ -77,7 +77,7 @@ public class CharViewModel extends ViewModel {
                 try {
                     DataModel dataModel = new Gson().fromJson(response, DataModel.class);
 
-                    List<HeroesModel> array = new ArrayList<>();
+                    List<HeroesModel> array;
                     array = dataModel.getData().getResults();
                     for (int i = 0; i < array.size(); i++) {
                         HeroesModel model = array.get(i);
@@ -106,7 +106,7 @@ public class CharViewModel extends ViewModel {
                 try {
                     DataModel dataModel = new Gson().fromJson(response, DataModel.class);
 
-                    List<HeroesModel> array = new ArrayList<>();
+                    List<HeroesModel> array;
                     array = dataModel.getData().getResults();
                     for (int i = 0; i < array.size(); i++) {
                         HeroesModel model = array.get(i);
@@ -135,7 +135,7 @@ public class CharViewModel extends ViewModel {
                 try {
                     DataModel dataModel = new Gson().fromJson(response, DataModel.class);
 
-                    List<HeroesModel> array = new ArrayList<>();
+                    List<HeroesModel> array;
                     array = dataModel.getData().getResults();
                     for (int i = 0; i < array.size(); i++) {
                         HeroesModel model = array.get(i);
@@ -165,7 +165,7 @@ public class CharViewModel extends ViewModel {
                 try {
                     DataModel dataModel = new Gson().fromJson(response, DataModel.class);
 
-                    List<HeroesModel> array = new ArrayList<>();
+                    List<HeroesModel> array;
                     array = dataModel.getData().getResults();
                     for (int i = 0; i < array.size(); i++) {
                         HeroesModel model = array.get(i);
@@ -195,7 +195,7 @@ public class CharViewModel extends ViewModel {
                 try {
                     DataModel dataModel = new Gson().fromJson(response, DataModel.class);
 
-                    List<HeroesModel> array = new ArrayList<>();
+                    List<HeroesModel> array;
                     array = dataModel.getData().getResults();
                     for (int i = 0; i < array.size(); i++) {
                         HeroesModel model = array.get(i);
@@ -225,7 +225,7 @@ public class CharViewModel extends ViewModel {
                 try {
                     DataModel dataModel = new Gson().fromJson(response, DataModel.class);
 
-                    List<HeroesModel> array = new ArrayList<>();
+                    List<HeroesModel> array;
                     array = dataModel.getData().getResults();
                     for (int i = 0; i < array.size(); i++) {
                         HeroesModel model = array.get(i);
@@ -255,7 +255,7 @@ public class CharViewModel extends ViewModel {
                 try {
                     DataModel dataModel = new Gson().fromJson(response, DataModel.class);
 
-                    List<HeroesModel> array = new ArrayList<>();
+                    List<HeroesModel> array;
                     array = dataModel.getData().getResults();
                     for (int i = 0; i < array.size(); i++) {
                         HeroesModel model = array.get(i);

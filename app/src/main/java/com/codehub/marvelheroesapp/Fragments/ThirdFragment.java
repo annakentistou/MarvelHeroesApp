@@ -85,14 +85,11 @@ public class ThirdFragment extends Fragment {
                 try {
                     DataSeriesModel dataModel = new Gson().fromJson(response, DataSeriesModel.class);
 
-                    List<SeriesModel> array = new ArrayList<>();
-
-
+                    List<SeriesModel> array;
                     array = dataModel.getData().getResults();
                     for (int i = 0; i < array.size(); i++) {
                         SeriesModel model = array.get(i);
                         series.add(model);
-
                     }
 
                     recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
@@ -114,7 +111,6 @@ public class ThirdFragment extends Fragment {
         }) ;
 
         queue.add(stringRequest);
-
     }
 
     @Override

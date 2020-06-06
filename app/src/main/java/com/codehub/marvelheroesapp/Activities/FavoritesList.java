@@ -13,6 +13,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.viewpager.widget.ViewPager;
 
 import com.codehub.marvelheroesapp.Adapters.FavAdapter;
 import com.codehub.marvelheroesapp.DatabaseFiles.FavDB;
@@ -27,7 +28,7 @@ public class FavoritesList extends AppCompatActivity {
     RecyclerView recyclerView;
     private FavDB favDB;
     private List<FavoriteHero> favHero = new ArrayList<>();
-    private FavAdapter favAdapter;
+    FavAdapter favAdapter;
 
     BottomNavigationView bottomNav;
 
@@ -52,6 +53,7 @@ public class FavoritesList extends AppCompatActivity {
         ItemTouchHelper itemTouchHelper = new ItemTouchHelper(simpleCallback);
         itemTouchHelper.attachToRecyclerView(recyclerView); // set swipe to recyclerview
         loadData();
+
     }
 
     private void loadData() {

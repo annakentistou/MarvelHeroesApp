@@ -83,14 +83,13 @@ public class SecondFragment extends Fragment{
                 try {
                     DataComicsModel dataModel = new Gson().fromJson(response, DataComicsModel.class);
 
-                    List<ComicsModel> array = new ArrayList<>();
+                    List<ComicsModel> array;
                    /* List<CreatorsNameModel> creatorsList = new ArrayList<>();*/
 
                     array = dataModel.getData().getResults();
                     for (int i = 0; i < array.size(); i++) {
                         ComicsModel model = array.get(i);
                         comics.add(model);
-
                     }
 
                     recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
@@ -112,7 +111,6 @@ public class SecondFragment extends Fragment{
         }) ;
 
         queue.add(stringRequest);
-
     }
 
     @Override
