@@ -35,7 +35,7 @@ public class ComicsAdapter extends RecyclerView.Adapter<ComicsAdapter.ViewHolder
     @NonNull
     @Override
     public ComicsAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = inflater.inflate(R.layout.custom_list_view, parent, false);
+        View view = inflater.inflate(R.layout.custom_items_in_comics_series, parent, false);
         return new ComicsAdapter.ViewHolder(view);
     }
 
@@ -61,11 +61,11 @@ public class ComicsAdapter extends RecyclerView.Adapter<ComicsAdapter.ViewHolder
                 //new Intent
                 Intent intent = new Intent(v.getContext(), ItemDetails.class);
                 intent.putExtra("title", title);//sending title of "custom of list view"
-                if(description !=null) {
+                if (description != null) {
                     intent.putExtra("subtitle", "DESCRIPTION: " + description);
-                }else
+                } else
                     intent.putExtra("subtitle", "There is No description");
-                intent.putExtra("image",image);
+                intent.putExtra("image", image);
                 v.getContext().startActivity(intent);
             }
         });
@@ -79,7 +79,7 @@ public class ComicsAdapter extends RecyclerView.Adapter<ComicsAdapter.ViewHolder
     public class ViewHolder extends RecyclerView.ViewHolder {
         TextView Name, Creator;
         ImageView image;
-        ImageButton add_to_fav,share;
+        ImageButton add_to_fav, share;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -90,6 +90,21 @@ public class ComicsAdapter extends RecyclerView.Adapter<ComicsAdapter.ViewHolder
             add_to_fav = itemView.findViewById(R.id.heart);
             share = itemView.findViewById(R.id.share);
 
+            share.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    int position = getAdapterPosition();
+                    ComicsModel comicsModel = comics.get(position);
+                    Intent share_intent = new Intent(Intent.ACTION_SEND);
+                    share_intent.setType("image/*");
+                    share_intent.putExtra(Intent.EXTRA_TITLE, "Marvel Hero");
+                    share_intent.putExtra(Intent.EXTRA_SUBJECT, comicsModel.getTitle());
+                    share_intent.putExtra(Intent.EXTRA_TEXT, comicsModel.getThumbnail().getPath() + ".jpg");
+                    v.getContext().startActivity(Intent.createChooser(share_intent, "Share"));
+
+                }
+            });
         }
     }
 }
+

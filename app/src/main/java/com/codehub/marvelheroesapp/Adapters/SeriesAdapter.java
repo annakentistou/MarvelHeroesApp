@@ -36,7 +36,7 @@ public class SeriesAdapter extends RecyclerView.Adapter<SeriesAdapter.ViewHolder
     @NonNull
     @Override
     public SeriesAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = inflater.inflate(R.layout.custom_list_view, parent, false);
+        View view = inflater.inflate(R.layout.custom_items_in_comics_series, parent, false);
         return new SeriesAdapter.ViewHolder(view);
     }
 
@@ -86,6 +86,21 @@ public class SeriesAdapter extends RecyclerView.Adapter<SeriesAdapter.ViewHolder
                 image = itemView.findViewById(R.id.thumbnail);
                 add_to_fav = itemView.findViewById(R.id.heart);
                 share = itemView.findViewById(R.id.share);
+
+                share.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        int position = getAdapterPosition();
+                        SeriesModel seriesModel = series.get(position);
+                        Intent share_intent = new Intent(Intent.ACTION_SEND);
+                        share_intent.setType("image/*");
+                        share_intent.putExtra(Intent.EXTRA_TITLE, "Marvel Hero");
+                        share_intent.putExtra(Intent.EXTRA_SUBJECT, seriesModel.getTitle());
+                        share_intent.putExtra(Intent.EXTRA_TEXT, seriesModel.getThumbnail().getPath() + ".jpg");
+                        v.getContext().startActivity(Intent.createChooser(share_intent, "Share"));
+
+                    }
+                });
 
             }
         }
