@@ -42,7 +42,7 @@ public class CharViewModel extends ViewModel {
     public void makeRequest(RequestQueue queue){
 
         StringRequest stringRequest= new StringRequest(Request.Method.GET, JSON_URL, new Response.Listener<String>() {
-            //onResponse it's the same with in all requests
+
             @Override
             public void onResponse(String response) {
                 try {

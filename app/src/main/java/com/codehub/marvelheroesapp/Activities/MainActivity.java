@@ -10,19 +10,25 @@ import androidx.fragment.app.FragmentPagerAdapter;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.viewpager.widget.ViewPager;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.codehub.marvelheroesapp.Adapters.Adapter;
 import com.codehub.marvelheroesapp.Adapters.TabsAdapter;
+import com.codehub.marvelheroesapp.DatabaseFiles.Database;
 import com.codehub.marvelheroesapp.R;
 import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.tabs.TabItem;
 import com.google.android.material.tabs.TabLayout;
+import com.squareup.picasso.Picasso;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -31,18 +37,28 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     MaterialToolbar toolbar;
     NavigationView navigationView;
     BottomNavigationView bottomNav;
-    FragmentManager fragmentManager;
-    FragmentTransaction fragmentTransaction;
     TabLayout tabLayout;
     TabItem all, comics, series;
     TabsAdapter tabsAdapter;
     ViewPager viewPager;
-    Adapter adapter;
+    TextView userName, email;
+    Database db;
+    ProgressDialog progressDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        final LoadingDialog loadingDialog = new LoadingDialog(MainActivity.this);
+        loadingDialog.startLoadindDialog();
+        Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                loadingDialog.dismissDialog();
+            }
+        }, 2500);
     }
 
     @Override
@@ -61,7 +77,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         actionBarDrawerToggle.setDrawerIndicatorEnabled(true);
         actionBarDrawerToggle.syncState();
 
-        //load fragment
         viewPager = findViewById(R.id.viewpager);
 
         //tabs management
@@ -106,7 +121,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                         Intent search_intent = new Intent(MainActivity.this, SearchActivity.class);
                         startActivity(search_intent);
                         break;
-                   case R.id.myfavoriteList:
+                    case R.id.myfavoriteList:
                         Intent fav_intent = new Intent(MainActivity.this, FavoritesList.class);
                         startActivity(fav_intent);
                         break;
@@ -120,12 +135,21 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         });
     }
 
+    @Override
+    protected void onPostResume() {
+        super.onPostResume();
+        userName = findViewById(R.id.user_name);
+        email = findViewById(R.id.user_email);
+        db = new Database(this);
+
+    /*userName.setText(db.getName());*/
+    }
+
     //Manage side menu items
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-        //close side menu when you select an item
 
-       /* if (item.getItemId() == R.id.profile) {
+         /* if (item.getItemId() == R.id.profile) {
 
         }*/
         if (item.getItemId() == R.id.sign_out) {

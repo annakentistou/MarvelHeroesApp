@@ -1,11 +1,14 @@
 package com.codehub.marvelheroesapp.Activities;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.codehub.marvelheroesapp.DatabaseFiles.Database;
@@ -14,10 +17,16 @@ import com.google.android.material.textfield.TextInputLayout;
 
 public class LoginActivity extends AppCompatActivity {
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+    }
+
+    @Override
+    protected void onPostCreate(@Nullable Bundle savedInstanceState) {
+        super.onPostCreate(savedInstanceState);
 
         Button register_now = findViewById(R.id.register_now);
         register_now.setOnClickListener(new View.OnClickListener() {
@@ -43,7 +52,8 @@ public class LoginActivity extends AppCompatActivity {
                 String password = e2.getEditText().getText().toString().trim();
                 Boolean chkemailpass = db.emailpassword(username,password);
                 if(chkemailpass==true) {
-                    Toast.makeText(getApplicationContext(),"Login Success!",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(),"Login Successful!",Toast.LENGTH_SHORT).show();
+
                     gotoActivity(MainActivity.class);
                 }
                 else {

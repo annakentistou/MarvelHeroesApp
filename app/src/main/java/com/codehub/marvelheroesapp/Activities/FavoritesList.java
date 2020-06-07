@@ -10,6 +10,7 @@ import android.view.MenuItem;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -53,7 +54,6 @@ public class FavoritesList extends AppCompatActivity {
         ItemTouchHelper itemTouchHelper = new ItemTouchHelper(simpleCallback);
         itemTouchHelper.attachToRecyclerView(recyclerView); // set swipe to recyclerview
         loadData();
-
     }
 
     private void loadData() {
@@ -76,10 +76,8 @@ public class FavoritesList extends AppCompatActivity {
                 cursor.close();
             db.close();
         }
-
         favAdapter = new FavAdapter(getApplicationContext(), favHero);
         recyclerView.setAdapter(favAdapter);
-
     }
 
     // remove item after swipe
@@ -104,15 +102,12 @@ public class FavoritesList extends AppCompatActivity {
     //back button in Action Bar
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-
-        switch (item.getItemId()) {
-            case android.R.id.home:
-                Intent Home = new Intent(FavoritesList.this, MainActivity.class);
-                startActivity(Home);
-                return true;
-            default:
-                return super.onOptionsItemSelected(item);
+        
+        if (item.getItemId() == android.R.id.home){
+            Intent Home = new Intent(FavoritesList.this, MainActivity.class);
+            startActivity(Home);
         }
+        return true;
     }
 
     @Override

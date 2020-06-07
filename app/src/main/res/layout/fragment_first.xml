@@ -7,6 +7,7 @@
     tools:context=".Fragments.FirstFragmentOld">
 
     <!-- TODO: Update blank fragment layout -->
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_view_for_all"
         android:layout_width="match_parent"
