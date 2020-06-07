@@ -102,7 +102,7 @@ public class FavoritesList extends AppCompatActivity {
     //back button in Action Bar
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        
+
         if (item.getItemId() == android.R.id.home){
             Intent Home = new Intent(FavoritesList.this, MainActivity.class);
             startActivity(Home);
