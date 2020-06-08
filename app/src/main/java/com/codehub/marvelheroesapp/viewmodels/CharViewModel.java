@@ -47,7 +47,9 @@ public class CharViewModel extends ViewModel {
             public void onResponse(String response) {
                 try {
                     DataModel dataModel = new Gson().fromJson(response, DataModel.class);
-                    heroes = new ArrayList<>();
+                    if(heroes == null) {
+                        heroes = new ArrayList<>();
+                    }
                     List<HeroesModel> array;
                     array = dataModel.getData().getResults();
                     for (int i = 0; i < array.size(); i++) {

@@ -30,7 +30,7 @@
         android:layout_height="0dp"
         android:layout_marginTop="100dp"
         android:ems="10"
-        android:hint="@string/First_Name"
+        android:hint="@string/Full_Name"
         android:inputType="textPersonName"
         android:radius="8dp"
         android:shape="rectangle"
@@ -40,29 +40,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:ignore="MissingConstraints">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:layout_width="@dimen/TextFieldWidth"
-            android:layout_height="wrap_content"
-            android:inputType="text" />
-    </com.google.android.material.textfield.TextInputLayout>
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/surname"
-        android:layout_width="@dimen/TextFieldWidth"
-        android:layout_height="0dp"
-        android:layout_marginTop="8dp"
-        android:ems="10"
-        android:hint="@string/Last_Name"
-        android:inputType="textPersonName"
-        android:radius="8dp"
-        android:shape="rectangle"
-        android:textColorHint="#C7C2C2"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.504"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/name"
-        tools:ignore="InvalidId,MissingConstraints">
 
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="@dimen/TextFieldWidth"
@@ -84,7 +61,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.504"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/surname"
+        app:layout_constraintTop_toBottomOf="@+id/name"
         tools:ignore="MissingConstraints">
 
         <com.google.android.material.textfield.TextInputEditText
@@ -192,11 +169,10 @@
         android:textColor="#FFFFFF"
         android:textSize="@dimen/TextButtonDimen"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@id/register_button"
+        app:layout_constraintTop_toBottomOf="@id/register_button"
         app:layout_constraintVertical_bias="0.718"
         tools:ignore="MissingConstraints" />
 

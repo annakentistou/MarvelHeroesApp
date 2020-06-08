@@ -40,7 +40,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="bottom"
         android:layout_alignParentBottom="true"
-        android:background="@color/gray_800"
+        android:background="@color/DarkRed"
         app:layout_behavior="com.google.android.material.behavior.HideBottomViewOnScrollBehavior"
         app:itemBackground="@color/DarkRed"
         app:itemIconTint="@android:color/white"

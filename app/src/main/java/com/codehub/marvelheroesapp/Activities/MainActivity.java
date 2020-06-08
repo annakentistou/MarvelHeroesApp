@@ -10,18 +10,27 @@ import androidx.fragment.app.FragmentPagerAdapter;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.viewpager.widget.ViewPager;
 
+import android.app.Activity;
+import android.app.Application;
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
 import android.os.Handler;
+import android.provider.MediaStore;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.codehub.marvelheroesapp.Adapters.Adapter;
 import com.codehub.marvelheroesapp.Adapters.TabsAdapter;
 import com.codehub.marvelheroesapp.DatabaseFiles.Database;
+import com.codehub.marvelheroesapp.DatabaseFiles.User;
 import com.codehub.marvelheroesapp.R;
 import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -29,6 +38,11 @@ import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.tabs.TabItem;
 import com.google.android.material.tabs.TabLayout;
 import com.squareup.picasso.Picasso;
+
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.InputStream;
+import java.util.Date;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -42,8 +56,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     TabsAdapter tabsAdapter;
     ViewPager viewPager;
     TextView userName, email;
-    Database db;
+    private Database db;
     ProgressDialog progressDialog;
+    private String intent_username, intent_email;
+    private User user;
+    private static final int PICK_IMAGE = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,6 +76,49 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 loadingDialog.dismissDialog();
             }
         }, 2500);
+
+        db = new Database(getApplicationContext());
+
+        intent_username = getIntent().getStringExtra("TAKE_FULLNAME");
+        intent_email = getIntent().getStringExtra("TAKE_USER_EMAIL");
+        /*user = db.getUser(intent_email);*/
+
+        View header = ((NavigationView)findViewById(R.id.nav_view)).getHeaderView(0);
+        ((TextView) header.findViewById(R.id.user_name)).setText(intent_username);
+        ((TextView) header.findViewById(R.id.user_email)).setText(intent_email);
+
+        ((ImageView) header.findViewById(R.id.imageView)).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent upload_img = new Intent(Intent.ACTION_GET_CONTENT);
+                upload_img.addCategory(Intent.CATEGORY_OPENABLE);
+                upload_img.setType("image/*");
+                startActivityForResult(Intent.createChooser(upload_img, "GET_IMAGE"), PICK_IMAGE);
+
+            }
+        });
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode == Activity.RESULT_OK) {
+
+            if (requestCode == PICK_IMAGE) {
+
+                ((ImageView) findViewById(R.id.imageView)).setImageBitmap(null);
+
+                Uri mediaUri = data.getData();
+
+                try {
+                    InputStream inputStream = getBaseContext().getContentResolver().openInputStream(mediaUri);
+                    Bitmap bm = BitmapFactory.decodeStream(inputStream);
+                    ((ImageView) findViewById(R.id.imageView)).setImageBitmap(bm);
+                } catch (FileNotFoundException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
     }
 
     @Override
@@ -135,23 +195,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         });
     }
 
-    @Override
-    protected void onPostResume() {
-        super.onPostResume();
-        userName = findViewById(R.id.user_name);
-        email = findViewById(R.id.user_email);
-        db = new Database(this);
-
-    /*userName.setText(db.getName());*/
-    }
-
     //Manage side menu items
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
 
-         /* if (item.getItemId() == R.id.profile) {
-
-        }*/
         if (item.getItemId() == R.id.sign_out) {
 
             Intent intent = new Intent(MainActivity.this, LoginActivity.class);

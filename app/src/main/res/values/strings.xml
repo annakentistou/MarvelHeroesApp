@@ -7,7 +7,7 @@
     <!--All about Login and Register-->
     <string name="new_user_register_now">New User? Register now!</string>
     <string name="already_registered"> Already have an account? <u>Sign in!</u> </string>
-    <string name="First_Name">First Name</string>
+    <string name="Full_Name">Full Name</string>
     <string name="Last_Name">Last Name</string>
     <string name="Email">Email</string>
     <string name="Username">Username</string>
