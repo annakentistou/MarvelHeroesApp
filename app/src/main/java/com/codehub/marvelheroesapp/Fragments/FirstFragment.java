@@ -26,6 +26,7 @@ import com.codehub.marvelheroesapp.R;
 import com.codehub.marvelheroesapp.json.DataModel;
 import com.codehub.marvelheroesapp.json.HeroesModel;
 import com.codehub.marvelheroesapp.viewmodels.CharViewModel;
+import com.codehub.marvelheroesapp.viewmodels.CharViewModelVassilis;
 import com.google.gson.Gson;
 
 import java.util.List;

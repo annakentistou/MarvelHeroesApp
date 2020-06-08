@@ -43,7 +43,7 @@
 
     <string name="home_second">Home Second</string>
     <string name="other_users">Other Users</string>
-    <string name="profile">My Profile</string>
+    <string name="gallery">Gallery</string>
 
     <!--KeyHash-->
     <string name="app_id">563705977662214</string>

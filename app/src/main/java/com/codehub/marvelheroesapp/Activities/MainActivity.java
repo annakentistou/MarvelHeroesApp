@@ -84,10 +84,15 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         /*user = db.getUser(intent_email);*/
 
         View header = ((NavigationView)findViewById(R.id.nav_view)).getHeaderView(0);
-        ((TextView) header.findViewById(R.id.user_name)).setText(intent_username);
-        ((TextView) header.findViewById(R.id.user_email)).setText(intent_email);
+        if (intent_username != null || intent_email != null) {
+            ((TextView) header.findViewById(R.id.user_name)).setText(intent_username);
+            ((TextView) header.findViewById(R.id.user_email)).setText(intent_email);
+        }else{
+            ((TextView) header.findViewById(R.id.user_name)).setText("Anna Kentistou");
+            ((TextView) header.findViewById(R.id.user_email)).setText("anna_ken@gmail.com");
+        }
 
-        ((ImageView) header.findViewById(R.id.imageView)).setOnClickListener(new View.OnClickListener() {
+        (header.findViewById(R.id.imageView)).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent upload_img = new Intent(Intent.ACTION_GET_CONTENT);
@@ -97,28 +102,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
             }
         });
-    }
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if (resultCode == Activity.RESULT_OK) {
-
-            if (requestCode == PICK_IMAGE) {
-
-                ((ImageView) findViewById(R.id.imageView)).setImageBitmap(null);
-
-                Uri mediaUri = data.getData();
-
-                try {
-                    InputStream inputStream = getBaseContext().getContentResolver().openInputStream(mediaUri);
-                    Bitmap bm = BitmapFactory.decodeStream(inputStream);
-                    ((ImageView) findViewById(R.id.imageView)).setImageBitmap(bm);
-                } catch (FileNotFoundException e) {
-                    e.printStackTrace();
-                }
-            }
-        }
     }
 
     @Override
@@ -199,11 +182,43 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
 
-        if (item.getItemId() == R.id.sign_out) {
-
-            Intent intent = new Intent(MainActivity.this, LoginActivity.class);
-            startActivity(intent);
+        switch (item.getItemId()){
+            case R.id.gallery:
+                Intent upload_img = new Intent(Intent.ACTION_GET_CONTENT);
+                upload_img.addCategory(Intent.CATEGORY_OPENABLE);
+                upload_img.setType("image/*");
+                startActivityForResult(Intent.createChooser(upload_img, "GET_IMAGE"), PICK_IMAGE);
+                break;
+            case R.id.sign_out:
+                Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+                startActivity(intent);
+                break;
+            default:
+                break;
         }
+
         return true;
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode == Activity.RESULT_OK) {
+
+            if (requestCode == PICK_IMAGE) {
+
+                ((ImageView) findViewById(R.id.imageView)).setImageBitmap(null);
+
+                Uri mediaUri = data.getData();
+
+                try {
+                    InputStream inputStream = getBaseContext().getContentResolver().openInputStream(mediaUri);
+                    Bitmap bm = BitmapFactory.decodeStream(inputStream);
+                    ((ImageView) findViewById(R.id.imageView)).setImageBitmap(bm);
+                } catch (FileNotFoundException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
     }
 }
