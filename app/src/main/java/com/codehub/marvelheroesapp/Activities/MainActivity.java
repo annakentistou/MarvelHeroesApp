@@ -18,16 +18,13 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
-import android.os.Environment;
 import android.os.Handler;
-import android.provider.MediaStore;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.codehub.marvelheroesapp.Adapters.Adapter;
 import com.codehub.marvelheroesapp.Adapters.TabsAdapter;
 import com.codehub.marvelheroesapp.DatabaseFiles.Database;
 import com.codehub.marvelheroesapp.DatabaseFiles.User;
@@ -55,9 +52,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     TabItem all, comics, series;
     TabsAdapter tabsAdapter;
     ViewPager viewPager;
-    TextView userName, email;
     private Database db;
-    ProgressDialog progressDialog;
     private String intent_username, intent_email;
     private User user;
     private static final int PICK_IMAGE = 1;
@@ -75,7 +70,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             public void run() {
                 loadingDialog.dismissDialog();
             }
-        }, 2500);
+        }, 3000);
 
         db = new Database(getApplicationContext());
 
@@ -88,8 +83,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             ((TextView) header.findViewById(R.id.user_name)).setText(intent_username);
             ((TextView) header.findViewById(R.id.user_email)).setText(intent_email);
         }else{
-            ((TextView) header.findViewById(R.id.user_name)).setText("Anna Kentistou");
-            ((TextView) header.findViewById(R.id.user_email)).setText("anna_ken@gmail.com");
+            ((TextView) header.findViewById(R.id.user_name)).setText("Dimitris Poulos");
+            ((TextView) header.findViewById(R.id.user_email)).setText("dim_poulos@gmail.com");
         }
 
         (header.findViewById(R.id.imageView)).setOnClickListener(new View.OnClickListener() {
@@ -99,7 +94,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 upload_img.addCategory(Intent.CATEGORY_OPENABLE);
                 upload_img.setType("image/*");
                 startActivityForResult(Intent.createChooser(upload_img, "GET_IMAGE"), PICK_IMAGE);
-
             }
         });
     }
@@ -148,7 +142,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         });
         viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
 
-        //Bottom Navigation Menu management  31/5/2020
         bottomNav = findViewById(R.id.bottom_navigation);
         Menu menu = bottomNav.getMenu();
         MenuItem menuItem = menu.getItem(0);
@@ -168,17 +161,16 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                         Intent fav_intent = new Intent(MainActivity.this, FavoritesList.class);
                         startActivity(fav_intent);
                         break;
-                    /*case R.id.notifications:
-                        Intent not_intent = new Intent(MainActivity.this, NotificationActivity.class);
+                    case R.id.notifications:
+                        Intent not_intent = new Intent(MainActivity.this, NotificationsActivity.class);
                         startActivity(not_intent);
-                        break;*/
+                        break;
                 }
                 return false;
             }
         });
     }
 
-    //Manage side menu items
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
 

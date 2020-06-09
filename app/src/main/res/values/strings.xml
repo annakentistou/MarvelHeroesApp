@@ -25,6 +25,7 @@
     <string name="Comics">Comics</string>
     <string name="Series">Series</string>
     <string name="Hero_Name"> <u>Hero Name</u> </string>
+    <string name="title">Title</string>
 
     <string name="open" />
     <string name="close" />

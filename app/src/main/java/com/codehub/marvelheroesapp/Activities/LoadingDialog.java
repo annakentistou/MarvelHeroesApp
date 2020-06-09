@@ -12,7 +12,7 @@ public class LoadingDialog {
     private Activity activity;
     private AlertDialog dialog;
 
-    LoadingDialog(Activity myActivity){
+    public LoadingDialog(Activity myActivity){
         activity = myActivity;
     }
 

@@ -1,6 +1,5 @@
 package com.codehub.marvelheroesapp.Activities;
 
-import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
@@ -15,8 +14,8 @@ import com.codehub.marvelheroesapp.DatabaseFiles.Database;
 import com.codehub.marvelheroesapp.R;
 import com.google.android.material.textfield.TextInputLayout;
 
-public class LoginActivity extends AppCompatActivity {
 
+public class LoginActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,12 +49,13 @@ public class LoginActivity extends AppCompatActivity {
             public void onClick(View v) {
                 String username = e1.getEditText().getText().toString().trim();
                 String password = e2.getEditText().getText().toString().trim();
-                Boolean chkemailpass = db.emailpassword(username,password);
-                if(chkemailpass==true) {
+                boolean chkemailpass = db.emailpassword(username,password);
+                if(chkemailpass) {
                     Toast.makeText(getApplicationContext(),"Login Successful!",Toast.LENGTH_SHORT).show();
                     Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                     intent.putExtra("TAKE_USERNAME",username);
                     startActivity(intent);
+
                 }
                 else {
                     Toast.makeText(getApplicationContext(),"Wrong Username or Password",Toast.LENGTH_SHORT).show();

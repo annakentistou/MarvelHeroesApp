@@ -34,6 +34,13 @@
         <item name="android:windowTranslucentStatus">true</item>
     </style>
 
+    <style name="NotificationsActivity.Theme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <item name="colorPrimary">@color/com_facebook_blue</item>
+        <item name="colorPrimaryDark">@color/com_facebook_messenger_blue</item>
+        <item name="colorAccent">@color/LightRed</item>
+        <item name="android:windowTranslucentStatus">true</item>
+    </style>
+
     <style name="AppTheme.AppBarOverlay" parent="Theme.AppCompat.Light.DarkActionBar">
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>

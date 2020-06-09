@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -23,7 +24,6 @@ public class ItemDetails extends AppCompatActivity {
         setContentView(R.layout.activity_item_details);
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true); //display back button in toolbar
-
     }
 
     @Override
@@ -34,45 +34,38 @@ public class ItemDetails extends AppCompatActivity {
     }
 
 //Inflate what top_app_bar menu has
-  /*  @Override
+    @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.top_app_bar, menu);
         return true;
-    }*/
+    }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
 
-        if(item.getItemId() == android.R.id.home) {
+       /* if(item.getItemId() == android.R.id.home) {
             Intent Home = new Intent(ItemDetails.this, MainActivity.class);
             startActivity(Home);
         }
-        return true;
-/*        switch (item.getItemId()) {
+        return true;*/
+        switch (item.getItemId()) {
             case android.R.id.home:
                 Intent Home = new Intent(ItemDetails.this, MainActivity.class);
                 startActivity(Home);
                 return true;
+
             case R.id.share:
-                //Sharing just for Facebook
-                ShareHashtag shareHashTag = new ShareHashtag.Builder().setHashtag("Heroes Name").build();
-                ShareLinkContent shareLinkContent = new ShareLinkContent.Builder()
-                        .setShareHashtag(shareHashTag)
-                        .setQuote("Your Description")
-                        .setContentUrl(Uri.parse("http://i.annihil.us/u/prod/marvel/i/mg/6/f0/5239b5e7d7f70.jpg?fbclid=IwAR3UUOLPXqLECGsS8Usq7bt0iWLMrWjrxkMd6uoXxXjHdA_WXndIvF2hfdM"))
-                        .build();
-
-                ShareDialog.show(ItemDetails.this,shareLinkContent);
-
                 //sharing as text
-            *//*    Intent share_intent = new Intent(Intent.ACTION_SEND);
-                share_intent.setType("image/*");
-                share_intent.putExtra(Intent.EXTRA_SUBJECT, "Heroes Name: "); //for subject take the Heros' name
-                share_intent.putExtra(Intent.EXTRA_TEXT, "image"); //for body take the image url
+                Intent intent = getIntent();
+                Intent share_intent = new Intent(Intent.ACTION_SEND);
+                share_intent.setType("text/plain");
+                share_intent.putExtra(Intent.EXTRA_SUBJECT, "Heroes Name: ");
+                share_intent.putExtra(Intent.EXTRA_TEXT, intent.getStringExtra("image"));
                 startActivity(Intent.createChooser(share_intent, "Share"));
-                return true;*//*
+                return true;
             default:
-                return super.onOptionsItemSelected(item);*/
+                return super.onOptionsItemSelected(item);
+        }
 
     }
 
@@ -93,5 +86,3 @@ public class ItemDetails extends AppCompatActivity {
         }
     }
 }
-
-

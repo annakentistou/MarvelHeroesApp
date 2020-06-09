@@ -128,10 +128,10 @@ public class SearchActivity extends AppCompatActivity {
                         Intent fav_intent = new Intent(SearchActivity.this, FavoritesList.class);
                         startActivity(fav_intent);
                         break;
-                    /*case R.id.notifications:
-                        Intent not_intent = new Intent(MainActivity.this, NotificationActivity.class);
+                    case R.id.notifications:
+                        Intent not_intent = new Intent(SearchActivity.this, NotificationsActivity.class);
                         startActivity(not_intent);
-                        break;*/
+                        break;
                 }
                 return false;
             }

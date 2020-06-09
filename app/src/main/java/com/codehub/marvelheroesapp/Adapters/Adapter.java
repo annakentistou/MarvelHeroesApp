@@ -69,8 +69,8 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder> {
         holder.numOfComics.setText("Comics: " + numOfComics);
         holder.numOfSeries.setText("Series: " + numOfSeries);
 
-            Picasso.get().load(image).into(holder.image);
-            Log.i("image", image);
+        Picasso.get().load(image).into(holder.image);
+        Log.i("image", image);
 
         readCursorData(heroItem, holder);
 
@@ -80,7 +80,7 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder> {
             public void onClick(View v) {
                 //new Intent
                 Intent intent = new Intent(v.getContext(), ItemDetails.class);
-                intent.putExtra("title", title);//sending title of "custom of list view"
+                intent.putExtra("title", title);
                 intent.putExtra("subtitle", description);
                 intent.putExtra("image", image);
                 v.getContext().startActivity(intent);
@@ -115,13 +115,14 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder> {
                 public void onClick(View v) {
                     int position = getAdapterPosition();
                     HeroesModel heroItem = heroes.get(position);
+                    String extension = heroItem.getThumbnail().getExtension();
 
-                    if(heroItem.getFavStatus() == 0) {
+                    if (heroItem.getFavStatus() == 0) {
                         heroItem.setFavStatus(1);
-                        favDB.insertIntoTheDatabase(heroItem.getName(), heroItem.getThumbnail().getPath()+".jpg",
+                        favDB.insertIntoTheDatabase(heroItem.getName(), heroItem.getThumbnail().getPath() + "." + extension,
                                 heroItem.getId(), heroItem.getFavStatus());
                         add_to_fav.setBackgroundResource(R.drawable.ic_favorite_black_24dp);
-                    }else {
+                    } else {
                         heroItem.setFavStatus(0);
                         favDB.remove_fav(heroItem.getId());
                         add_to_fav.setBackgroundResource(R.drawable.ic_favorite_border_black_24dp);
@@ -133,12 +134,13 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder> {
                 @Override
                 public void onClick(View v) {
                     int position = getAdapterPosition();
-                    HeroesModel heroesModel = heroes.get(position);
+                    HeroesModel heroesItem = heroes.get(position);
+                    String extension = heroesItem.getThumbnail().getExtension();
                     Intent share_intent = new Intent(Intent.ACTION_SEND);
                     share_intent.setType("text/plain");
-                    share_intent.putExtra(Intent.EXTRA_TITLE,"Marvel Hero");
-                    share_intent.putExtra(Intent.EXTRA_SUBJECT,heroesModel.getName());
-                    share_intent.putExtra(Intent.EXTRA_TEXT, heroesModel.getThumbnail().getPath()+".jpg");
+                    share_intent.putExtra(Intent.EXTRA_TITLE, "Marvel Hero");
+                    share_intent.putExtra(Intent.EXTRA_SUBJECT, heroesItem.getName());
+                    share_intent.putExtra(Intent.EXTRA_TEXT, heroesItem.getThumbnail().getPath() + "." + extension);
                     v.getContext().startActivity(Intent.createChooser(share_intent, "Share"));
 
                    /* ShareHashtag shareHashTag = new ShareHashtag.Builder().setHashtag(heroesModel.getName()).build();
@@ -176,7 +178,7 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder> {
                     viewHolder.add_to_fav.setBackgroundResource(R.drawable.ic_favorite_black_24dp);
                 } else if (item_fav_status == 0) {
                     viewHolder.add_to_fav.setBackgroundResource(R.drawable.ic_favorite_border_black_24dp);
-                }else {
+                } else {
                     viewHolder.add_to_fav.setBackgroundResource(R.drawable.ic_favorite_border_black_24dp);
                 }
             }

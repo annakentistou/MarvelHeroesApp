@@ -134,10 +134,10 @@ public class FavoritesList extends AppCompatActivity {
                     case R.id.myfavoriteList:
 
                         break;
-                    /*case R.id.notifications:
-                        Intent not_intent = new Intent(MainActivity.this, NotificationActivity.class);
+                    case R.id.notifications:
+                        Intent not_intent = new Intent(FavoritesList.this, NotificationsActivity.class);
                         startActivity(not_intent);
-                        break;*/
+                        break;
                 }
                 return false;
             }

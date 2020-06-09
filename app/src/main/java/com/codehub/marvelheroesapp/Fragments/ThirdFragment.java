@@ -45,7 +45,7 @@ public class ThirdFragment extends Fragment {
     private SeriesAdapter myadapter;
     private List<SeriesModel> series;
     private List<CreatorsNameModel> creators;
-    private static String JSON_URL="https://gateway.marvel.com/v1/public/series?ts=1&apikey=cbc3143464c6ede991022c465a83c158&hash=96b097677f87d6beb9af6fd11c1bd405";
+    private static String JSON_URL="https://gateway.marvel.com/v1/public/series?limit=30&ts=1&apikey=cbc3143464c6ede991022c465a83c158&hash=96b097677f87d6beb9af6fd11c1bd405";
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -87,11 +87,12 @@ public class ThirdFragment extends Fragment {
 
                     List<SeriesModel> array;
                     array = dataModel.getData().getResults();
-                    for (int i = 0; i < array.size(); i++) {
-                        SeriesModel model = array.get(i);
-                        series.add(model);
+                    if(array != null) {
+                        for (int i = 0; i < array.size(); i++) {
+                            SeriesModel model = array.get(i);
+                            series.add(model);
+                        }
                     }
-
                     recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
                     myadapter = new SeriesAdapter(getContext(), series);
                     recyclerView.setAdapter(myadapter);
@@ -101,7 +102,6 @@ public class ThirdFragment extends Fragment {
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
-
             }
         }, new Response.ErrorListener() {
             @Override

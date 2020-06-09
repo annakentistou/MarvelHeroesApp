@@ -3,6 +3,8 @@
     package="com.codehub.marvelheroesapp">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+
 
     <application
         android:allowBackup="true"
@@ -12,14 +14,14 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
-        <meta-data
+       <!-- <meta-data
             android:name="com.facebook.sdk.ApplicationId"
-            android:value="@string/app_id" />
+            android:value="@string/app_id" />-->
         <!--Facebook Provider, setup Facebook Share-->
-        <provider
+        <!--<provider
             android:authorities="com.facebook.app.FacebookContentProvider563705977662214"
             android:name="com.facebook.FacebookContentProvider"
-            android:exported="true" />
+            android:exported="true" />-->
 
         <activity
             android:name=".Activities.LoginActivity"
@@ -51,5 +53,13 @@
             android:name=".Activities.FavoritesList"
             android:theme="@style/DetailsActivity.Theme"
             android:windowSoftInputMode="adjustPan"/>
+        <activity
+        android:name=".Activities.NotificationsActivity"
+        android:theme="@style/NotificationsActivity.Theme"
+        android:windowSoftInputMode="adjustPan"/>
+        <activity
+            android:name=".CreateNotificationChannel"
+            android:theme="@style/NotificationsActivity.Theme"
+            />
     </application>
 </manifest>
