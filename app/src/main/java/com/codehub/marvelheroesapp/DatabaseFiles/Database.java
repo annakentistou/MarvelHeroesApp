@@ -124,19 +124,5 @@ public class Database extends SQLiteOpenHelper {
         return user;
     }
 
-/*  public String[] getName(String usernamere){
-        SQLiteDatabase db = this.getReadableDatabase();
-        Cursor cursor = db.rawQuery("SELECT usernamere FROM user WHERE usernamere=?", new String[]{usernamere});
-        String[] data = null;
-        if (cursor.moveToFirst()) {
-            do {
-                ArrayList userInfo = new ArrayList();
-                userInfo.add(data);
-            }while (cursor.moveToNext());
-            }
-        cursor.close();
-        return data;
-  }*/
-
 }
 

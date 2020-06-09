@@ -5,6 +5,8 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.graphics.drawable.Drawable;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,12 +17,14 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.widget.AppCompatImageButton;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.codehub.marvelheroesapp.Activities.ItemDetails;
 import com.codehub.marvelheroesapp.DatabaseFiles.FavDB;
 import com.codehub.marvelheroesapp.R;
 import com.codehub.marvelheroesapp.json.HeroesModel;
 import com.squareup.picasso.Picasso;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder> {
@@ -52,17 +56,21 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull final ViewHolder holder, int position) {
+
         final HeroesModel heroItem = heroes.get(position);
         final String title = heroItem.getName();
         final String description = heroItem.getDescription();
-        final String image = heroItem.getThumbnail().getPath() + "."+ heroItem.getThumbnail().getExtension();
+        final String extension = heroItem.getThumbnail().getExtension();
+        final String image = heroItem.getThumbnail().getPath() + "." + extension;
         final int numOfComics = heroItem.getComics().getAvailable();
         final int numOfSeries = heroItem.getSeries().getAvailable();
 
         holder.name.setText(title);
         holder.numOfComics.setText("Comics: " + numOfComics);
         holder.numOfSeries.setText("Series: " + numOfSeries);
-        Picasso.get().load(image).into(holder.image);
+
+            Picasso.get().load(image).into(holder.image);
+            Log.i("image", image);
 
         readCursorData(heroItem, holder);
 

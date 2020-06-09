@@ -44,10 +44,10 @@ public class SeriesAdapter extends RecyclerView.Adapter<SeriesAdapter.ViewHolder
     public void onBindViewHolder(@NonNull final ViewHolder holder, int position) {
         final String title = series.get(position).getTitle();
         final String description = series.get(position).getDescription();
-        final String image = series.get(position).getThumbnail().getPath() + ".jpg";
+        final String extension = series.get(position).getThumbnail().getExtension();
+        final String image = series.get(position).getThumbnail().getPath() + "." + extension;
 
         holder.Name.setText(title);
-
         Picasso.get().load(image).into(holder.image);
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
@@ -75,7 +75,7 @@ public class SeriesAdapter extends RecyclerView.Adapter<SeriesAdapter.ViewHolder
         public class ViewHolder extends RecyclerView.ViewHolder {
             TextView Name, subtitle;
             ImageView image;
-            ImageButton add_to_fav,share;
+            ImageButton share;
 
             public ViewHolder(@NonNull View itemView) {
                 super(itemView);
@@ -83,7 +83,6 @@ public class SeriesAdapter extends RecyclerView.Adapter<SeriesAdapter.ViewHolder
                 Name = itemView.findViewById(R.id.title);
                 subtitle = itemView.findViewById(R.id.subtitle);
                 image = itemView.findViewById(R.id.thumbnail);
-                add_to_fav = itemView.findViewById(R.id.heart);
                 share = itemView.findViewById(R.id.share);
 
                 share.setOnClickListener(new View.OnClickListener() {

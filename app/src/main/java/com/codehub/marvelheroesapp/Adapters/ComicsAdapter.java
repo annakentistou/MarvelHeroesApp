@@ -18,13 +18,13 @@ import com.codehub.marvelheroesapp.json.ComicsModel;
 import com.codehub.marvelheroesapp.json.CreatorsNameModel;
 import com.squareup.picasso.Picasso;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class ComicsAdapter extends RecyclerView.Adapter<ComicsAdapter.ViewHolder> {
 
     private LayoutInflater inflater;
     private List<ComicsModel> comics;
-    private List<CreatorsNameModel> creators;
 
     public ComicsAdapter(Context ctx, List<ComicsModel> comics) {
         this.inflater = LayoutInflater.from(ctx);
@@ -42,15 +42,21 @@ public class ComicsAdapter extends RecyclerView.Adapter<ComicsAdapter.ViewHolder
     public void onBindViewHolder(@NonNull final ViewHolder holder, int position) {
         final String title = comics.get(position).getTitle();
         final String description = comics.get(position).getDescription();
-        final String image = comics.get(position).getThumbnail().getPath() + ".jpg";
-     /*   final String creator = comics.get(position).getCreators().getItems().get(position).getName();
+        final String extension = comics.get(position).getThumbnail().getExtension();
+        final String image = comics.get(position).getThumbnail().getPath() + "." + extension;
+        /*final String creator = comics.get(position).getCreators().getItems().get(position).getName();*/
 
-        List<CreatorsNameModel> creators = new ArrayList<>();
-        creators = comics.get(position).getCreators().getItems();*/
-        /*if(creators.size() !=0) {
-            holder.Creator.setText(creator);
+     /*   List<CreatorsNameModel> items;
+        for (int i=0 ; i< position; i++) {
+            items = comics.get(i).getCreators().getItems();
+            if (items.size() != 0) {
+                holder.creator.setText(creator);
+            } else {
+                holder.creator.setText("There in no creator");
+            }
         }*/
-        holder.Name.setText(title);
+
+        holder.name.setText(title);
         Picasso.get().load(image).into(holder.image);
 
         //set onClickListener to item
@@ -76,17 +82,16 @@ public class ComicsAdapter extends RecyclerView.Adapter<ComicsAdapter.ViewHolder
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        TextView Name, Creator;
+        TextView name, creator;
         ImageView image;
-        ImageButton add_to_fav, share;
+        ImageButton share;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
 
-            Name = itemView.findViewById(R.id.title);
-            Creator = itemView.findViewById(R.id.numOfComics);
+            name = itemView.findViewById(R.id.title);
+            creator = itemView.findViewById(R.id.numOfComics);
             image = itemView.findViewById(R.id.thumbnail);
-            add_to_fav = itemView.findViewById(R.id.heart);
             share = itemView.findViewById(R.id.share);
 
             share.setOnClickListener(new View.OnClickListener() {
