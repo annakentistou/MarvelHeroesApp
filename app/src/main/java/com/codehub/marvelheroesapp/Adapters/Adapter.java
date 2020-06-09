@@ -53,11 +53,11 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder> {
     @Override
     public void onBindViewHolder(@NonNull final ViewHolder holder, int position) {
         final HeroesModel heroItem = heroes.get(position);
-        final String title = heroes.get(position).getName();
-        final String description = heroes.get(position).getDescription();
-        final String image = heroes.get(position).getThumbnail().getPath() + ".jpg";
-        final int numOfComics = heroes.get(position).getComics().getAvailable();
-        final int numOfSeries = heroes.get(position).getSeries().getAvailable();
+        final String title = heroItem.getName();
+        final String description = heroItem.getDescription();
+        final String image = heroItem.getThumbnail().getPath() + "."+ heroItem.getThumbnail().getExtension();
+        final int numOfComics = heroItem.getComics().getAvailable();
+        final int numOfSeries = heroItem.getSeries().getAvailable();
 
         holder.name.setText(title);
         holder.numOfComics.setText("Comics: " + numOfComics);
