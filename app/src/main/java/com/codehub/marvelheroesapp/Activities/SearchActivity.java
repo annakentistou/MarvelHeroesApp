@@ -25,6 +25,7 @@ import com.codehub.marvelheroesapp.Adapters.Adapter;
 import com.codehub.marvelheroesapp.R;
 import com.codehub.marvelheroesapp.json.HeroesModel;
 import com.codehub.marvelheroesapp.viewmodels.CharViewModel;
+import com.codehub.marvelheroesapp.viewmodels.CharViewModelVassilis;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.util.ArrayList;
@@ -37,7 +38,7 @@ public class SearchActivity extends AppCompatActivity {
     /*private List<HeroesModel> heroes;*/
     private List<HeroesModel> filtered;
 
-    private CharViewModel viewModel; //initialize ViewModel
+    private CharViewModelVassilis viewModel; //initialize ViewModel
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -45,7 +46,7 @@ public class SearchActivity extends AppCompatActivity {
         setContentView(R.layout.activity_search);
         recyclerView = findViewById(R.id.recycler_view_for_all);
 
-        viewModel = new ViewModelProvider(this).get(CharViewModel.class);
+        viewModel = new ViewModelProvider(this).get(CharViewModelVassilis.class);
     }
 
     @Override
@@ -135,7 +136,6 @@ public class SearchActivity extends AppCompatActivity {
                 return false;
             }
         });
-
     }
 }
 

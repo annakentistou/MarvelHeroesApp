@@ -33,7 +33,7 @@ import java.util.List;
 
 public class FirstFragment extends Fragment {
 
-    private CharViewModel viewModel; //initialize ViewModel
+    private CharViewModelVassilis viewModel; //initialize ViewModel
 
     private View view;
     private RecyclerView recyclerView;
@@ -50,7 +50,7 @@ public class FirstFragment extends Fragment {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        viewModel = new ViewModelProvider(getActivity()).get(CharViewModel.class);
+        viewModel = new ViewModelProvider(getActivity()).get(CharViewModelVassilis.class);
     }
 
     @Override

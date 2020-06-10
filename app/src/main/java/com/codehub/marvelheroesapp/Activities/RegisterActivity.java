@@ -75,10 +75,10 @@ public class RegisterActivity extends AppCompatActivity {
                                     intent.putExtra("TAKE_USER_EMAIL", email);
                                     startActivity(intent);
 
-                                    String title = "Success!";
-                                    String message = "Your a new user now!";
+                                    String title = "Account created";
+                                    String message = "Thank you for registering!";
                                     Notification notification = new NotificationCompat.Builder(getApplicationContext(), CHANNEL_ID)
-                                            .setSmallIcon(R.drawable.ic_announcement_black_24dp)
+                                            .setSmallIcon(R.drawable.ic_check_circle_black_24dp)
                                             .setContentTitle(title)
                                             .setContentText(message)
                                             .setPriority(NotificationCompat.PRIORITY_DEFAULT)
@@ -92,10 +92,9 @@ public class RegisterActivity extends AppCompatActivity {
                         } else {
                             Toast.makeText(getApplicationContext(), "Username Already exists", Toast.LENGTH_SHORT).show();
                         }
-                    } else if (password != confirmpass)
+                    } else if (!password.equals(confirmpass))
                         Toast.makeText(getApplicationContext(), "Password do not match", Toast.LENGTH_SHORT).show();
                 }
-
             }
         });
     }

@@ -1,8 +1,5 @@
 package com.codehub.marvelheroesapp.Activities;
 
-import android.app.Notification;
-import android.app.NotificationManager;
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
@@ -12,14 +9,10 @@ import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.NotificationCompat;
 
 import com.codehub.marvelheroesapp.DatabaseFiles.Database;
 import com.codehub.marvelheroesapp.R;
 import com.google.android.material.textfield.TextInputLayout;
-
-import static com.codehub.marvelheroesapp.CreateNotificationChannel.CHANNEL_ID;
-
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -27,7 +20,6 @@ public class LoginActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-
     }
 
     @Override
@@ -62,7 +54,6 @@ public class LoginActivity extends AppCompatActivity {
                     Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                     intent.putExtra("TAKE_USERNAME",username);
                     startActivity(intent);
-
                 }
                 else {
                     Toast.makeText(getApplicationContext(),"Wrong Username or Password",Toast.LENGTH_SHORT).show();
@@ -83,46 +74,7 @@ public class LoginActivity extends AppCompatActivity {
         Intent intent = new Intent(LoginActivity.this, activityName);
         startActivity(intent);
     }
-
 }
-
-
-/*    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login);
-
-        Button register_now = findViewById(R.id.register_now);
-        register_now.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                gotoActivity(RegisterActivity.class);
-            }
-        });
-
-        Button login = findViewById(R.id.login_button);
-        login.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                gotoActivity(MainActivity.class);
-            }
-        });
-
-        Button forgot_pass = findViewById(R.id.forgot_pass);
-        forgot_pass.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                gotoActivity(ConfirmPassActivity.class);
-            }
-        });
-
-        *//*printKeyHash();*//*
-    }
-
-    private void gotoActivity(Class activityName) {
-        Intent intent = new Intent(LoginActivity.this, activityName);
-        startActivity(intent);
-    }*/
 
 //just take KeyHash for Facebook Developers (put this on manifest provider)
     /*private void printKeyHash() {

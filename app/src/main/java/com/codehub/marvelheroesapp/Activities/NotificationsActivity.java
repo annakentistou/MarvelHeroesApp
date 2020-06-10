@@ -2,6 +2,7 @@ package com.codehub.marvelheroesapp.Activities;
 
 import android.app.Notification;
 import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -31,8 +32,11 @@ public class NotificationsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_notifications);
 
-       /* notificationManager = NotificationManagerCompat.from(this);*/
         notificationManager = (NotificationManager)getSystemService(Context.NOTIFICATION_SERVICE);
+
+        Intent intent = new Intent(this, MainActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        final PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, intent, 0);
 
         Button btn = findViewById(R.id.click);
         btn.setOnClickListener(new View.OnClickListener() {
@@ -46,6 +50,7 @@ public class NotificationsActivity extends AppCompatActivity {
                         .setContentTitle(title)
                         .setContentText(message)
                         .setPriority(NotificationCompat.PRIORITY_DEFAULT)
+                        .setContentIntent(pendingIntent)
                         .setAutoCancel(true)
                         .build();
                 notificationManager.notify(1, notification);
@@ -84,6 +89,5 @@ public class NotificationsActivity extends AppCompatActivity {
                 return false;
             }
         });
-
     }
 }

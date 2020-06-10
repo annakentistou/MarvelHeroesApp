@@ -40,7 +40,6 @@ public class ItemDetails extends AppCompatActivity {
         setContentView(R.layout.activity_item_details);
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true); //display back button in toolbar
-
     }
 
     @Override
@@ -78,7 +77,6 @@ public class ItemDetails extends AppCompatActivity {
             default:
                 return super.onOptionsItemSelected(item);
         }
-
     }
 
     //get values from View Holder and set them to ItemDetails layout

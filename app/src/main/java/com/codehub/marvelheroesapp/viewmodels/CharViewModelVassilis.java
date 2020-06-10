@@ -49,7 +49,7 @@ public class CharViewModelVassilis extends ViewModel {
                 HeroesModel model = array.get(i);
                 heroes.add(model);
             }
-            /*stream.postValue(heroes);*/
+            stream.postValue(heroes);
             Log.i("response", dataModel.toString());
 
         } catch (Exception e) {

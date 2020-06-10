@@ -50,7 +50,6 @@ public class FavoritesList extends AppCompatActivity {
         favDB = new FavDB(getApplicationContext());
         recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
 
-        // add item touch helper
         ItemTouchHelper itemTouchHelper = new ItemTouchHelper(simpleCallback);
         itemTouchHelper.attachToRecyclerView(recyclerView); // set swipe to recyclerview
         loadData();
@@ -143,5 +142,4 @@ public class FavoritesList extends AppCompatActivity {
             }
         });
     }
-
 }

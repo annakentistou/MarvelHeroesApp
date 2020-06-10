@@ -70,7 +70,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             public void run() {
                 loadingDialog.dismissDialog();
             }
-        }, 3000);
+        }, 2000);
 
         db = new Database(getApplicationContext());
 
@@ -188,7 +188,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             default:
                 break;
         }
-
         return true;
     }
 
