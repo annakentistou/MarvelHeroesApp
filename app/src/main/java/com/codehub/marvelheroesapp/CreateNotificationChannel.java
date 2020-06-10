@@ -19,10 +19,10 @@ public class CreateNotificationChannel extends Application {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             NotificationChannel channel = new NotificationChannel(
                     CHANNEL_ID,
-                    "Channel 1",
+                    "Channel",
                     NotificationManager.IMPORTANCE_DEFAULT
             );
-            channel.setDescription("This is Channel 1");
+            channel.setDescription("This is Channel");
 
             NotificationManager manager = getSystemService(NotificationManager.class);
             manager.createNotificationChannel(channel);

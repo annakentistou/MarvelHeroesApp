@@ -261,10 +261,9 @@ public class CharViewModel extends ViewModel {
                     array = dataModel.getData().getResults();
                     for (int i = 0; i < array.size(); i++) {
                         HeroesModel model = array.get(i);
-                        model.setFavStatus(0);
+                        /*model.setFavStatus(0);*/
                         heroes.add(model);
                     }
-
                     stream.postValue(heroes);
                     Log.i("response", dataModel.toString());
 

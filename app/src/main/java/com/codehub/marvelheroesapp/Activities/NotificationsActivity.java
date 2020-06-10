@@ -40,7 +40,7 @@ public class NotificationsActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 String title = "Marvel App";
-                String message = "Alert Message";
+                String message = "There is no Notifications";
                 Notification notification = new NotificationCompat.Builder(getApplicationContext(), CHANNEL_ID)
                         .setSmallIcon(R.drawable.ic_announcement_black_24dp)
                         .setContentTitle(title)
@@ -52,7 +52,6 @@ public class NotificationsActivity extends AppCompatActivity {
             }
         });
     }
-
 
     @Override
     protected void onPostResume() {

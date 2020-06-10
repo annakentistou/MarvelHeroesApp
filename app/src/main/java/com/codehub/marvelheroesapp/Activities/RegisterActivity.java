@@ -1,7 +1,11 @@
 package com.codehub.marvelheroesapp.Activities;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.NotificationCompat;
 
+import android.app.Notification;
+import android.app.NotificationManager;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -12,17 +16,22 @@ import com.codehub.marvelheroesapp.DatabaseFiles.Database;
 import com.codehub.marvelheroesapp.R;
 import com.google.android.material.textfield.TextInputLayout;
 
+import static com.codehub.marvelheroesapp.CreateNotificationChannel.CHANNEL_ID;
+
 public class RegisterActivity extends AppCompatActivity {
 
     private Database db;
     // EditText e1,e2,e3,e4,e5,e6;
     private TextInputLayout e1, e2, e3, e4, e5, e6;
     Button register_btn, sign_in;
+    private NotificationManager notificationManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
+
+        notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
 
         db = new Database(this);
         e1 = findViewById(R.id.name);
@@ -60,11 +69,22 @@ public class RegisterActivity extends AppCompatActivity {
                             if (chkemail == true) /*chkuser == true)*/ {
                                 boolean insert = db.insert(null, email, password, username, name);
                                 if (insert == true) {
-                                    Toast.makeText(getApplicationContext(), "Registered Successfully", Toast.LENGTH_SHORT).show();
+                                    /*Toast.makeText(getApplicationContext(), "Registered Successfully", Toast.LENGTH_SHORT).show();*/
                                     Intent intent = new Intent(RegisterActivity.this, MainActivity.class);
                                     intent.putExtra("TAKE_FULLNAME", name);
                                     intent.putExtra("TAKE_USER_EMAIL", email);
                                     startActivity(intent);
+
+                                    String title = "Success!";
+                                    String message = "Your a new user now!";
+                                    Notification notification = new NotificationCompat.Builder(getApplicationContext(), CHANNEL_ID)
+                                            .setSmallIcon(R.drawable.ic_announcement_black_24dp)
+                                            .setContentTitle(title)
+                                            .setContentText(message)
+                                            .setPriority(NotificationCompat.PRIORITY_DEFAULT)
+                                            .setAutoCancel(true)
+                                            .build();
+                                    notificationManager.notify(1, notification);
                                 }
                             } else {
                                 Toast.makeText(getApplicationContext(), "Email Already exists", Toast.LENGTH_SHORT).show();

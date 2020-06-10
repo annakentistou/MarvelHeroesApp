@@ -1,5 +1,8 @@
 package com.codehub.marvelheroesapp.Activities;
 
+import android.app.Notification;
+import android.app.NotificationManager;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
@@ -9,10 +12,13 @@ import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.NotificationCompat;
 
 import com.codehub.marvelheroesapp.DatabaseFiles.Database;
 import com.codehub.marvelheroesapp.R;
 import com.google.android.material.textfield.TextInputLayout;
+
+import static com.codehub.marvelheroesapp.CreateNotificationChannel.CHANNEL_ID;
 
 
 public class LoginActivity extends AppCompatActivity {
@@ -21,6 +27,7 @@ public class LoginActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
     }
 
     @Override

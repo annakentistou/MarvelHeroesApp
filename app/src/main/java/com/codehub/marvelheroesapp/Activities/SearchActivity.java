@@ -104,7 +104,6 @@ public class SearchActivity extends AppCompatActivity {
         myAdapter.filterList(filteredList);
     }
 
-
     @Override
     public void onPostResume() {
         super.onPostResume();
