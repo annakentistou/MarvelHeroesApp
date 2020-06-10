@@ -57,9 +57,6 @@
         android:name=".Activities.NotificationsActivity"
         android:theme="@style/NotificationsActivity.Theme"
         android:windowSoftInputMode="adjustPan"/>
-        <activity
-            android:name=".CreateNotificationChannel"
-            android:theme="@style/NotificationsActivity.Theme"
-            />
+
     </application>
 </manifest>
