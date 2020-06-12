@@ -1,5 +1,9 @@
 package com.codehub.marvelheroesapp.Activities;
 
+import android.app.Notification;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
@@ -12,6 +16,7 @@ import android.widget.EditText;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.NotificationCompat;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.Transformations;
@@ -31,14 +36,16 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.codehub.marvelheroesapp.CreateNotificationChannel.CHANNEL_ID;
+
 public class SearchActivity extends AppCompatActivity {
     BottomNavigationView bottomNav;
     RecyclerView recyclerView;
     Adapter myAdapter;
     /*private List<HeroesModel> heroes;*/
     private List<HeroesModel> filtered;
-
     private CharViewModelVassilis viewModel; //initialize ViewModel
+    private NotificationManager notificationManager;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -47,6 +54,8 @@ public class SearchActivity extends AppCompatActivity {
         recyclerView = findViewById(R.id.recycler_view_for_all);
 
         viewModel = new ViewModelProvider(this).get(CharViewModelVassilis.class);
+
+        notificationManager = (NotificationManager)getSystemService(Context.NOTIFICATION_SERVICE);
     }
 
     @Override
@@ -129,8 +138,23 @@ public class SearchActivity extends AppCompatActivity {
                         startActivity(fav_intent);
                         break;
                     case R.id.notifications:
-                        Intent not_intent = new Intent(SearchActivity.this, NotificationsActivity.class);
-                        startActivity(not_intent);
+                        /*Intent not_intent = new Intent(SearchActivity.this, NotificationsActivity.class);
+                        startActivity(not_intent);*/
+                        Intent notif_intent = new Intent(SearchActivity.this, NotificationsActivity.class);
+                        notif_intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                        final PendingIntent pendingIntent = PendingIntent.getActivity(SearchActivity.this, 0, notif_intent, 0);
+
+                        String title = "Marvel App";
+                        String message = "There is no Notifications";
+                        Notification notification = new NotificationCompat.Builder(getApplicationContext(), CHANNEL_ID)
+                                .setSmallIcon(R.drawable.ic_announcement_black_24dp)
+                                .setContentTitle(title)
+                                .setContentText(message)
+                                .setPriority(NotificationCompat.PRIORITY_DEFAULT)
+                                .setContentIntent(pendingIntent)
+                                .setAutoCancel(true)
+                                .build();
+                        notificationManager.notify(1, notification);
                         break;
                 }
                 return false;

@@ -70,7 +70,7 @@ public class ItemDetails extends AppCompatActivity {
                 Intent intent = getIntent();
                 Intent share_intent = new Intent(Intent.ACTION_SEND);
                 share_intent.setType("text/plain");
-                share_intent.putExtra(Intent.EXTRA_SUBJECT, "Heroes Name: ");
+                share_intent.putExtra(Intent.EXTRA_SUBJECT, "Hero Name: "+ intent.getStringExtra("title"));
                 share_intent.putExtra(Intent.EXTRA_TEXT, intent.getStringExtra("image"));
                 startActivity(Intent.createChooser(share_intent, "Share"));
                 return true;

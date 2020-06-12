@@ -38,7 +38,7 @@ public class NotificationsActivity extends AppCompatActivity {
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         final PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, intent, 0);
 
-        Button btn = findViewById(R.id.click);
+    /*    Button btn = findViewById(R.id.click);
         btn.setOnClickListener(new View.OnClickListener() {
 
             @Override
@@ -55,7 +55,7 @@ public class NotificationsActivity extends AppCompatActivity {
                         .build();
                 notificationManager.notify(1, notification);
             }
-        });
+        });*/
     }
 
     @Override

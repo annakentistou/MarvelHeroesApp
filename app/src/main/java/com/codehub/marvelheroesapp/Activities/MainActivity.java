@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.NotificationCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
@@ -12,7 +13,11 @@ import androidx.viewpager.widget.ViewPager;
 
 import android.app.Activity;
 import android.app.Application;
+import android.app.Notification;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -41,6 +46,8 @@ import java.io.FileNotFoundException;
 import java.io.InputStream;
 import java.util.Date;
 
+import static com.codehub.marvelheroesapp.CreateNotificationChannel.CHANNEL_ID;
+
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     DrawerLayout drawerLayout;
@@ -56,11 +63,14 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private String intent_username, intent_email;
     private User user;
     private static final int PICK_IMAGE = 1;
+    private NotificationManager notificationManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        notificationManager = (NotificationManager)getSystemService(Context.NOTIFICATION_SERVICE);
 
         final LoadingDialog loadingDialog = new LoadingDialog(MainActivity.this);
         loadingDialog.startLoadindDialog();
@@ -70,7 +80,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             public void run() {
                 loadingDialog.dismissDialog();
             }
-        }, 2000);
+        }, 3000);
 
         db = new Database(getApplicationContext());
 
@@ -83,8 +93,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             ((TextView) header.findViewById(R.id.user_name)).setText(intent_username);
             ((TextView) header.findViewById(R.id.user_email)).setText(intent_email);
         }else{
-            ((TextView) header.findViewById(R.id.user_name)).setText("Dimitris Poulos");
-            ((TextView) header.findViewById(R.id.user_email)).setText("dim_poulos@gmail.com");
+            ((TextView) header.findViewById(R.id.user_name)).setText("Kentistou Anna");
+            ((TextView) header.findViewById(R.id.user_email)).setText("ann.kentistou@gmail.com");
         }
 
         (header.findViewById(R.id.imageView)).setOnClickListener(new View.OnClickListener() {
@@ -162,8 +172,24 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                         startActivity(fav_intent);
                         break;
                     case R.id.notifications:
-                        Intent not_intent = new Intent(MainActivity.this, NotificationsActivity.class);
-                        startActivity(not_intent);
+                        /*Intent not_intent = new Intent(MainActivity.this, NotificationsActivity.class);
+                        startActivity(not_intent);*/
+
+                        Intent intent = new Intent(MainActivity.this, NotificationsActivity.class);
+                        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                        final PendingIntent pendingIntent = PendingIntent.getActivity(MainActivity.this, 0, intent, 0);
+
+                        String title = "Marvel App";
+                        String message = "There is no Notifications";
+                        Notification notification = new NotificationCompat.Builder(getApplicationContext(), CHANNEL_ID)
+                                .setSmallIcon(R.drawable.ic_announcement_black_24dp)
+                                .setContentTitle(title)
+                                .setContentText(message)
+                                .setPriority(NotificationCompat.PRIORITY_DEFAULT)
+                                .setContentIntent(pendingIntent)
+                                .setAutoCancel(true)
+                                .build();
+                        notificationManager.notify(1, notification);
                         break;
                 }
                 return false;

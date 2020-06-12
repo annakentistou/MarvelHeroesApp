@@ -1,5 +1,9 @@
 package com.codehub.marvelheroesapp.Activities;
 
+import android.app.Notification;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
+import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -11,6 +15,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
+import androidx.core.app.NotificationCompat;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -25,6 +30,8 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.codehub.marvelheroesapp.CreateNotificationChannel.CHANNEL_ID;
+
 public class FavoritesList extends AppCompatActivity {
     RecyclerView recyclerView;
     private FavDB favDB;
@@ -32,6 +39,7 @@ public class FavoritesList extends AppCompatActivity {
     FavAdapter favAdapter;
 
     BottomNavigationView bottomNav;
+    private NotificationManager notificationManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,6 +50,8 @@ public class FavoritesList extends AppCompatActivity {
         recyclerView.setHasFixedSize(true);
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true); //display back button in toolbar
+        notificationManager = (NotificationManager)getSystemService(Context.NOTIFICATION_SERVICE);
+
     }
 
     @Override
@@ -134,8 +144,24 @@ public class FavoritesList extends AppCompatActivity {
 
                         break;
                     case R.id.notifications:
-                        Intent not_intent = new Intent(FavoritesList.this, NotificationsActivity.class);
-                        startActivity(not_intent);
+                       /* Intent not_intent = new Intent(FavoritesList.this, NotificationsActivity.class);
+                        startActivity(not_intent);*/
+
+                        Intent notif_intent = new Intent(FavoritesList.this, NotificationsActivity.class);
+                        notif_intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                        final PendingIntent pendingIntent = PendingIntent.getActivity(FavoritesList.this, 0, notif_intent, 0);
+
+                        String title = "Marvel App";
+                        String message = "There is no Notifications";
+                        Notification notification = new NotificationCompat.Builder(getApplicationContext(), CHANNEL_ID)
+                                .setSmallIcon(R.drawable.ic_announcement_black_24dp)
+                                .setContentTitle(title)
+                                .setContentText(message)
+                                .setPriority(NotificationCompat.PRIORITY_DEFAULT)
+                                .setContentIntent(pendingIntent)
+                                .setAutoCancel(true)
+                                .build();
+                        notificationManager.notify(1, notification);
                         break;
                 }
                 return false;

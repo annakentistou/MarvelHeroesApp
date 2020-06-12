@@ -36,7 +36,7 @@ public class FavDB extends SQLiteOpenHelper {
     public void insertEmpty(){
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues cv = new ContentValues();
-        for (int x = 1; x < 93; x ++){
+        for (int x = 1; x < 221; x ++){
             cv.put(KEY_ID, x);
             cv.put(FAVORITE_STATUS, 0);
 
@@ -64,7 +64,7 @@ public class FavDB extends SQLiteOpenHelper {
         return db.rawQuery(sql,null,null);
     }
 
-    // remove line from database
+    // update line in database
     public void remove_fav(int id) {
         SQLiteDatabase db = this.getWritableDatabase();
         String sql = "UPDATE " + TABLE_NAME + " SET  "+ FAVORITE_STATUS+" = 0 WHERE "+KEY_ID+"="+id+"";

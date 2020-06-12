@@ -105,6 +105,7 @@ public class CharViewModelVassilis extends ViewModel {
                 error.printStackTrace();
             }
         }) ;
+        Log.i("response",stream.toString());
 
         queue.add(stringRequest);
     }
