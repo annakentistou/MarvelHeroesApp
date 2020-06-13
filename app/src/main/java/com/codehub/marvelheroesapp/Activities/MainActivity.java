@@ -59,9 +59,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     TabItem all, comics, series;
     TabsAdapter tabsAdapter;
     ViewPager viewPager;
-    private Database db;
     private String intent_username, intent_email;
-    private User user;
     private static final int PICK_IMAGE = 1;
     private NotificationManager notificationManager;
 
@@ -82,8 +80,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             }
         }, 3000);
 
-        db = new Database(getApplicationContext());
-
         intent_username = getIntent().getStringExtra("TAKE_FULLNAME");
         intent_email = getIntent().getStringExtra("TAKE_USER_EMAIL");
         /*user = db.getUser(intent_email);*/
@@ -93,7 +89,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             ((TextView) header.findViewById(R.id.user_name)).setText(intent_username);
             ((TextView) header.findViewById(R.id.user_email)).setText(intent_email);
         }else{
-            ((TextView) header.findViewById(R.id.user_name)).setText("Kentistou Anna");
+            ((TextView) header.findViewById(R.id.user_name)).setText("Anna Kentistou");
             ((TextView) header.findViewById(R.id.user_email)).setText("ann.kentistou@gmail.com");
         }
 

@@ -13,6 +13,7 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import com.codehub.marvelheroesapp.DatabaseFiles.Database;
+import com.codehub.marvelheroesapp.DatabaseFiles.NewDbUsers;
 import com.codehub.marvelheroesapp.R;
 import com.google.android.material.textfield.TextInputLayout;
 
@@ -20,9 +21,8 @@ import static com.codehub.marvelheroesapp.CreateNotificationChannel.CHANNEL_ID;
 
 public class RegisterActivity extends AppCompatActivity {
 
-    private Database db;
-    // EditText e1,e2,e3,e4,e5,e6;
-    private TextInputLayout e1, e2, e3, e4, e5, e6;
+    private NewDbUsers db;
+    private TextInputLayout full_name, mail, usrname, pass, cfrmpass;
     Button register_btn, sign_in;
     private NotificationManager notificationManager;
 
@@ -33,13 +33,12 @@ public class RegisterActivity extends AppCompatActivity {
 
         notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
 
-        db = new Database(this);
-        e1 = findViewById(R.id.name);
-        /*e2=findViewById(R.id.surname);*/
-        e3 = findViewById(R.id.email);
-        e4 = findViewById(R.id.username);
-        e5 = findViewById(R.id.password);
-        e6 = findViewById(R.id.confirmpass);
+        db = new NewDbUsers(this);
+        full_name = findViewById(R.id.name);
+        mail = findViewById(R.id.email);
+        usrname = findViewById(R.id.username);
+        pass = findViewById(R.id.password);
+        cfrmpass = findViewById(R.id.confirmpass);
         register_btn = findViewById(R.id.register_button);
         sign_in = findViewById(R.id.sign_in);
 
@@ -53,21 +52,20 @@ public class RegisterActivity extends AppCompatActivity {
         register_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String name = e1.getEditText().getText().toString().trim();
-                /*String s2 = e2.getEditText().getText().toString().trim();*/
-                String email = e3.getEditText().getText().toString().trim();
-                String username = e4.getEditText().getText().toString().trim();
-                String password = e5.getEditText().getText().toString().trim();
-                String confirmpass = e6.getEditText().getText().toString().trim();
-                if (email.equals("") || password.equals("") || confirmpass.equals("") || name.equals("") || username.equals("")) {
+                String name = full_name.getEditText().getText().toString().trim();
+                String email = mail.getEditText().getText().toString().trim();
+                String username = usrname.getEditText().getText().toString().trim();
+                String password = pass.getEditText().getText().toString().trim();
+                String confirmpass = cfrmpass.getEditText().getText().toString().trim();
+                if ( name.equals("") || username.equals("")|| email.equals("") || password.equals("") || confirmpass.equals("")) {
                     Toast.makeText(getApplicationContext(), "Fields are empty", Toast.LENGTH_SHORT).show();
                 } else {
                     if (password.equals(confirmpass)) {
-                        boolean chkuser = db.chkuser(username);
-                        boolean chkemail = db.chkemail(email);
-                        if (chkuser == true) {
-                            if (chkemail == true) /*chkuser == true)*/ {
-                                boolean insert = db.insert(null, email, password, username, name);
+                        boolean check_user = db.check_user(username);
+                        boolean check_email = db.check_email(email);
+                        if (check_user == true) {
+                            if (check_email == true) {
+                                boolean insert = db.insert(0, name, username, password, email, null);
                                 if (insert == true) {
                                     /*Toast.makeText(getApplicationContext(), "Registered Successfully", Toast.LENGTH_SHORT).show();*/
                                     Intent intent = new Intent(RegisterActivity.this, MainActivity.class);

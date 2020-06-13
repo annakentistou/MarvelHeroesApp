@@ -10,7 +10,7 @@ import android.widget.Toast;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.codehub.marvelheroesapp.DatabaseFiles.Database;
+import com.codehub.marvelheroesapp.DatabaseFiles.NewDbUsers;
 import com.codehub.marvelheroesapp.R;
 import com.google.android.material.textfield.TextInputLayout;
 
@@ -34,22 +34,22 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
-        final TextInputLayout e1,e2;
+        final TextInputLayout usrname,pass;
 
-        Button b1;
-        final Database db;
-        db = new Database(this);
-        e1 = findViewById(R.id.username);
-        e2 = findViewById(R.id.password);
-        b1 = findViewById(R.id.login_button);
+        Button login_btn;
+        final NewDbUsers db;
+        db = new NewDbUsers(this);
+        usrname = findViewById(R.id.username);
+        pass = findViewById(R.id.password);
+        login_btn = findViewById(R.id.login_button);
 
-        b1.setOnClickListener(new View.OnClickListener() {
+        login_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String username = e1.getEditText().getText().toString().trim();
-                String password = e2.getEditText().getText().toString().trim();
-                boolean chkemailpass = db.emailpassword(username,password);
-                if(chkemailpass) {
+                String username = usrname.getEditText().getText().toString().trim();
+                String password = pass.getEditText().getText().toString().trim();
+                boolean check_email = db.login(username,password);
+                if(check_email) {
                     Toast.makeText(getApplicationContext(),"Login Successful!",Toast.LENGTH_SHORT).show();
                     Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                     intent.putExtra("TAKE_USERNAME",username);
