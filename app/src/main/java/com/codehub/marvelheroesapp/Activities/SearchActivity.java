@@ -17,9 +17,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.NotificationCompat;
-import androidx.lifecycle.LiveData;
 import androidx.lifecycle.Observer;
-import androidx.lifecycle.Transformations;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -29,8 +27,7 @@ import com.android.volley.toolbox.Volley;
 import com.codehub.marvelheroesapp.Adapters.Adapter;
 import com.codehub.marvelheroesapp.R;
 import com.codehub.marvelheroesapp.json.HeroesModel;
-import com.codehub.marvelheroesapp.viewmodels.CharViewModel;
-import com.codehub.marvelheroesapp.viewmodels.CharViewModelVassilis;
+import com.codehub.marvelheroesapp.viewmodels.CharViewModelNew;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.util.ArrayList;
@@ -44,7 +41,7 @@ public class SearchActivity extends AppCompatActivity {
     Adapter myAdapter;
     /*private List<HeroesModel> heroes;*/
     private List<HeroesModel> filtered;
-    private CharViewModelVassilis viewModel; //initialize ViewModel
+    private CharViewModelNew viewModel; //initialize ViewModel
     private NotificationManager notificationManager;
 
     @Override
@@ -53,7 +50,7 @@ public class SearchActivity extends AppCompatActivity {
         setContentView(R.layout.activity_search);
         recyclerView = findViewById(R.id.recycler_view_for_all);
 
-        viewModel = new ViewModelProvider(this).get(CharViewModelVassilis.class);
+        viewModel = new ViewModelProvider(this).get(CharViewModelNew.class);
 
         notificationManager = (NotificationManager)getSystemService(Context.NOTIFICATION_SERVICE);
     }

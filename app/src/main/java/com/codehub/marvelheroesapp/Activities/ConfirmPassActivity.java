@@ -9,9 +9,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
-import com.codehub.marvelheroesapp.DatabaseFiles.Database;
+import com.codehub.marvelheroesapp.DatabaseFiles.NewDbUsers;
 import com.codehub.marvelheroesapp.R;
-import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 
 public class ConfirmPassActivity extends AppCompatActivity {
@@ -26,8 +25,8 @@ public class ConfirmPassActivity extends AppCompatActivity {
     protected void onPostCreate(@Nullable Bundle savedInstanceState) {
         super.onPostCreate(savedInstanceState);
 
-        final Database db;
-        db = new Database(this);
+        final NewDbUsers db;
+        db = new NewDbUsers(this);
 
         Button submit = findViewById(R.id.submit_button);
         final TextInputLayout usr_email, usr_pass, confirm_pass;
@@ -42,7 +41,7 @@ public class ConfirmPassActivity extends AppCompatActivity {
                 String email = usr_email.getEditText().getText().toString().trim();
                 String password = usr_pass.getEditText().getText().toString().trim();
                 String confirm = confirm_pass.getEditText().getText().toString().trim();
-                Boolean chkemail = db.chkemail(email);
+                Boolean chkemail = db.check_email(email);
 
                 if (email.equals("") || password.equals("") || confirm.equals("")) {
                     Toast.makeText(getApplicationContext(), "Fields are empty", Toast.LENGTH_SHORT).show();

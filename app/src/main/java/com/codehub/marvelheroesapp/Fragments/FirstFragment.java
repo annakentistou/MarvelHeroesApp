@@ -8,32 +8,24 @@ import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.widget.SearchView;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.android.volley.Request;
 import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.codehub.marvelheroesapp.Adapters.Adapter;
 import com.codehub.marvelheroesapp.R;
-import com.codehub.marvelheroesapp.json.DataModel;
 import com.codehub.marvelheroesapp.json.HeroesModel;
-import com.codehub.marvelheroesapp.viewmodels.CharViewModel;
-import com.codehub.marvelheroesapp.viewmodels.CharViewModelVassilis;
-import com.google.gson.Gson;
+import com.codehub.marvelheroesapp.viewmodels.CharViewModelNew;
 
 import java.util.List;
 
 public class FirstFragment extends Fragment {
 
-    private CharViewModelVassilis viewModel; //initialize ViewModel
+    private CharViewModelNew viewModel; //initialize ViewModel
 
     private View view;
     private RecyclerView recyclerView;
@@ -50,7 +42,7 @@ public class FirstFragment extends Fragment {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        viewModel = new ViewModelProvider(getActivity()).get(CharViewModelVassilis.class);
+        viewModel = new ViewModelProvider(getActivity()).get(CharViewModelNew.class);
     }
 
     @Override
