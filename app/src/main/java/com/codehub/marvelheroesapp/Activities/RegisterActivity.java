@@ -56,9 +56,20 @@ public class RegisterActivity extends AppCompatActivity {
                 String username = usrname.getEditText().getText().toString().trim();
                 String password = pass.getEditText().getText().toString().trim();
                 String confirmpass = cfrmpass.getEditText().getText().toString().trim();
-                if ( name.equals("") || username.equals("")|| email.equals("") || password.equals("") || confirmpass.equals("")) {
-                    Toast.makeText(getApplicationContext(), "Fields are empty", Toast.LENGTH_SHORT).show();
+                if (name.isEmpty() || username.isEmpty() || email.isEmpty() || password.isEmpty() || confirmpass.isEmpty()) {
+                    full_name.setError("Field can't be empty");
+                    mail.setError("Field can't be empty");
+                    usrname.setError("Field can't be empty");
+                    pass.setError("Field can't be empty");
+                    cfrmpass.setError("Field can't be empty");
+
                 } else {
+                    full_name.setError(null);
+                    mail.setError(null);
+                    usrname.setError(null);
+                    pass.setError(null);
+                    cfrmpass.setError(null);
+
                     if (password.equals(confirmpass)) {
                         boolean check_user = db.check_user(username);
                         boolean check_email = db.check_email(email);

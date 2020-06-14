@@ -48,14 +48,13 @@ public class LoginActivity extends AppCompatActivity {
             public void onClick(View v) {
                 String username = usrname.getEditText().getText().toString().trim();
                 String password = pass.getEditText().getText().toString().trim();
-                boolean check_email = db.login(username,password);
-                if(check_email) {
+                boolean check_mail = db.login(username,password);
+                if (check_mail == true){
                     Toast.makeText(getApplicationContext(),"Login Successful!",Toast.LENGTH_SHORT).show();
                     Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                     intent.putExtra("TAKE_USERNAME",username);
                     startActivity(intent);
-                }
-                else {
+                }else{
                     Toast.makeText(getApplicationContext(),"Wrong Username or Password",Toast.LENGTH_SHORT).show();
                 }
             }

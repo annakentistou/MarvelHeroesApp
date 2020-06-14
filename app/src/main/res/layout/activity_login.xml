@@ -1,132 +1,265 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Activities.LoginActivity"
-    android:fitsSystemWindows="true"
     android:background="@drawable/red_background"
-    >
+    android:fitsSystemWindows="true"
+    android:fillViewport="true"
+    tools:context=".Activities.LoginActivity">
 
-    <ImageView
-        android:id="@+id/marvel_logo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.571"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.1"
-        app:srcCompat="@drawable/marvel_superheroes"
-        tools:ignore="HardcodedText,MissingConstraints"
-        android:contentDescription="logo" />
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/username"
-        android:layout_width="@dimen/TextFieldWidth"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="200dp"
-        android:gravity="center"
-        android:ems="10"
-        android:hint="@string/Username"
-        android:inputType="textPersonName"
-        android:radius="8dp"
-        android:shape="rectangle"
-        android:textColorHint="@color/colorForegroundTint"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toTopOf="@+id/password"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.495"
-        app:layout_constraintStart_toStartOf="parent">
+        <ImageView
+            android:id="@+id/marvel_logo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:contentDescription="logo"
+            android:layout_margin="50dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
 
-        <com.google.android.material.textfield.TextInputEditText
+            app:srcCompat="@drawable/marvel_superheroes"/>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/username"
             android:layout_width="@dimen/TextFieldWidth"
             android:layout_height="wrap_content"
-            android:inputType="text" />
-    </com.google.android.material.textfield.TextInputLayout>
+            android:layout_marginTop="40dp"
+            android:layout_marginBottom="10dp"
+            android:ems="10"
+            android:gravity="center"
+            android:hint="@string/Username"
+            android:inputType="textPersonName"
+            android:radius="8dp"
+            android:shape="rectangle"
+            android:textColorHint="@color/colorForegroundTint"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/marvel_logo">
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/password"
-        android:layout_width="@dimen/TextFieldWidth"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:ems="10"
-        android:hint="@string/Password"
-        android:radius="8dp"
-        android:textColorHint="@color/colorForegroundTint"
-        app:endIconMode="password_toggle"
-        app:layout_constraintBottom_toTopOf="@+id/login_button"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.495"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/username"
-        app:layout_constraintVertical_bias="0.003">
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="@dimen/TextFieldWidth"
+                android:layout_height="wrap_content"
+                android:inputType="text"
+                android:drawableStart="@drawable/ic_person_black_24dp"/>
+        </com.google.android.material.textfield.TextInputLayout>
 
-        <com.google.android.material.textfield.TextInputEditText
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/password"
             android:layout_width="@dimen/TextFieldWidth"
             android:layout_height="wrap_content"
-            android:inputType="textPassword"
-            />
-    </com.google.android.material.textfield.TextInputLayout>
+            android:layout_marginTop="10dp"
+            android:ems="10"
+            android:gravity="center"
+            android:hint="@string/Password"
+            android:textColorHint="@color/colorForegroundTint"
+            app:endIconMode="password_toggle"
+            app:layout_constraintBottom_toTopOf="@+id/login_button"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/username"
+            app:layout_constraintVertical_bias="0.003">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="@dimen/TextFieldWidth"
+                android:layout_height="wrap_content"
+                android:inputType="textPassword"
+                android:drawableStart="@drawable/ic_lock_black_24dp"
+                />
+        </com.google.android.material.textfield.TextInputLayout>
 
 
-     <com.google.android.material.button.MaterialButton
-         android:id="@+id/register_now"
-         style="@style/Widget.MaterialComponents.Button.TextButton"
-         android:layout_width="wrap_content"
-         android:layout_height="@dimen/TextButtonSize"
-         android:text="@string/new_user_register_now"
-         android:textAllCaps="false"
-         android:textSize="@dimen/TextButtonDimen"
-         android:layout_margin="@dimen/TextButtonMargin"
-         android:foregroundTint="@color/gray_400"
-         android:textColor="#FFFFFF"
-         android:textStyle="bold"
-         app:layout_constraintBottom_toBottomOf="parent"
-         app:layout_constraintEnd_toEndOf="parent"
-         app:layout_constraintHorizontal_bias="0.498"
-         app:layout_constraintStart_toStartOf="parent"
-         app:layout_constraintTop_toTopOf="parent"
-         app:layout_constraintVertical_bias="0.718"
-         tools:ignore="MissingConstraints" />
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/register_now"
+            style="@style/Widget.MaterialComponents.Button.TextButton"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/TextButtonSize"
+            android:foregroundTint="@color/gray_400"
+            android:text="@string/new_user_register_now"
+            android:textAllCaps="false"
+            android:textColor="#FFFFFF"
+            android:textSize="@dimen/TextButtonDimen"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.498"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/login_button"
+            app:layout_constraintVertical_bias="0.500"
+            tools:ignore="MissingConstraints" />
 
-     <com.google.android.material.button.MaterialButton
-         android:id="@+id/forgot_pass"
-         style="@style/Widget.MaterialComponents.Button.TextButton"
-         android:layout_width="wrap_content"
-         android:layout_height="@dimen/TextButtonSize"
-         android:textSize="@dimen/TextButtonDimen"
-         android:layout_margin="@dimen/TextButtonMargin"
-         android:text="Forgot your Password?"
-         android:textAllCaps="false"
-         android:foregroundTint="@color/gray_400"
-         android:textColor="#FFFFFF"
-         android:textStyle="bold"
-         app:layout_constraintBottom_toBottomOf="parent"
-         app:layout_constraintEnd_toEndOf="parent"
-         app:layout_constraintStart_toStartOf="parent"
-         app:layout_constraintTop_toBottomOf="@+id/register_now"
-         app:layout_constraintVertical_bias="0.0"
-         tools:ignore="HardcodedText,MissingConstraints" />
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/forgot_pass"
+            style="@style/Widget.MaterialComponents.Button.TextButton"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/TextButtonSize"
+            android:layout_margin="@dimen/TextButtonMargin"
+            android:foregroundTint="@color/gray_400"
+            android:text="Forgot your Password?"
+            android:textAllCaps="false"
+            android:textColor="#FFFFFF"
+            android:textSize="@dimen/TextButtonDimen"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/register_now"
+            app:layout_constraintVertical_bias="0.700"
+            tools:ignore="HardcodedText,MissingConstraints" />
 
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/login_button"
-        android:layout_width="@dimen/TextFieldWidth"
-        android:gravity="center"
-        android:layout_height="wrap_content"
-        android:foregroundTint="@color/gray_400"
-        android:background="#84A17878"
-        android:text="Sign in"
-        android:textAllCaps="false"
-        android:textColor="#D0FFFFFF"
-        app:layout_constraintBottom_toTopOf="@+id/register_now"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        tools:ignore="HardcodedText,MissingConstraints,UnknownId" />
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/login_button"
+            android:layout_width="@dimen/TextFieldWidth"
+            android:layout_height="wrap_content"
+            android:layout_margin="20dp"
+            android:background="#84A17878"
+            android:foregroundTint="@color/gray_400"
+            android:gravity="center"
+            android:text="Sign in"
+            android:textAllCaps="false"
+            android:textColor="#D0FFFFFF"
+            app:layout_constraintBottom_toTopOf="@+id/register_now"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/password"
+            tools:ignore="HardcodedText,MissingConstraints,UnknownId" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.core.widget.NestedScrollView>
+
+    <!--<androidx.constraintlayout.widget.ConstraintLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".Activities.LoginActivity"
+        android:fitsSystemWindows="true"
+        android:background="@drawable/red_background"
+        >
+
+        <ImageView
+            android:id="@+id/marvel_logo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.571"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.1"
+            app:srcCompat="@drawable/marvel_superheroes"
+            tools:ignore="HardcodedText,MissingConstraints"
+            android:contentDescription="logo" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/username"
+            android:layout_width="@dimen/TextFieldWidth"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="200dp"
+            android:gravity="center"
+            android:ems="10"
+            android:hint="@string/Username"
+            android:inputType="textPersonName"
+            android:radius="8dp"
+            android:shape="rectangle"
+            android:textColorHint="@color/colorForegroundTint"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/password"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.495"
+            app:layout_constraintStart_toStartOf="parent">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="@dimen/TextFieldWidth"
+                android:layout_height="wrap_content"
+                android:inputType="text" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/password"
+            android:layout_width="@dimen/TextFieldWidth"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:ems="10"
+            android:hint="@string/Password"
+            android:radius="8dp"
+            android:textColorHint="@color/colorForegroundTint"
+            app:endIconMode="password_toggle"
+            app:layout_constraintBottom_toTopOf="@+id/login_button"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.495"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/username"
+            app:layout_constraintVertical_bias="0.003">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="@dimen/TextFieldWidth"
+                android:layout_height="wrap_content"
+                android:inputType="textPassword"
+                />
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+         <com.google.android.material.button.MaterialButton
+             android:id="@+id/register_now"
+             style="@style/Widget.MaterialComponents.Button.TextButton"
+             android:layout_width="wrap_content"
+             android:layout_height="@dimen/TextButtonSize"
+             android:text="@string/new_user_register_now"
+             android:textAllCaps="false"
+             android:textSize="@dimen/TextButtonDimen"
+             android:layout_margin="@dimen/TextButtonMargin"
+             android:foregroundTint="@color/gray_400"
+             android:textColor="#FFFFFF"
+             android:textStyle="bold"
+             app:layout_constraintBottom_toBottomOf="parent"
+             app:layout_constraintEnd_toEndOf="parent"
+             app:layout_constraintHorizontal_bias="0.498"
+             app:layout_constraintStart_toStartOf="parent"
+             app:layout_constraintTop_toTopOf="parent"
+             app:layout_constraintVertical_bias="0.718"
+             tools:ignore="MissingConstraints" />
+
+         <com.google.android.material.button.MaterialButton
+             android:id="@+id/forgot_pass"
+             style="@style/Widget.MaterialComponents.Button.TextButton"
+             android:layout_width="wrap_content"
+             android:layout_height="@dimen/TextButtonSize"
+             android:textSize="@dimen/TextButtonDimen"
+             android:layout_margin="@dimen/TextButtonMargin"
+             android:text="Forgot your Password?"
+             android:textAllCaps="false"
+             android:foregroundTint="@color/gray_400"
+             android:textColor="#FFFFFF"
+             android:textStyle="bold"
+             app:layout_constraintBottom_toBottomOf="parent"
+             app:layout_constraintEnd_toEndOf="parent"
+             app:layout_constraintStart_toStartOf="parent"
+             app:layout_constraintTop_toBottomOf="@+id/register_now"
+             app:layout_constraintVertical_bias="0.0"
+             tools:ignore="HardcodedText,MissingConstraints" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/login_button"
+            android:layout_width="@dimen/TextFieldWidth"
+            android:gravity="center"
+            android:layout_height="wrap_content"
+            android:foregroundTint="@color/gray_400"
+            android:background="#84A17878"
+            android:text="Sign in"
+            android:textAllCaps="false"
+            android:textColor="#D0FFFFFF"
+            app:layout_constraintBottom_toTopOf="@+id/register_now"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:ignore="HardcodedText,MissingConstraints,UnknownId" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>-->
 
     <!--android:background="#D32020"-->

@@ -29,6 +29,7 @@ public class ConfirmPassActivity extends AppCompatActivity {
         db = new NewDbUsers(this);
 
         Button submit = findViewById(R.id.submit_button);
+        Button backToLogin = findViewById(R.id.backToLogin);
         final TextInputLayout usr_email, usr_pass, confirm_pass;
         usr_email = findViewById(R.id.email);
         usr_pass = findViewById(R.id.new_password);
@@ -41,7 +42,7 @@ public class ConfirmPassActivity extends AppCompatActivity {
                 String email = usr_email.getEditText().getText().toString().trim();
                 String password = usr_pass.getEditText().getText().toString().trim();
                 String confirm = confirm_pass.getEditText().getText().toString().trim();
-                Boolean chkemail = db.check_email(email);
+                boolean chkemail = db.check_email(email);
 
                 if (email.equals("") || password.equals("") || confirm.equals("")) {
                     Toast.makeText(getApplicationContext(), "Fields are empty", Toast.LENGTH_SHORT).show();
@@ -50,13 +51,20 @@ public class ConfirmPassActivity extends AppCompatActivity {
                     if (password.equals(confirm)) {
                         db.updateEntry(email, password);
                         Toast.makeText(getApplicationContext(), "Your Password change Successfully", Toast.LENGTH_SHORT).show();
-                        /*gotoActivity(LoginActivity.class);*/
+                        gotoActivity(LoginActivity.class);
                     } else {
                         Toast.makeText(getApplicationContext(), "Password mismatch", Toast.LENGTH_SHORT).show();
                     }
                 } else {
                     Toast.makeText(getApplicationContext(), "Check your Email", Toast.LENGTH_SHORT).show();
                 }
+            }
+        });
+
+        backToLogin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                gotoActivity(LoginActivity.class);
             }
         });
     }

@@ -13,6 +13,7 @@
     <string name="Username">Username</string>
     <string name="Password">Password</string>
     <string name="Confirm_Password">Confirm Password</string>
+    <string name="reset_pass">Reset your Password</string>
     <string name="set_new_pass">SET A NEW PASSWORD</string>
     <string name="new_Password">New Password</string>
     <!--All about Bottom Navigation menu-->

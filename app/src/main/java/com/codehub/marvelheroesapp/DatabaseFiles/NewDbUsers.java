@@ -15,7 +15,7 @@ import java.util.List;
 public class NewDbUsers extends SQLiteOpenHelper {
 
     private static int DB_VERSION = 1;
-    private static String DATABASE_NAME = "UsersDb";
+    private static String DATABASE_NAME = "UsersDb.db";
     private static String TABLE_NAME = "userTable";
     public static String KEY_ID = "id";
     public static String NAME = "name";
@@ -38,7 +38,7 @@ public class NewDbUsers extends SQLiteOpenHelper {
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        db.execSQL("DROP TABLE IF EXISTS " + DATABASE_NAME);
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_NAME);
         onCreate(db);
     }
 
@@ -54,42 +54,58 @@ public class NewDbUsers extends SQLiteOpenHelper {
         cv.put(IMAGE, image);
         long value = db.insert(TABLE_NAME, null, cv);
         Log.d("Insert in DBusers", name + ", email - " + email + " - . " + cv);
-        return value != -1;
+        if(value == -1){
+            return false;
+        }else{
+            return true;
+        }
     }
 
     public Cursor read_all_data(int id) {
         SQLiteDatabase db = this.getReadableDatabase();
-        String sql = "select * from " + TABLE_NAME + " where " + KEY_ID + "=" + id + "";
+        String sql = "SELECT * FROM " + TABLE_NAME + " WHERE " + KEY_ID + "=" + id + "";
         return db.rawQuery(sql, null, null);
     }
 
     public boolean check_email(String email) {
         SQLiteDatabase db = this.getReadableDatabase();
-        Cursor cursor = db.rawQuery("SELECT * FROM userTable where email =?", new String[]{email});
-        return cursor.getCount() <= 0; //email already exists
+        Cursor cursor = db.rawQuery("SELECT * FROM userTable WHERE email =?", new String[]{email});
+        int c = cursor.getCount();
+        if (c <= 0) {
+            return true;//email doesn't exist
+        } else {
+            return false;
+        }
     }
 
     public boolean check_user(String username) {
         SQLiteDatabase db = this.getReadableDatabase();
-        Cursor cursor = db.rawQuery("Select * from userTable where username=?", new String[]{username});
-        return cursor.getCount() <= 0;
+        Cursor cursor = db.rawQuery("SELECT * FROM userTable WHERE username=?", new String[]{username});
+        int c = cursor.getCount();
+        if (c <= 0) {
+            return true;//username already exists
+        } else {
+            return false;
+        }
     }
 
     public boolean login(String username, String password) {
         SQLiteDatabase db = this.getReadableDatabase();
-        Cursor cursor = db.rawQuery("select * from userTable where username=? and password=?", new String[]{username, password});
-        if (cursor.getCount() > 0) {
+        Cursor cursor = db.rawQuery("SELECT * FROM userTable WHERE username=? AND password=?", new String[]{username, password});
+        int c = cursor.getCount();
+        if (c
+                > 0) {
             return true;
         } else {
             return false;
         }
     }
 
-    public boolean updateEntry(String email, String password) {
+    public void updateEntry(String email, String password) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues args = new ContentValues();
-        args.put("password", password);
-        return db.update("user", args, "email=" + email, null) > 0;
+        args.put(PASSWORD, password);
+        db.update(TABLE_NAME, args, EMAIL+ " = ? ", new String[]{email});
     }
 
     public List<User> getUserList() {
