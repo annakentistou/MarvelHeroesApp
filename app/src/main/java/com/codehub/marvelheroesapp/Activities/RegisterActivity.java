@@ -57,19 +57,9 @@ public class RegisterActivity extends AppCompatActivity {
                 String password = pass.getEditText().getText().toString().trim();
                 String confirmpass = cfrmpass.getEditText().getText().toString().trim();
                 if (name.isEmpty() || username.isEmpty() || email.isEmpty() || password.isEmpty() || confirmpass.isEmpty()) {
-                    full_name.setError("Field can't be empty");
-                    mail.setError("Field can't be empty");
-                    usrname.setError("Field can't be empty");
-                    pass.setError("Field can't be empty");
-                    cfrmpass.setError("Field can't be empty");
+                    Toast.makeText(getApplicationContext(), "Fields can't be empty", Toast.LENGTH_SHORT).show();
 
                 } else {
-                    full_name.setError(null);
-                    mail.setError(null);
-                    usrname.setError(null);
-                    pass.setError(null);
-                    cfrmpass.setError(null);
-
                     if (password.equals(confirmpass)) {
                         boolean check_user = db.check_user(username);
                         boolean check_email = db.check_email(email);
@@ -78,6 +68,10 @@ public class RegisterActivity extends AppCompatActivity {
                                 boolean insert = db.insert(0, name, username, password, email, null);
                                 if (insert == true) {
                                     /*Toast.makeText(getApplicationContext(), "Registered Successfully", Toast.LENGTH_SHORT).show();*/
+                                    mail.setError(null);
+                                    usrname.setError(null);
+                                    cfrmpass.setError(null);
+
                                     Intent intent = new Intent(RegisterActivity.this, MainActivity.class);
                                     intent.putExtra("TAKE_FULLNAME", name);
                                     intent.putExtra("TAKE_USER_EMAIL", email);
@@ -95,10 +89,10 @@ public class RegisterActivity extends AppCompatActivity {
                                     notificationManager.notify(1, notification);
                                 }
                             } else {
-                                Toast.makeText(getApplicationContext(), "Email Already exists", Toast.LENGTH_SHORT).show();
+                                    mail.setError("Email Already exists");
                             }
                         } else {
-                            Toast.makeText(getApplicationContext(), "Username Already exists", Toast.LENGTH_SHORT).show();
+                            usrname.setError("Username Already exists");
                         }
                     } else if (!password.equals(confirmpass))
                         Toast.makeText(getApplicationContext(), "Password do not match", Toast.LENGTH_SHORT).show();

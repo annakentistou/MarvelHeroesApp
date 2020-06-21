@@ -61,12 +61,6 @@ public class NewDbUsers extends SQLiteOpenHelper {
         }
     }
 
-    public Cursor read_all_data(int id) {
-        SQLiteDatabase db = this.getReadableDatabase();
-        String sql = "SELECT * FROM " + TABLE_NAME + " WHERE " + KEY_ID + "=" + id + "";
-        return db.rawQuery(sql, null, null);
-    }
-
     public boolean check_email(String email) {
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor = db.rawQuery("SELECT * FROM userTable WHERE email =?", new String[]{email});
@@ -83,7 +77,7 @@ public class NewDbUsers extends SQLiteOpenHelper {
         Cursor cursor = db.rawQuery("SELECT * FROM userTable WHERE username=?", new String[]{username});
         int c = cursor.getCount();
         if (c <= 0) {
-            return true;//username already exists
+            return true;//username doesn't exist
         } else {
             return false;
         }
@@ -93,8 +87,7 @@ public class NewDbUsers extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor = db.rawQuery("SELECT * FROM userTable WHERE username=? AND password=?", new String[]{username, password});
         int c = cursor.getCount();
-        if (c
-                > 0) {
+        if (c > 0) {
             return true;
         } else {
             return false;
@@ -106,6 +99,23 @@ public class NewDbUsers extends SQLiteOpenHelper {
         ContentValues args = new ContentValues();
         args.put(PASSWORD, password);
         db.update(TABLE_NAME, args, EMAIL+ " = ? ", new String[]{email});
+    }
+
+    public Cursor read_all_data(int id) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        String sql = "SELECT * FROM " + TABLE_NAME + " WHERE " + KEY_ID + "=" + id + "";
+        return db.rawQuery(sql, null, null);
+    }
+
+    public boolean read_name(String username){
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery("SELECT * FROM userTable WHERE username=?", new String[]{username});
+        int c = cursor.getCount();
+        if (c > 0) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     public List<User> getUserList() {
@@ -126,7 +136,7 @@ public class NewDbUsers extends SQLiteOpenHelper {
 
     public User getUser(String intent) {
         SQLiteDatabase db = this.getWritableDatabase();
-        Cursor c = db.rawQuery("SELECT id, email, password, usernamere, name FROM user WHERE usernamere" + "='" +intent+" ' ", null);
+        Cursor c = db.rawQuery("SELECT * FROM userTable WHERE username" + "='" +intent+" ' ", null);
 
         User user = new User();
 

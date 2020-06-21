@@ -26,13 +26,21 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.codehub.marvelheroesapp.Adapters.TabsAdapter;
 import com.codehub.marvelheroesapp.R;
+import com.google.android.gms.auth.api.signin.GoogleSignIn;
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
+import com.google.android.gms.auth.api.signin.GoogleSignInClient;
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.tabs.TabItem;
 import com.google.android.material.tabs.TabLayout;
+import com.squareup.picasso.Picasso;
 
 import java.io.FileNotFoundException;
 import java.io.InputStream;
@@ -53,6 +61,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private String intent_username, intent_email;
     private static final int PICK_IMAGE = 1;
     private NotificationManager notificationManager;
+    GoogleSignInClient googleSignInClient;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -73,15 +82,29 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         intent_username = getIntent().getStringExtra("TAKE_FULLNAME");
         intent_email = getIntent().getStringExtra("TAKE_USER_EMAIL");
-        /*user = db.getUser(intent_email);*/
 
         View header = ((NavigationView)findViewById(R.id.nav_view)).getHeaderView(0);
         if (intent_username != null || intent_email != null) {
             ((TextView) header.findViewById(R.id.user_name)).setText(intent_username);
             ((TextView) header.findViewById(R.id.user_email)).setText(intent_email);
         }else{
-            ((TextView) header.findViewById(R.id.user_name)).setText("Anna Kentistou");
-            ((TextView) header.findViewById(R.id.user_email)).setText("ann.kentistou@gmail.com");
+            GoogleSignInOptions googleSignInOptions = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+                    .requestEmail()
+                    .build();
+
+            googleSignInClient = GoogleSignIn.getClient(this, googleSignInOptions);
+
+            GoogleSignInAccount acct = GoogleSignIn.getLastSignedInAccount(this);
+            if (acct != null) {
+                String personName = acct.getDisplayName();
+                String personEmail = acct.getEmail();
+                Uri personPhoto = acct.getPhotoUrl();
+
+                ((TextView) header.findViewById(R.id.user_name)).setText(personName);
+                ((TextView) header.findViewById(R.id.user_email)).setText(personEmail);
+               ImageView img = header.findViewById(R.id.imageView);
+                Glide.with(this).load(personPhoto).into(img);
+            }
         }
 
         (header.findViewById(R.id.imageView)).setOnClickListener(new View.OnClickListener() {
@@ -148,7 +171,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch (item.getItemId()) {
                     case R.id.home_page:
-
                         break;
                     case R.id.search_view:
                         Intent search_intent = new Intent(MainActivity.this, SearchActivity.class);
@@ -159,9 +181,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                         startActivity(fav_intent);
                         break;
                     case R.id.notifications:
-                        /*Intent not_intent = new Intent(MainActivity.this, NotificationsActivity.class);
-                        startActivity(not_intent);*/
-
                         Intent intent = new Intent(MainActivity.this, NotificationsActivity.class);
                         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                         final PendingIntent pendingIntent = PendingIntent.getActivity(MainActivity.this, 0, intent, 0);
@@ -195,8 +214,16 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 startActivityForResult(Intent.createChooser(upload_img, "GET_IMAGE"), PICK_IMAGE);
                 break;
             case R.id.sign_out:
-                Intent intent = new Intent(MainActivity.this, LoginActivity.class);
-                startActivity(intent);
+                    googleSignInClient.signOut()
+                            .addOnCompleteListener(this, new OnCompleteListener<Void>() {
+                                @Override
+                                public void onComplete(@NonNull Task<Void> task) {
+                                    Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+                                    startActivity(intent);
+
+                                }
+                            });
+                finish();
                 break;
             default:
                 break;

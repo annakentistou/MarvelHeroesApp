@@ -43,6 +43,7 @@ dependencies {
 
     //NEW implementations
     implementation 'com.google.android.material:material:1.1.0-alpha06'
+    implementation 'com.google.android.gms:play-services-auth:18.0.0'
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     implementation 'com.android.volley:volley:1.1.1'
     implementation 'com.google.code.gson:gson:2.8.6'
@@ -59,9 +60,7 @@ dependencies {
     implementation 'com.google.android:flexbox:0.3.0-alpha2'
     implementation 'com.android.support:design:29.0.0'
     //noinspection GradleCompatible
-/*
-    implementation "com.android.support:support-compat:20.0.0"
-*/
+    /*implementation "com.android.support:support-compat:20.0.0"*/
 
     implementation 'com.android.support.constraint:constraint-layout:1.1.3'
 
@@ -70,9 +69,7 @@ dependencies {
     implementation 'com.facebook.android:facebook-share:[4,5)'
     implementation 'com.nex3z:notification-badge:0.1.0'
     /*implementation 'com.sromku:simple-fb:4.1.1'*/
-
     implementation 'com.google.code.gson:gson:2.8.6'
-
     //for room sqlite
     implementation "android.arch.persistence.room:runtime:1.0.0-beta2"
     annotationProcessor "android.arch.persistence.room:compiler:1.0.0-beta2"
