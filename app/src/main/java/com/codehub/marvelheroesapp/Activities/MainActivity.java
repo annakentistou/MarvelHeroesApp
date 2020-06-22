@@ -20,6 +20,7 @@ import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
+import android.provider.MediaStore;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -40,7 +41,6 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.tabs.TabItem;
 import com.google.android.material.tabs.TabLayout;
-import com.squareup.picasso.Picasso;
 
 import java.io.FileNotFoundException;
 import java.io.InputStream;
@@ -68,7 +68,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        notificationManager = (NotificationManager)getSystemService(Context.NOTIFICATION_SERVICE);
+        notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
 
         final LoadingDialog loadingDialog = new LoadingDialog(MainActivity.this);
         loadingDialog.startLoadindDialog();
@@ -83,12 +83,13 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         intent_username = getIntent().getStringExtra("TAKE_FULLNAME");
         intent_email = getIntent().getStringExtra("TAKE_USER_EMAIL");
 
-        View header = ((NavigationView)findViewById(R.id.nav_view)).getHeaderView(0);
+        View header = ((NavigationView) findViewById(R.id.nav_view)).getHeaderView(0);
         if (intent_username != null || intent_email != null) {
             ((TextView) header.findViewById(R.id.user_name)).setText(intent_username);
             ((TextView) header.findViewById(R.id.user_email)).setText(intent_email);
-        }else{
+        } else {
             GoogleSignInOptions googleSignInOptions = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+                    .requestIdToken("799808644087-nbq5nju84r2f7i83lm6rgbkmpvgmbdvb.apps.googleusercontent.com")
                     .requestEmail()
                     .build();
 
@@ -102,7 +103,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
                 ((TextView) header.findViewById(R.id.user_name)).setText(personName);
                 ((TextView) header.findViewById(R.id.user_email)).setText(personEmail);
-               ImageView img = header.findViewById(R.id.imageView);
+                ImageView img = header.findViewById(R.id.imageView);
                 Glide.with(this).load(personPhoto).into(img);
             }
         }
@@ -110,10 +111,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         (header.findViewById(R.id.imageView)).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent upload_img = new Intent(Intent.ACTION_GET_CONTENT);
-                upload_img.addCategory(Intent.CATEGORY_OPENABLE);
-                upload_img.setType("image/*");
-                startActivityForResult(Intent.createChooser(upload_img, "GET_IMAGE"), PICK_IMAGE);
+                Intent upload_img = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+                startActivityForResult(upload_img, 0);
             }
         });
     }
@@ -206,7 +205,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
 
-        switch (item.getItemId()){
+        switch (item.getItemId()) {
             case R.id.gallery:
                 Intent upload_img = new Intent(Intent.ACTION_GET_CONTENT);
                 upload_img.addCategory(Intent.CATEGORY_OPENABLE);
@@ -214,15 +213,14 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 startActivityForResult(Intent.createChooser(upload_img, "GET_IMAGE"), PICK_IMAGE);
                 break;
             case R.id.sign_out:
-                    googleSignInClient.signOut()
-                            .addOnCompleteListener(this, new OnCompleteListener<Void>() {
-                                @Override
-                                public void onComplete(@NonNull Task<Void> task) {
-                                    Intent intent = new Intent(MainActivity.this, LoginActivity.class);
-                                    startActivity(intent);
-
-                                }
-                            });
+                googleSignInClient.signOut()
+                        .addOnCompleteListener(this, new OnCompleteListener<Void>() {
+                            @Override
+                            public void onComplete(@NonNull Task<Void> task) {
+                                Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+                                startActivity(intent);
+                            }
+                        });
                 finish();
                 break;
             default:
@@ -249,6 +247,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 } catch (FileNotFoundException e) {
                     e.printStackTrace();
                 }
+            } else if (requestCode == 0) {
+                Bitmap bitmap = (Bitmap) data.getExtras().get("data");
+                ((ImageView) findViewById(R.id.imageView)).setImageBitmap(bitmap);
             }
         }
     }

@@ -39,7 +39,6 @@ public class SearchActivity extends AppCompatActivity {
     BottomNavigationView bottomNav;
     RecyclerView recyclerView;
     Adapter myAdapter;
-    /*private List<HeroesModel> heroes;*/
     private List<HeroesModel> filtered;
     private CharViewModelNew viewModel; //initialize ViewModel
     private NotificationManager notificationManager;
@@ -135,8 +134,6 @@ public class SearchActivity extends AppCompatActivity {
                         startActivity(fav_intent);
                         break;
                     case R.id.notifications:
-                        /*Intent not_intent = new Intent(SearchActivity.this, NotificationsActivity.class);
-                        startActivity(not_intent);*/
                         Intent notif_intent = new Intent(SearchActivity.this, NotificationsActivity.class);
                         notif_intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                         final PendingIntent pendingIntent = PendingIntent.getActivity(SearchActivity.this, 0, notif_intent, 0);

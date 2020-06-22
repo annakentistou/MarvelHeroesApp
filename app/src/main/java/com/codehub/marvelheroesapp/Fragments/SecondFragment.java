@@ -8,7 +8,6 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.os.Handler;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -20,15 +19,11 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-import com.codehub.marvelheroesapp.Activities.LoadingDialog;
 import com.codehub.marvelheroesapp.Adapters.ComicsAdapter;
-import com.codehub.marvelheroesapp.ItemOnClickListener;
 import com.codehub.marvelheroesapp.R;
 import com.codehub.marvelheroesapp.json.ComicsModel;
-import com.codehub.marvelheroesapp.json.CreatorsModel;
 import com.codehub.marvelheroesapp.json.CreatorsNameModel;
 import com.codehub.marvelheroesapp.json.DataComicsModel;
-import com.codehub.marvelheroesapp.json.DataListModel;
 import com.google.gson.Gson;
 
 import java.util.ArrayList;

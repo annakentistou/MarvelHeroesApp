@@ -1,6 +1,7 @@
 package com.codehub.marvelheroesapp.Adapters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,9 +12,11 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.widget.AppCompatImageButton;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.codehub.marvelheroesapp.Activities.ItemDetails;
 import com.codehub.marvelheroesapp.DatabaseFiles.FavDB;
 import com.codehub.marvelheroesapp.DatabaseFiles.FavoriteHero;
 import com.codehub.marvelheroesapp.R;
+import com.codehub.marvelheroesapp.json.HeroesModel;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
@@ -41,9 +44,10 @@ public class FavAdapter extends RecyclerView.Adapter<FavAdapter.ViewHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+
         holder.title.setText(favItemList.get(position).getItem_title());
-        String image = favItemList.get(position).getItem_image();
-        Picasso.get().load(image).into(holder.image);
+        String img = favItemList.get(position).getItem_image();
+        Picasso.get().load(img).into(holder.image);
     }
 
     @Override

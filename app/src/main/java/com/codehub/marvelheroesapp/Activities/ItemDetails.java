@@ -2,32 +2,14 @@ package com.codehub.marvelheroesapp.Activities;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.NotificationCompat;
-
-import android.app.Notification;
-import android.app.NotificationManager;
-import android.content.Context;
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
-import android.os.Environment;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
-
 import com.codehub.marvelheroesapp.R;
 import com.squareup.picasso.Picasso;
-
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
-
-import static com.codehub.marvelheroesapp.CreateNotificationChannel.CHANNEL_ID;
 
 public class ItemDetails extends AppCompatActivity {
 
@@ -66,7 +48,6 @@ public class ItemDetails extends AppCompatActivity {
                 return true;
 
             case R.id.share:
-                //sharing as text
                 Intent intent = getIntent();
                 Intent share_intent = new Intent(Intent.ACTION_SEND);
                 share_intent.setType("text/plain");
@@ -79,7 +60,6 @@ public class ItemDetails extends AppCompatActivity {
         }
     }
 
-    //get values from View Holder and set them to ItemDetails layout
     private void getIncomingIntent() {
         imageview = findViewById(R.id.thumbnail);
         Title = findViewById(R.id.title);

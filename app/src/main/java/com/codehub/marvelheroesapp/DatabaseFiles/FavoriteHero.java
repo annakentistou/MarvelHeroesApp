@@ -2,12 +2,8 @@ package com.codehub.marvelheroesapp.DatabaseFiles;
 
 public class FavoriteHero {
 
-    private String item_title;
+    private String item_title, item_image;
     private int id;
-    private String item_image;
-
-    public FavoriteHero() {
-    }
 
     public FavoriteHero(String item_title, int id, String item_image) {
         this.item_title = item_title;
@@ -23,19 +19,19 @@ public class FavoriteHero {
         this.item_title = item_title;
     }
 
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
     public String getItem_image() {
         return item_image;
     }
 
     public void setItem_image(String item_image) {
         this.item_image = item_image;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 }

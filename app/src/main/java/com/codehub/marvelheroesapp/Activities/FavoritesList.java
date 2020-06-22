@@ -25,6 +25,7 @@ import com.codehub.marvelheroesapp.Adapters.FavAdapter;
 import com.codehub.marvelheroesapp.DatabaseFiles.FavDB;
 import com.codehub.marvelheroesapp.DatabaseFiles.FavoriteHero;
 import com.codehub.marvelheroesapp.R;
+import com.codehub.marvelheroesapp.json.HeroesModel;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.util.ArrayList;
@@ -144,9 +145,6 @@ public class FavoritesList extends AppCompatActivity {
 
                         break;
                     case R.id.notifications:
-                       /* Intent not_intent = new Intent(FavoritesList.this, NotificationsActivity.class);
-                        startActivity(not_intent);*/
-
                         Intent notif_intent = new Intent(FavoritesList.this, NotificationsActivity.class);
                         notif_intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                         final PendingIntent pendingIntent = PendingIntent.getActivity(FavoritesList.this, 0, notif_intent, 0);

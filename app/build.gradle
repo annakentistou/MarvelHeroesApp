@@ -66,6 +66,7 @@ dependencies {
 
     implementation 'com.squareup.picasso:picasso:2.71828'
     implementation 'com.github.bumptech.glide:glide:4.11.0'
+    implementation 'de.hdodenhof:circleimageview:3.1.0'
     implementation 'com.facebook.android:facebook-share:[4,5)'
     implementation 'com.nex3z:notification-badge:0.1.0'
     /*implementation 'com.sromku:simple-fb:4.1.1'*/

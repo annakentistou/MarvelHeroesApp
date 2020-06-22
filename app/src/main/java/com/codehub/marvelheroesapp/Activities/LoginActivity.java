@@ -1,15 +1,10 @@
 package com.codehub.marvelheroesapp.Activities;
 
 import android.content.Intent;
-import android.database.Cursor;
-import android.media.Image;
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.Parcelable;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
@@ -17,23 +12,14 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.codehub.marvelheroesapp.DatabaseFiles.NewDbUsers;
 import com.codehub.marvelheroesapp.R;
-import com.google.android.gms.auth.api.identity.BeginSignInRequest;
-import com.google.android.gms.auth.api.identity.SignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
-import com.google.android.gms.auth.api.signin.GoogleSignInApi;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
-import com.google.android.gms.auth.api.signin.GoogleSignInResult;
 import com.google.android.gms.common.SignInButton;
 import com.google.android.gms.common.api.ApiException;
-import com.google.android.gms.common.api.GoogleApiClient;
-import com.google.android.gms.common.api.OptionalPendingResult;
-import com.google.android.gms.common.api.PendingResult;
-import com.google.android.gms.common.api.Status;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.textfield.TextInputLayout;
-import com.squareup.picasso.Picasso;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -53,7 +39,6 @@ public class LoginActivity extends AppCompatActivity {
 
         googleSignInClient = GoogleSignIn.getClient(this, signInOptions);
     }
-
 
     @Override
     protected void onPostCreate(@Nullable Bundle savedInstanceState) {
@@ -150,25 +135,5 @@ public class LoginActivity extends AppCompatActivity {
         if(account != null) {
            gotoActivity(MainActivity.class);
         }
-
     }
-
 }
-
-//just take KeyHash for Facebook Developers (put this on manifest provider)
-    /*private void printKeyHash() {
-        try{
-            PackageInfo info = getPackageManager().getPackageInfo("com.codehub.marvelheroesapp",
-                    PackageManager.GET_SIGNATURES);
-            for (Signature signature : info.signatures){
-                MessageDigest md = MessageDigest.getInstance("SHA");
-                md.update(signature.toByteArray());
-                Log.d("KeyHash", Base64.encodeToString(md.digest(),Base64.DEFAULT));
-            }
-        } catch (PackageManager.NameNotFoundException e) {
-            e.printStackTrace();
-        } catch (NoSuchAlgorithmException e) {
-            e.printStackTrace();
-        }
-
-    }*/
