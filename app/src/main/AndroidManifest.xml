@@ -4,7 +4,7 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
     <uses-permission android:name="android.permission.WRITE_INTERNAL"/>
     <uses-permission android:name="android.permission.READ_INTERNAL_STORAGE"/>
@@ -54,6 +54,10 @@
         android:name=".Activities.NotificationsActivity"
         android:theme="@style/NotificationsActivity.Theme"
         android:windowSoftInputMode="adjustPan"/>
+
+        <activity
+            android:name=".Activities.About"
+            android:theme="@style/About.Theme"/>
 
     </application>
 </manifest>

@@ -8,14 +8,14 @@
         android:id="@+id/gallery"
         android:icon="@drawable/ic_menu_gallery"
         android:title="@string/gallery" />
-    <!--<item
-        android:id="@+id/users_info"
-        android:icon="@drawable/ic_people_black_24dp"
-        android:title="@string/other_users" />-->
 
     <item
         android:id="@+id/sign_out"
         android:icon="@drawable/sign_in"
         android:title="@string/sign_out" />
+
+    <item
+        android:id="@+id/about"
+        android:title="@string/about" />
     <!--</group>-->
 </menu>

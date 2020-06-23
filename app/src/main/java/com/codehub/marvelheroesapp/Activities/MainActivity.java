@@ -223,6 +223,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                         });
                 finish();
                 break;
+
+            case R.id.about:
+                Intent about = new Intent(this, About.class);
+                startActivity(about);
+                break;
             default:
                 break;
         }

@@ -14,8 +14,7 @@
         android:layout_height="wrap_content"
         android:background="@color/cardview_light_background"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:popupTheme="@style/AppTheme.PopupOverlay">
+        app:layout_constraintStart_toStartOf="parent">
 
         <com.google.android.material.appbar.MaterialToolbar
             android:id="@+id/topAppBar"
