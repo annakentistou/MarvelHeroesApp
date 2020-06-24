@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:showIn="navigation_view">
 
-    <!--<group android:checkableBehavior="single">-->
+
     <item
         android:id="@+id/gallery"
         android:icon="@drawable/ic_menu_gallery"
@@ -14,8 +14,9 @@
         android:icon="@drawable/sign_in"
         android:title="@string/sign_out" />
 
-    <item
-        android:id="@+id/about"
-        android:title="@string/about" />
-        <!--</group>-->
+    <!--<group android:checkableBehavior="single">-->
+        <item
+            android:id="@+id/about"
+            android:title="@string/about"/>
+    <!--</group>-->
 </menu>
