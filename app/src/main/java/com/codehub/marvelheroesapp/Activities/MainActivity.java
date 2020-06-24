@@ -4,20 +4,24 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
 import androidx.core.app.NotificationCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.FragmentPagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
+import android.Manifest;
 import android.app.Activity;
 import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.provider.MediaStore;
@@ -26,6 +30,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.codehub.marvelheroesapp.Adapters.TabsAdapter;
@@ -62,6 +67,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private static final int PICK_IMAGE = 1;
     private NotificationManager notificationManager;
     GoogleSignInClient googleSignInClient;
+    private static final int PERMISSION_REQUEST_CODE = 100;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -111,8 +117,18 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         (header.findViewById(R.id.imageView)).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent upload_img = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-                startActivityForResult(upload_img, 0);
+                if (ActivityCompat.checkSelfPermission(MainActivity.this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
+                    Toast.makeText(MainActivity.this, "You should grant permission", Toast.LENGTH_SHORT).show();
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                        requestPermissions(new String[]{
+                                Manifest.permission.CAMERA
+                        }, PERMISSION_REQUEST_CODE);
+                    }
+                    return;
+                }else {
+                    Intent upload_img = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+                    startActivityForResult(upload_img, 0);
+                }
             }
         });
     }
