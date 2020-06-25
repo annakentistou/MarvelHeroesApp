@@ -42,12 +42,13 @@ public class FirstFragment extends Fragment {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        viewModel = new ViewModelProvider(getActivity()).get(CharViewModelNew.class);
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
+        viewModel = new ViewModelProvider(getActivity()).get(CharViewModelNew.class);
 
         //Request queue
         viewModel.getStream().observe(getActivity(), new Observer<List<HeroesModel>>() {
