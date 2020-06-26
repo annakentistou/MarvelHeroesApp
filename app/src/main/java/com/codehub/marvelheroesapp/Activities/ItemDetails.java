@@ -70,8 +70,7 @@ public class ItemDetails extends AppCompatActivity {
 
         switch (item.getItemId()) {
             case android.R.id.home:
-                Intent Home = new Intent(ItemDetails.this, MainActivity.class);
-                startActivity(Home);
+                onBackPressed();
                 return true;
 
             case R.id.share:

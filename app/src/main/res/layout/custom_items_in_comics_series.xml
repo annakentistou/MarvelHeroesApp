@@ -50,7 +50,7 @@
                 android:textColor="@color/gray_700"
                 android:textSize="15sp"
                 android:textStyle="bold"
-                app:layout_constraintBottom_toTopOf="@id/numOfComics"
+                app:layout_constraintBottom_toTopOf="@id/creatorName"
                 app:layout_constraintEnd_toStartOf="@+id/share"
                 app:layout_constraintStart_toEndOf="@id/thumbnail"
                 app:layout_constraintTop_toTopOf="@+id/thumbnail"
@@ -58,7 +58,7 @@
             <!--style="@style/Widget.MaterialComponents.Button.TextButton"-->
 
             <TextView
-                android:id="@+id/numOfComics"
+                android:id="@+id/creatorName"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/margins_in_listview"
@@ -68,20 +68,7 @@
                 android:textSize="13sp"
                 app:layout_constraintStart_toEndOf="@id/thumbnail"
                 app:layout_constraintTop_toBottomOf="@id/title"
-                tools:text="Subtitle1" />
-
-            <TextView
-                android:id="@+id/numOfSeries"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/margins_in_listview"
-                android:layout_marginBottom="5dp"
-                android:textAlignment="textStart"
-                android:padding="2dp"
-                android:textSize="13sp"
-                app:layout_constraintStart_toEndOf="@id/thumbnail"
-                app:layout_constraintTop_toBottomOf="@id/numOfComics"
-                tools:text="Subtitle2" />
+                tools:text="Creator"/>
 
             <androidx.appcompat.widget.AppCompatImageButton
                 android:id="@+id/share"

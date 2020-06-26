@@ -60,7 +60,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     NavigationView navigationView;
     BottomNavigationView bottomNav;
     TabLayout tabLayout;
-    TabItem all, comics, series;
     TabsAdapter tabsAdapter;
     ViewPager viewPager;
     private String intent_username, intent_email;
@@ -77,7 +76,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
 
         final LoadingDialog loadingDialog = new LoadingDialog(MainActivity.this);
-        loadingDialog.startLoadindDialog();
+        loadingDialog.startLoadingDialog();
         Handler handler = new Handler();
         handler.postDelayed(new Runnable() {
             @Override
@@ -86,51 +85,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             }
         }, 3000);
 
-        intent_username = getIntent().getStringExtra("TAKE_FULLNAME");
-        intent_email = getIntent().getStringExtra("TAKE_USER_EMAIL");
-
-        View header = ((NavigationView) findViewById(R.id.nav_view)).getHeaderView(0);
-        if (intent_username != null || intent_email != null) {
-            ((TextView) header.findViewById(R.id.user_name)).setText(intent_username);
-            ((TextView) header.findViewById(R.id.user_email)).setText(intent_email);
-        } else {
-            GoogleSignInOptions googleSignInOptions = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-                    .requestIdToken("799808644087-nbq5nju84r2f7i83lm6rgbkmpvgmbdvb.apps.googleusercontent.com")
-                    .requestEmail()
-                    .build();
-
-            googleSignInClient = GoogleSignIn.getClient(this, googleSignInOptions);
-
-            GoogleSignInAccount acct = GoogleSignIn.getLastSignedInAccount(this);
-            if (acct != null) {
-                String personName = acct.getDisplayName();
-                String personEmail = acct.getEmail();
-                Uri personPhoto = acct.getPhotoUrl();
-
-                ((TextView) header.findViewById(R.id.user_name)).setText(personName);
-                ((TextView) header.findViewById(R.id.user_email)).setText(personEmail);
-                ImageView img = header.findViewById(R.id.imageView);
-                Glide.with(this).load(personPhoto).into(img);
-            }
-        }
-
-        (header.findViewById(R.id.imageView)).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (ActivityCompat.checkSelfPermission(MainActivity.this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
-                    Toast.makeText(MainActivity.this, "You should grant permission", Toast.LENGTH_SHORT).show();
-                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                        requestPermissions(new String[]{
-                                Manifest.permission.CAMERA
-                        }, PERMISSION_REQUEST_CODE);
-                    }
-                    return;
-                }else {
-                    Intent upload_img = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-                    startActivityForResult(upload_img, 0);
-                }
-            }
-        });
     }
 
     @Override
@@ -153,9 +107,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         //tabs management
         tabLayout = findViewById(R.id.tabs);
-        all = findViewById(R.id.tab_all);
-        comics = findViewById(R.id.tab_comics);
-        series = findViewById(R.id.tab_series);
         tabsAdapter = new TabsAdapter(getSupportFragmentManager(), FragmentPagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT, tabLayout.getTabCount());
         viewPager.setAdapter(tabsAdapter);
 
@@ -214,6 +165,56 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                         break;
                 }
                 return false;
+            }
+        });
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        intent_username = getIntent().getStringExtra("TAKE_FULLNAME");
+        intent_email = getIntent().getStringExtra("TAKE_USER_EMAIL");
+
+        View header = ((NavigationView) findViewById(R.id.nav_view)).getHeaderView(0);
+        if (intent_username != null || intent_email != null) {
+            ((TextView) header.findViewById(R.id.user_name)).setText(intent_username);
+            ((TextView) header.findViewById(R.id.user_email)).setText(intent_email);
+        } else {
+            GoogleSignInOptions googleSignInOptions = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+                    .requestIdToken("799808644087-nbq5nju84r2f7i83lm6rgbkmpvgmbdvb.apps.googleusercontent.com")
+                    .requestEmail()
+                    .build();
+
+            googleSignInClient = GoogleSignIn.getClient(this, googleSignInOptions);
+
+            GoogleSignInAccount acct = GoogleSignIn.getLastSignedInAccount(this);
+            if (acct != null) {
+                String personName = acct.getDisplayName();
+                String personEmail = acct.getEmail();
+                Uri personPhoto = acct.getPhotoUrl();
+
+                ((TextView) header.findViewById(R.id.user_name)).setText(personName);
+                ((TextView) header.findViewById(R.id.user_email)).setText(personEmail);
+                ImageView img = header.findViewById(R.id.imageView);
+                Glide.with(this).load(personPhoto).into(img);
+            }
+        }
+
+        (header.findViewById(R.id.imageView)).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (ActivityCompat.checkSelfPermission(MainActivity.this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
+                    Toast.makeText(MainActivity.this, "You should grant permission", Toast.LENGTH_SHORT).show();
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                        requestPermissions(new String[]{
+                                Manifest.permission.CAMERA
+                        }, PERMISSION_REQUEST_CODE);
+                    }
+                    return;
+                }else {
+                    Intent upload_img = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+                    startActivityForResult(upload_img, 0);
+                }
             }
         });
     }

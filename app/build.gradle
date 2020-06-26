@@ -42,7 +42,6 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
 
     //NEW implementations
-    implementation 'com.google.android.material:material:1.1.0-alpha06'
     implementation 'com.google.android.gms:play-services-auth:18.0.0'
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     implementation 'com.android.volley:volley:1.1.1'

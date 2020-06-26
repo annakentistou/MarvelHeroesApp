@@ -3,6 +3,7 @@ package com.codehub.marvelheroesapp.Adapters;
 
 import android.content.Context;
 import android.content.Intent;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -46,6 +47,16 @@ public class SeriesAdapter extends RecyclerView.Adapter<SeriesAdapter.ViewHolder
         final String description = series.get(position).getDescription();
         final String extension = series.get(position).getThumbnail().getExtension();
         final String image = series.get(position).getThumbnail().getPath() + "." + extension;
+        final List<CreatorsNameModel> creatorsName = series.get(position).getCreators().getItems();
+        Log.i("Creator", creatorsName.toString());
+        for (int i = 0; i < creatorsName.size(); i++) {
+            position = i;
+            if (creatorsName.size() != 0) {
+                holder.creator.setText("Creator: " + creatorsName.get(position).getName());
+            } else {
+                holder.creator.setText("There is no Creator");
+            }
+        }
 
         holder.Name.setText(title);
         Picasso.get().load(image).into(holder.image);
@@ -73,7 +84,7 @@ public class SeriesAdapter extends RecyclerView.Adapter<SeriesAdapter.ViewHolder
         }
 
         public class ViewHolder extends RecyclerView.ViewHolder {
-            TextView Name, subtitle;
+            TextView Name, creator;
             ImageView image;
             ImageButton share;
 
@@ -81,7 +92,7 @@ public class SeriesAdapter extends RecyclerView.Adapter<SeriesAdapter.ViewHolder
                 super(itemView);
 
                 Name = itemView.findViewById(R.id.title);
-                subtitle = itemView.findViewById(R.id.subtitle);
+                creator = itemView.findViewById(R.id.creatorName);
                 image = itemView.findViewById(R.id.thumbnail);
                 share = itemView.findViewById(R.id.share);
 

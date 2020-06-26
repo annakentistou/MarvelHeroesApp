@@ -90,7 +90,6 @@ public class FavoritesList extends AppCompatActivity {
         recyclerView.setAdapter(favAdapter);
     }
 
-    // remove item after swipe
     private ItemTouchHelper.SimpleCallback simpleCallback = new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT) {
         @Override
         public boolean onMove(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, @NonNull RecyclerView.ViewHolder target) {
@@ -101,21 +100,19 @@ public class FavoritesList extends AppCompatActivity {
         public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
             int position = viewHolder.getAdapterPosition(); // get position which is swipe
             final FavoriteHero favItem = favHero.get(position);
-            if (direction == ItemTouchHelper.LEFT) { //if swipe left
+            if (direction == ItemTouchHelper.LEFT) {
                 favAdapter.notifyItemRemoved(position); // item removed from recyclerview
-                favHero.remove(position); //then remove item
-                favDB.remove_fav(favItem.getId()); // remove item from database
+                favHero.remove(position);
+                favDB.remove_fav(favItem.getId());
             }
         }
     };
 
-    //back button in Action Bar
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
 
         if (item.getItemId() == android.R.id.home){
-            Intent Home = new Intent(FavoritesList.this, MainActivity.class);
-            startActivity(Home);
+            onBackPressed();
         }
         return true;
     }

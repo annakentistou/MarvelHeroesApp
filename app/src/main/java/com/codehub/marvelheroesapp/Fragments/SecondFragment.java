@@ -68,7 +68,7 @@ public class SecondFragment extends Fragment {
                 handler.postDelayed(new Runnable() {
                     @Override
                     public void run() {
-                        if(swipeRefreshLayout.isRefreshing()) {
+                        if (swipeRefreshLayout.isRefreshing()) {
                             swipeRefreshLayout.setRefreshing(false);
                         }
                     }
@@ -103,7 +103,7 @@ public class SecondFragment extends Fragment {
                     array = dataModel.getData().getResults();
                     for (int i = 0; i < array.size(); i++) {
                         ComicsModel model = array.get(i);
-                        comics.add(model);
+                            comics.add(model);
                     }
 
                     recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));

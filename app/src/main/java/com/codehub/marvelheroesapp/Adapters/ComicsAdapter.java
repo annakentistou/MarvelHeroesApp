@@ -2,6 +2,7 @@ package com.codehub.marvelheroesapp.Adapters;
 
 import android.content.Context;
 import android.content.Intent;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -44,17 +45,16 @@ public class ComicsAdapter extends RecyclerView.Adapter<ComicsAdapter.ViewHolder
         final String description = comics.get(position).getDescription();
         final String extension = comics.get(position).getThumbnail().getExtension();
         final String image = comics.get(position).getThumbnail().getPath() + "." + extension;
-        /*final String creator = comics.get(position).getCreators().getItems().get(position).getName();*/
+        final List<CreatorsNameModel> creatorsName = comics.get(position).getCreators().getItems();
+        Log.i("Creator", creatorsName.toString());
 
-     /*   List<CreatorsNameModel> items;
-        for (int i=0 ; i< position; i++) {
-            items = comics.get(i).getCreators().getItems();
-            if (items.size() != 0) {
-                holder.creator.setText(creator);
-            } else {
-                holder.creator.setText("There in no creator");
+            for(int j = 0; j < creatorsName.size(); j++){
+                if (creatorsName.size() != 0) {
+                    holder.creator.setText("Creator: " + creatorsName.get(j).getName());
+                } else {
+                    holder.creator.setText("There is no Creator");
+                }
             }
-        }*/
 
         holder.name.setText(title);
         Picasso.get().load(image).into(holder.image);
@@ -65,7 +65,7 @@ public class ComicsAdapter extends RecyclerView.Adapter<ComicsAdapter.ViewHolder
             public void onClick(View v) {
                 //new Intent
                 Intent intent = new Intent(v.getContext(), ItemDetails.class);
-                intent.putExtra("title", title);//sending title of "custom of list view"
+                intent.putExtra("title", title);
                 if (description != null) {
                     intent.putExtra("subtitle", "DESCRIPTION: " + description);
                 } else
@@ -90,7 +90,7 @@ public class ComicsAdapter extends RecyclerView.Adapter<ComicsAdapter.ViewHolder
             super(itemView);
 
             name = itemView.findViewById(R.id.title);
-            creator = itemView.findViewById(R.id.numOfComics);
+            creator = itemView.findViewById(R.id.creatorName);
             image = itemView.findViewById(R.id.thumbnail);
             share = itemView.findViewById(R.id.share);
 
