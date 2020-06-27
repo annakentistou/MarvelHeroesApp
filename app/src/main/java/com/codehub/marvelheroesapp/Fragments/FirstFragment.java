@@ -32,19 +32,18 @@ public class FirstFragment extends Fragment {
     private View view;
     private RecyclerView recyclerView;
     private Adapter myAdapter;
-    private List<HeroesModel> heroes;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_first, container, false);
         return view;
-
     }
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
     }
 
     @Override

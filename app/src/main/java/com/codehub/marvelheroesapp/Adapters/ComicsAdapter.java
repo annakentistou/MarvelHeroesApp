@@ -41,10 +41,11 @@ public class ComicsAdapter extends RecyclerView.Adapter<ComicsAdapter.ViewHolder
 
     @Override
     public void onBindViewHolder(@NonNull final ViewHolder holder, int position) {
-        final String title = comics.get(position).getTitle();
-        final String description = comics.get(position).getDescription();
-        final String extension = comics.get(position).getThumbnail().getExtension();
-        final String image = comics.get(position).getThumbnail().getPath() + "." + extension;
+        final ComicsModel comicsItem =  comics.get(position);
+        final String title = comicsItem.getTitle();
+        final String description = comicsItem.getDescription();
+        final String extension = comicsItem.getThumbnail().getExtension();
+        final String image = comicsItem.getThumbnail().getPath() + "." + extension;
         final List<CreatorsNameModel> creatorsName = comics.get(position).getCreators().getItems();
         Log.i("Creator", creatorsName.toString());
 
@@ -59,11 +60,9 @@ public class ComicsAdapter extends RecyclerView.Adapter<ComicsAdapter.ViewHolder
         holder.name.setText(title);
         Picasso.get().load(image).into(holder.image);
 
-        //set onClickListener to item
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //new Intent
                 Intent intent = new Intent(v.getContext(), ItemDetails.class);
                 intent.putExtra("title", title);
                 if (description != null) {
@@ -105,10 +104,8 @@ public class ComicsAdapter extends RecyclerView.Adapter<ComicsAdapter.ViewHolder
                     share_intent.putExtra(Intent.EXTRA_SUBJECT, comicsModel.getTitle());
                     share_intent.putExtra(Intent.EXTRA_TEXT, comicsModel.getThumbnail().getPath() + ".jpg");
                     v.getContext().startActivity(Intent.createChooser(share_intent, "Share"));
-
                 }
             });
         }
     }
 }
-

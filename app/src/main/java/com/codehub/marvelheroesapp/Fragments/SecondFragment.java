@@ -40,7 +40,6 @@ public class SecondFragment extends Fragment {
     private RecyclerView recyclerView;
     private ComicsAdapter myadapter;
     private List<ComicsModel> comics;
-    private List<CreatorsNameModel> creators;
     private static String JSON_URL = "https://gateway.marvel.com/v1/public/comics?limit=30&ts=1&apikey=94bd7ab20112da5e1ae5f197769ecd7a&hash=49b68d02a0d6bbeed0553ccf47ab7d68";
     SwipeRefreshLayout swipeRefreshLayout;
 
@@ -105,7 +104,6 @@ public class SecondFragment extends Fragment {
                         ComicsModel model = array.get(i);
                             comics.add(model);
                     }
-
                     recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
                     myadapter = new ComicsAdapter(getContext(), comics);
                     recyclerView.setAdapter(myadapter);

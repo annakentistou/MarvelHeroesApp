@@ -52,11 +52,7 @@ public class SearchActivity extends AppCompatActivity {
         recyclerView = findViewById(R.id.recycler_view_for_all);
 
         notificationManager = (NotificationManager)getSystemService(Context.NOTIFICATION_SERVICE);
-    }
 
-    @Override
-    protected void onPostCreate(@Nullable Bundle savedInstanceState) {
-        super.onPostCreate(savedInstanceState);
         viewModel = new ViewModelProvider(this).get(CharViewModelNew.class);
 
         //Request queue
@@ -78,6 +74,11 @@ public class SearchActivity extends AppCompatActivity {
 
         RequestQueue queue = Volley.newRequestQueue(this);
         viewModel.makeRequest(queue);
+    }
+
+    @Override
+    protected void onPostCreate(@Nullable Bundle savedInstanceState) {
+        super.onPostCreate(savedInstanceState);
 
         EditText editText = findViewById(R.id.search_bar);
 

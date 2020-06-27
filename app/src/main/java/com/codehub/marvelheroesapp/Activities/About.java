@@ -7,6 +7,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -45,19 +46,14 @@ public class About extends AppCompatActivity {
                 startActivity(linkedIn);
             }
         });
-
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == android.R.id.home) {
-            gotoActivity(MainActivity.class);
+            onBackPressed();
         }
         return true;
     }
 
-    private void gotoActivity(Class activityName) {
-        Intent intent = new Intent(About.this, activityName);
-        startActivity(intent);
-    }
 }

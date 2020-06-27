@@ -66,7 +66,7 @@ public class SeriesAdapter extends RecyclerView.Adapter<SeriesAdapter.ViewHolder
             public void onClick(View v) {
 
                 Intent intent = new Intent(v.getContext(), ItemDetails.class);
-                intent.putExtra("title", title);//sending title of "custom of list view"
+                intent.putExtra("title", title);
                 if (description != null) {
                     intent.putExtra("subtitle", "DESCRIPTION: " + description);
                 } else
@@ -75,7 +75,6 @@ public class SeriesAdapter extends RecyclerView.Adapter<SeriesAdapter.ViewHolder
                 v.getContext().startActivity(intent);
             }
         });
-
         }
 
         @Override

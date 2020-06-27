@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import android.graphics.drawable.Drawable;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -24,7 +23,6 @@ import com.codehub.marvelheroesapp.R;
 import com.codehub.marvelheroesapp.json.HeroesModel;
 import com.squareup.picasso.Picasso;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder> {
@@ -61,7 +59,7 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder> {
         final String title = heroItem.getName();
         final String description = heroItem.getDescription();
         final String extension = heroItem.getThumbnail().getExtension();
-        final String image = heroItem.getThumbnail().getPath() + "." + extension;
+        final String img = heroItem.getThumbnail().getPath() + "." + extension;
         final int numOfComics = heroItem.getComics().getAvailable();
         final int numOfSeries = heroItem.getSeries().getAvailable();
 
@@ -69,20 +67,18 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder> {
         holder.numOfComics.setText("Comics: " + numOfComics);
         holder.numOfSeries.setText("Series: " + numOfSeries);
 
-        Picasso.get().load(image).into(holder.image);
-        Log.i("image", image);
+        Picasso.get().load(img).into(holder.image);
+        Log.i("image", img);
 
         readCursorData(heroItem, holder);
 
-        //set onClickListener to item
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //new Intent
                 Intent intent = new Intent(v.getContext(), ItemDetails.class);
                 intent.putExtra("title", title);
                 intent.putExtra("subtitle", description);
-                intent.putExtra("image", image);
+                intent.putExtra("image", img);
                 v.getContext().startActivity(intent);
             }
         });
@@ -109,7 +105,6 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder> {
             numOfComics = itemView.findViewById(R.id.numOfComics);
             numOfSeries = itemView.findViewById(R.id.numOfSeries);
 
-            //set onCLickListener to heart icon
             add_to_fav.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -129,7 +124,7 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder> {
                     }
                 }
             });
-            //set onCLickListener to share icon
+
             share.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -189,7 +184,6 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder> {
         }
     }
 
-    //31/5/2020 Used For Searching...
     public void filterList(List<HeroesModel> filteredList) {
         heroes = filteredList;
         notifyDataSetChanged();
