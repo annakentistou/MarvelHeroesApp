@@ -72,6 +72,7 @@ public class LoginActivity extends AppCompatActivity {
                 if (check_mail == true){
                     Toast.makeText(getApplicationContext(),"Login Successful!",Toast.LENGTH_SHORT).show();
                     gotoActivity(MainActivity.class);
+                    finish();
                 }else{
                     Toast.makeText(getApplicationContext(),"Wrong Username or Password",Toast.LENGTH_SHORT).show();
                 }
@@ -134,6 +135,12 @@ public class LoginActivity extends AppCompatActivity {
         GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(this);
         if(account != null) {
            gotoActivity(MainActivity.class);
+           finish();
         }
+    }
+
+    @Override
+    public void onBackPressed() {
+        moveTaskToBack(true);
     }
 }

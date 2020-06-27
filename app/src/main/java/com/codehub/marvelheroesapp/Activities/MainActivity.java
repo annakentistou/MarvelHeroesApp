@@ -139,12 +139,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                     case R.id.home_page:
                         break;
                     case R.id.search_view:
-                        Intent search_intent = new Intent(MainActivity.this, SearchActivity.class);
-                        startActivity(search_intent);
+                        gotoActivity(SearchActivity.class);
                         break;
                     case R.id.myfavoriteList:
-                        Intent fav_intent = new Intent(MainActivity.this, FavoritesList.class);
-                        startActivity(fav_intent);
+                       gotoActivity(FavoritesList.class);
                         break;
                     case R.id.notifications:
                         Intent intent = new Intent(MainActivity.this, NotificationsActivity.class);
@@ -234,21 +232,23 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                         .addOnCompleteListener(this, new OnCompleteListener<Void>() {
                             @Override
                             public void onComplete(@NonNull Task<Void> task) {
-                                Intent intent = new Intent(MainActivity.this, LoginActivity.class);
-                                startActivity(intent);
+                                gotoActivity(LoginActivity.class);
+                                finish();
                             }
                         });
-                finish();
                 break;
-
             case R.id.about:
-                Intent about = new Intent(this, About.class);
-                startActivity(about);
+                gotoActivity(About.class);
                 break;
             default:
                 break;
         }
         return true;
+    }
+
+    private void gotoActivity(Class activityName) {
+        Intent intent = new Intent(MainActivity.this, activityName);
+        startActivity(intent);
     }
 
     @Override
@@ -274,5 +274,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 ((ImageView) findViewById(R.id.imageView)).setImageBitmap(bitmap);
             }
         }
+    }
+
+    @Override
+    public void onBackPressed() {
+        moveTaskToBack(true);
     }
 }

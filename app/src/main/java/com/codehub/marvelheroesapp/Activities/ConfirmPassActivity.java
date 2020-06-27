@@ -73,4 +73,9 @@ public class ConfirmPassActivity extends AppCompatActivity {
         Intent intent = new Intent(ConfirmPassActivity.this, activityName);
         startActivity(intent);
     }
+
+    @Override
+    public void onBackPressed() {
+        moveTaskToBack(true);
+    }
 }
