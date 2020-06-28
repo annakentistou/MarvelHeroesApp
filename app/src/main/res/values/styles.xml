@@ -6,7 +6,6 @@
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
         <item name="android:windowTranslucentStatus">true</item>
-
     </style>
 
     <style name="MainActivity.Theme" parent="Theme.AppCompat.Light.NoActionBar">

@@ -8,18 +8,10 @@
     tools:context=".Activities.FavoritesList">
 
     <com.google.android.material.appbar.AppBarLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-    <com.google.android.material.appbar.MaterialToolbar
         android:id="@+id/topAppBar"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/DarkRed"
-        android:paddingTop="10dp"
-        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"/>
-
-    </com.google.android.material.appbar.AppBarLayout>
+        android:layout_height="50dp"
+        android:background="@color/PrimaryRed"/>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_view_for_all"
