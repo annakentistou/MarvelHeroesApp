@@ -1,7 +1,7 @@
 package com.codehub.marvelheroesapp.DatabaseFiles;
 
 public class User {
-    private String id,email,username, password, name;
+    private String id,name, username, password, email;
     private byte[] image;
 
     public User() {

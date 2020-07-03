@@ -26,7 +26,7 @@ public class FavAdapter extends RecyclerView.Adapter<FavAdapter.ViewHolder> {
     private LayoutInflater inflater;
     private List<FavoriteHero> favItemList;
     private Context context;
-    FavDB favDB;
+    private FavDB favDB;
 
     public FavAdapter(Context context, List<FavoriteHero> favItemList) {
         this.inflater = LayoutInflater.from(context);
@@ -44,7 +44,6 @@ public class FavAdapter extends RecyclerView.Adapter<FavAdapter.ViewHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-
         holder.title.setText(favItemList.get(position).getItem_title());
         String img = favItemList.get(position).getItem_image();
         Picasso.get().load(img).into(holder.image);
@@ -68,10 +67,4 @@ public class FavAdapter extends RecyclerView.Adapter<FavAdapter.ViewHolder> {
             bin = itemView.findViewById(R.id.bin);
         }
     }
-
-  /*  private void removeItem(int position) {
-        favItemList.remove(position);
-        notifyItemRemoved(position);
-        notifyItemRangeChanged(position,favItemList.size());
-    }*/
 }

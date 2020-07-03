@@ -68,14 +68,10 @@ public class RegisterActivity extends AppCompatActivity {
                                 boolean insert = db.insert(0, name, username, password, email, null);
                                 if (insert == true) {
                                     /*Toast.makeText(getApplicationContext(), "Registered Successfully", Toast.LENGTH_SHORT).show();*/
-                                    mail.setError(null);
-                                    usrname.setError(null);
-                                    cfrmpass.setError(null);
+                                    mail.setErrorEnabled(false);
+                                    usrname.setErrorEnabled(false);
 
-                                    Intent intent = new Intent(RegisterActivity.this, MainActivity.class);
-                                    intent.putExtra("TAKE_FULLNAME", name);
-                                    intent.putExtra("TAKE_USER_EMAIL", email);
-                                    startActivity(intent);
+                                    gotoActivity(LoginActivity.class);
 
                                     String title = "Account created";
                                     String message = "Thank you for registering!";

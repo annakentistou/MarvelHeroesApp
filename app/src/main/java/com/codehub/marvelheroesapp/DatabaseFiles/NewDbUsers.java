@@ -107,45 +107,18 @@ public class NewDbUsers extends SQLiteOpenHelper {
         return db.rawQuery(sql, null, null);
     }
 
-    public boolean read_name(String username){
-        SQLiteDatabase db = this.getReadableDatabase();
-        Cursor cursor = db.rawQuery("SELECT * FROM userTable WHERE username=?", new String[]{username});
-        int c = cursor.getCount();
-        if (c > 0) {
-            return true;
-        } else {
-            return false;
-        }
-    }
-
-    public List<User> getUserList() {
-        SQLiteDatabase db = this.getReadableDatabase();
-        List<User> list = new ArrayList<>();
-        Cursor c = db.rawQuery("SELECT * FROM user", null);
-
-        while (c.moveToNext()) {
-            User user = new User();
-            user.setEmail(c.getString(0));
-            user.setPassword(c.getString(1));
-            user.setUsername(c.getString(2));
-            user.setName(c.getString(3));
-            list.add(user);
-        }
-        return list;
-    }
-
     public User getUser(String intent) {
-        SQLiteDatabase db = this.getWritableDatabase();
-        Cursor c = db.rawQuery("SELECT * FROM userTable WHERE username" + "='" +intent+" ' ", null);
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor c = db.rawQuery("SELECT name, username, password, email FROM userTable WHERE username = " + "'"+ intent + "'", null);
 
         User user = new User();
 
         c.moveToNext();
-        user.setId(c.getString(0));
-        user.setEmail(c.getString(1));
-        user.setPassword(c.getString(2));
-        user.setUsername(c.getString(3));
-        user.setName(c.getString(4));
+        user.setName(c.getString(c.getColumnIndex("name")));
+        user.setUsername(c.getString(c.getColumnIndex("username")));
+        user.setPassword(c.getString(c.getColumnIndex("password")));
+        user.setEmail(c.getString(c.getColumnIndex("email")));
+        /*user.setImage(c.getBlob(c.getColumnIndex("image"));*/
         return user;
     }
 }

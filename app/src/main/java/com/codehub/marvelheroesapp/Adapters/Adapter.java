@@ -153,7 +153,6 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder> {
 
     private void createTableOnFirstStart() {
         favDB.insertEmpty();
-
         SharedPreferences prefs = ctx.getSharedPreferences("prefs", Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = prefs.edit();
         editor.putBoolean("firstStart", false);
@@ -173,9 +172,9 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder> {
                     viewHolder.add_to_fav.setBackgroundResource(R.drawable.ic_favorite_black_24dp);
                 } else if (item_fav_status == 0) {
                     viewHolder.add_to_fav.setBackgroundResource(R.drawable.ic_favorite_border_black_24dp);
-                } else {
+                }/* else {
                     viewHolder.add_to_fav.setBackgroundResource(R.drawable.ic_favorite_border_black_24dp);
-                }
+                }*/
             }
         } finally {
             if (cursor != null && cursor.isClosed())

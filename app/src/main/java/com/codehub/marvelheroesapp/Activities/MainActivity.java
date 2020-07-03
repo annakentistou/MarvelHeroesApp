@@ -12,6 +12,7 @@ import androidx.viewpager.widget.ViewPager;
 
 import android.Manifest;
 import android.app.Activity;
+import android.app.Dialog;
 import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
@@ -20,20 +21,26 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.provider.MediaStore;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.codehub.marvelheroesapp.Adapters.TabsAdapter;
+import com.codehub.marvelheroesapp.DatabaseFiles.NewDbUsers;
+import com.codehub.marvelheroesapp.DatabaseFiles.User;
 import com.codehub.marvelheroesapp.R;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
@@ -44,7 +51,6 @@ import com.google.android.gms.tasks.Task;
 import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
-import com.google.android.material.tabs.TabItem;
 import com.google.android.material.tabs.TabLayout;
 
 import java.io.FileNotFoundException;
@@ -62,16 +68,21 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     TabLayout tabLayout;
     TabsAdapter tabsAdapter;
     ViewPager viewPager;
-    private String intent_username, intent_email;
+    private String intent_username;
     private static final int PICK_IMAGE = 1;
     private NotificationManager notificationManager;
     GoogleSignInClient googleSignInClient;
     private static final int PERMISSION_REQUEST_CODE = 100;
+    User userInfo;
+    private NewDbUsers db;
+    Dialog communication;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        db = new NewDbUsers(getApplicationContext());
 
         notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
 
@@ -85,6 +96,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             }
         }, 3000);
 
+        displayData();
+
+        communication = new Dialog(this);
     }
 
     @Override
@@ -167,16 +181,20 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         });
     }
 
-    @Override
-    protected void onResume() {
-        super.onResume();
-        intent_username = getIntent().getStringExtra("TAKE_FULLNAME");
-        intent_email = getIntent().getStringExtra("TAKE_USER_EMAIL");
-
+    private void displayData(){
         View header = ((NavigationView) findViewById(R.id.nav_view)).getHeaderView(0);
-        if (intent_username != null || intent_email != null) {
-            ((TextView) header.findViewById(R.id.user_name)).setText(intent_username);
-            ((TextView) header.findViewById(R.id.user_email)).setText(intent_email);
+
+        try {
+            intent_username = getIntent().getStringExtra("TAKE_USERNAME");
+            userInfo = db.getUser(intent_username);
+        }catch (Exception e){
+            Log.i("Error",e.toString());
+        }
+
+        if (intent_username != null) {
+            ((TextView) header.findViewById(R.id.user_name)).setText(userInfo.getName());
+            ((TextView) header.findViewById(R.id.user_email)).setText(userInfo.getEmail());
+
         } else {
             GoogleSignInOptions googleSignInOptions = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                     .requestIdToken("799808644087-nbq5nju84r2f7i83lm6rgbkmpvgmbdvb.apps.googleusercontent.com")
@@ -228,22 +246,46 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 startActivityForResult(Intent.createChooser(upload_img, "GET_IMAGE"), PICK_IMAGE);
                 break;
             case R.id.sign_out:
-                googleSignInClient.signOut()
-                        .addOnCompleteListener(this, new OnCompleteListener<Void>() {
-                            @Override
-                            public void onComplete(@NonNull Task<Void> task) {
-                                gotoActivity(LoginActivity.class);
-                                finish();
-                            }
-                        });
+                if(intent_username != null){
+                    gotoActivity(LoginActivity.class);
+                    finish();
+                }else{
+                    googleSignInClient.signOut()
+                            .addOnCompleteListener(this, new OnCompleteListener<Void>() {
+                                @Override
+                                public void onComplete(@NonNull Task<Void> task) {
+                                    gotoActivity(LoginActivity.class);
+                                    finish();
+                                }
+                            });
+                }
+                break;
+            case R.id.communication:
+               communicationPopup();
                 break;
             case R.id.about:
                 gotoActivity(About.class);
+                break;
+            case R.id.settings:
                 break;
             default:
                 break;
         }
         return true;
+    }
+
+    public void communicationPopup(){
+        communication.setContentView(R.layout.fragment_communication);
+        ImageButton cancel = communication.findViewById(R.id.cancel);
+
+        cancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+               communication.dismiss();
+            }
+        });
+        communication.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        communication.show();
     }
 
     private void gotoActivity(Class activityName) {

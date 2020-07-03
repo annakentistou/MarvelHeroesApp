@@ -68,10 +68,11 @@ public class LoginActivity extends AppCompatActivity {
                 String username = usrname.getEditText().getText().toString().trim();
                 String password = pass.getEditText().getText().toString().trim();
                 boolean check_mail = db.login(username,password);
-                boolean read_name = db.read_name(username);
                 if (check_mail == true){
                     Toast.makeText(getApplicationContext(),"Login Successful!",Toast.LENGTH_SHORT).show();
-                    gotoActivity(MainActivity.class);
+                    Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                    intent.putExtra("TAKE_USERNAME", username);
+                    startActivity(intent);
                     finish();
                 }else{
                     Toast.makeText(getApplicationContext(),"Wrong Username or Password",Toast.LENGTH_SHORT).show();

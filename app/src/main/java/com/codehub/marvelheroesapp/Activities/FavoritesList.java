@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
@@ -24,6 +25,8 @@ import androidx.viewpager.widget.ViewPager;
 import com.codehub.marvelheroesapp.Adapters.FavAdapter;
 import com.codehub.marvelheroesapp.DatabaseFiles.FavDB;
 import com.codehub.marvelheroesapp.DatabaseFiles.FavoriteHero;
+import com.codehub.marvelheroesapp.DatabaseFiles.NewDbUsers;
+import com.codehub.marvelheroesapp.DatabaseFiles.User;
 import com.codehub.marvelheroesapp.R;
 import com.codehub.marvelheroesapp.json.HeroesModel;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -51,7 +54,7 @@ public class FavoritesList extends AppCompatActivity {
         recyclerView.setHasFixedSize(true);
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true); //display back button in toolbar
-        notificationManager = (NotificationManager)getSystemService(Context.NOTIFICATION_SERVICE);
+        notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
 
     }
 
@@ -111,7 +114,7 @@ public class FavoritesList extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
 
-        if (item.getItemId() == android.R.id.home){
+        if (item.getItemId() == android.R.id.home) {
             onBackPressed();
         }
         return true;
@@ -121,7 +124,6 @@ public class FavoritesList extends AppCompatActivity {
     protected void onPostResume() {
         super.onPostResume();
 
-        //Bottom Navigation Menu management  31/5/2020
         bottomNav = findViewById(R.id.bottom_navigation);
         Menu menu = bottomNav.getMenu();
         MenuItem menuItem = menu.getItem(2);
