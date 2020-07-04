@@ -49,7 +49,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/margin"
-            android:layout_marginTop="30dp"
+            android:layout_marginTop="25dp"
             android:src="@drawable/ic_email_blue_24dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/personIcon" />
@@ -67,9 +67,7 @@
             android:id="@+id/phone_icon"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/margin"
-            android:layout_marginTop="30dp"
-            android:layout_marginBottom="20dp"
+            android:layout_margin="@dimen/margin"
             android:src="@drawable/ic_phone_black_24dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/email_icon" />

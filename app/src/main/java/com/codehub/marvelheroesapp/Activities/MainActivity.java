@@ -32,6 +32,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -75,7 +76,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private static final int PERMISSION_REQUEST_CODE = 100;
     User userInfo;
     private NewDbUsers db;
-    Dialog communication;
+    Dialog communication, signοut_dlg;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -99,6 +100,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         displayData();
 
         communication = new Dialog(this);
+        signοut_dlg = new Dialog(this);
+
     }
 
     @Override
@@ -156,7 +159,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                         gotoActivity(SearchActivity.class);
                         break;
                     case R.id.myfavoriteList:
-                       gotoActivity(FavoritesList.class);
+                        gotoActivity(FavoritesList.class);
                         break;
                     case R.id.notifications:
                         Intent intent = new Intent(MainActivity.this, NotificationsActivity.class);
@@ -181,14 +184,14 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         });
     }
 
-    private void displayData(){
+    private void displayData() {
         View header = ((NavigationView) findViewById(R.id.nav_view)).getHeaderView(0);
 
         try {
             intent_username = getIntent().getStringExtra("TAKE_USERNAME");
             userInfo = db.getUser(intent_username);
-        }catch (Exception e){
-            Log.i("Error",e.toString());
+        } catch (Exception e) {
+            Log.i("Error", e.toString());
         }
 
         if (intent_username != null) {
@@ -227,7 +230,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                         }, PERMISSION_REQUEST_CODE);
                     }
                     return;
-                }else {
+                } else {
                     Intent upload_img = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
                     startActivityForResult(upload_img, 0);
                 }
@@ -246,22 +249,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 startActivityForResult(Intent.createChooser(upload_img, "GET_IMAGE"), PICK_IMAGE);
                 break;
             case R.id.sign_out:
-                if(intent_username != null){
-                    gotoActivity(LoginActivity.class);
-                    finish();
-                }else{
-                    googleSignInClient.signOut()
-                            .addOnCompleteListener(this, new OnCompleteListener<Void>() {
-                                @Override
-                                public void onComplete(@NonNull Task<Void> task) {
-                                    gotoActivity(LoginActivity.class);
-                                    finish();
-                                }
-                            });
-                }
+                signOutPopup();
                 break;
             case R.id.communication:
-               communicationPopup();
+                communicationPopup();
                 break;
             case R.id.about:
                 gotoActivity(About.class);
@@ -274,18 +265,53 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         return true;
     }
 
-    public void communicationPopup(){
-        communication.setContentView(R.layout.fragment_communication);
+    public void communicationPopup() {
+        communication.setContentView(R.layout.communication_dialog);
         ImageButton cancel = communication.findViewById(R.id.cancel);
 
         cancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-               communication.dismiss();
+                communication.dismiss();
             }
         });
         communication.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         communication.show();
+    }
+
+    public void signOutPopup() {
+        signοut_dlg.setContentView(R.layout.logout_dialog);
+        Button cancelbtn, soutbtn;
+        cancelbtn = signοut_dlg.findViewById(R.id.cancel_btn);
+        soutbtn = signοut_dlg.findViewById(R.id.sign_out_btn);
+
+        cancelbtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                signοut_dlg.dismiss();
+            }
+        });
+
+        soutbtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (intent_username != null) {
+                    gotoActivity(LoginActivity.class);
+                    finish();
+                } else {
+                    googleSignInClient.signOut()
+                            .addOnCompleteListener(MainActivity.this, new OnCompleteListener<Void>() {
+                                @Override
+                                public void onComplete(@NonNull Task<Void> task) {
+                                    gotoActivity(LoginActivity.class);
+                                    finish();
+                                }
+                            });
+                }
+            }
+        });
+        signοut_dlg.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        signοut_dlg.show();
     }
 
     private void gotoActivity(Class activityName) {

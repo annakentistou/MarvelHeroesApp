@@ -6,6 +6,7 @@
     <color name="colorForegroundTint">#9E9E9E</color>
     <color name="orange">#C0B83636</color>
     <color name="gray_100">#F5F5F5</color>
+    <color name="light_gray">#e0e0e0</color>
     <color name="gray_400">#BDBDBD</color>
     <color name="gray_700">#616161</color>
     <color name="gray_800">#424242</color>
