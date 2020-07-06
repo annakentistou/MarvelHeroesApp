@@ -3,6 +3,7 @@
     <color name="colorPrimary">#6200EE</color>
     <color name="colorPrimaryDark">#3700B3</color>
     <color name="colorAccent">#03DAC5</color>
+    <color name="dark_green">#00796b</color>
     <color name="colorForegroundTint">#9E9E9E</color>
     <color name="orange">#C0B83636</color>
     <color name="gray_100">#F5F5F5</color>
@@ -16,4 +17,5 @@
     <color name="PrimaryRed">#b71c1c</color>
     <color name="DarkRed">#7f0000</color>
     <color name="LightRed">#f05545</color>
+    <color name="dark_orange">#bf360c</color>
 </resources>

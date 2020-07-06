@@ -1,10 +1,16 @@
 package com.codehub.marvelheroesapp.Activities;
 
+import android.app.Dialog;
 import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.os.Handler;
 import android.text.Editable;
@@ -12,6 +18,8 @@ import android.text.TextWatcher;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 
 import androidx.annotation.NonNull;
@@ -44,12 +52,15 @@ public class SearchActivity extends AppCompatActivity {
     private List<HeroesModel> filtered;
     private CharViewModelNew viewModel; //initialize ViewModel
     private NotificationManager notificationManager;
+    Dialog  no_internet;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search);
         recyclerView = findViewById(R.id.recycler_view_for_all);
+
+        progressDialog();
 
         notificationManager = (NotificationManager)getSystemService(Context.NOTIFICATION_SERVICE);
 
@@ -98,6 +109,20 @@ public class SearchActivity extends AppCompatActivity {
                 filter(s.toString());
             }
         });
+    }
+
+    private void progressDialog(){
+        final ProgressDialog progressDialog = new ProgressDialog(SearchActivity.this);
+        progressDialog.show();
+        progressDialog.setContentView(R.layout.progress_dialog);
+        progressDialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
+        Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                progressDialog.dismiss();
+            }
+        }, 3000);
     }
 
     //filter for search view 31/5/2020

@@ -56,6 +56,8 @@
     <string name="gallery">Gallery</string>
     <string name="contactMe">Find me on GitHub</string>
     <string name="contactMe2">Find me on LinkedIn</string>
+
+    <string name="noInternet">No Internet connection found.\nCheck your connection or try again.</string>
     <!--KeyHash-->
     <string name="app_id">563705977662214</string>
     <string name="facebook_login_protocol">fb563705977662214</string>

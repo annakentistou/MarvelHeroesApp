@@ -12,10 +12,12 @@ import androidx.viewpager.widget.ViewPager;
 
 import android.Manifest;
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -23,6 +25,8 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -32,9 +36,13 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.WindowManager;
+import android.webkit.WebSettings;
+import android.webkit.WebView;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -76,7 +84,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private static final int PERMISSION_REQUEST_CODE = 100;
     User userInfo;
     private NewDbUsers db;
-    Dialog communication, signοut_dlg;
+    Dialog communication, signοut_dlg, no_internet;
+    WebView webView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -85,22 +94,17 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         db = new NewDbUsers(getApplicationContext());
 
-        notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
-
-        final LoadingDialog loadingDialog = new LoadingDialog(MainActivity.this);
-        loadingDialog.startLoadingDialog();
-        Handler handler = new Handler();
-        handler.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                loadingDialog.dismissDialog();
-            }
-        }, 3000);
-
-        displayData();
-
         communication = new Dialog(this);
         signοut_dlg = new Dialog(this);
+        no_internet = new Dialog(this);
+
+        progressDialog();
+
+        noConnection();
+
+        notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+
+        displayData();
 
     }
 
@@ -182,6 +186,45 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 return false;
             }
         });
+    }
+
+    public void noConnection() {
+
+        ConnectivityManager connectivityManager = (ConnectivityManager) getApplicationContext().getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo networkInfo = connectivityManager.getActiveNetworkInfo();
+
+        if (networkInfo == null || !networkInfo.isConnected() || !networkInfo.isAvailable()) {
+            no_internet.show();
+            no_internet.setCancelable(false);
+            no_internet.setContentView(R.layout.no_internet_dialog);
+            no_internet.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+            no_internet.getWindow().getAttributes().windowAnimations = android.R.style.Animation_Dialog;
+
+            Button tryAgain = no_internet.findViewById(R.id.try_again);
+            tryAgain.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    recreate();
+                }
+            });
+
+        }else{
+            progressDialog();
+        }
+    }
+
+    private void progressDialog(){
+        final ProgressDialog progressDialog = new ProgressDialog(MainActivity.this);
+        progressDialog.show();
+        progressDialog.setContentView(R.layout.progress_dialog);
+        progressDialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
+        Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                progressDialog.dismiss();
+            }
+        }, 3000);
     }
 
     private void displayData() {
