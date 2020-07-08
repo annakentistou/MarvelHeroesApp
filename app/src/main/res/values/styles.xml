@@ -8,7 +8,7 @@
         <item name="android:windowTranslucentStatus">true</item>
     </style>
 
-    <style name="MainActivity.Theme" parent="Theme.AppCompat.Light.NoActionBar">
+    <style name="MainActivity.Theme" parent="Theme.MaterialComponents.Light.NoActionBar">
         <item name="colorPrimary">@color/DarkRed</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/DarkRed</item>
@@ -26,7 +26,7 @@
         <item name="android:windowBackground">@drawable/spiderman_background</item>
     </style>
 
-    <style name="DetailsActivity.Theme" parent="Theme.AppCompat.Light.DarkActionBar">
+    <style name="DetailsActivity.Theme" parent="Theme.MaterialComponents.Light.DarkActionBar">
         <item name="colorPrimary">@color/DarkRed</item>
         <item name="colorPrimaryDark">@color/PrimaryRed</item>
         <item name="colorAccent">@color/LightRed</item>

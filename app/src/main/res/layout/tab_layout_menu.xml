@@ -11,6 +11,7 @@
         android:layout_height="0dp"
         android:background="@color/gray_800"
         android:theme="@style/ThemeOverlay.AppCompat.Dark"
+        app:tabTextColor="@color/white"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:tabIndicatorColor="@color/RED_A700"
@@ -24,9 +25,7 @@
             android:id="@+id/tab_all"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/All_Heroes">
-
-        </com.google.android.material.tabs.TabItem>
+            android:text="@string/All_Heroes"/>
 
         <com.google.android.material.tabs.TabItem
             android:id="@+id/tab_comics"

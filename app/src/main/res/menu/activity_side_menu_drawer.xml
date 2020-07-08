@@ -8,26 +8,31 @@
 
     <item
         android:id="@+id/gallery"
-        android:icon="@drawable/ic_menu_gallery"
+        android:icon="@drawable/ic_collections_black_24dp"
+        android:iconTint="@color/gray_400"
         android:title="@string/gallery" />
     <item
         android:id="@+id/settings"
         android:icon="@drawable/ic_settings_grey_24dp"
+        android:iconTint="@color/gray_400"
         android:title="@string/settings" />
     <item
         android:id="@+id/communication"
         android:icon="@drawable/ic_mail_outline_grey_24dp"
+        android:iconTint="@color/gray_400"
         android:title="Communication" />
 
     <item
         android:id="@+id/about"
-        android:title="@string/about" />
+        android:title="@string/about"
+        android:iconTint="@color/gray_400"/>
 
     <item android:title="Other">
         <menu>
             <item
                 android:id="@+id/sign_out"
                 android:icon="@drawable/sign_in"
+                android:iconTint="@color/gray_400"
                 android:title="@string/sign_out" />
         </menu>
     </item>

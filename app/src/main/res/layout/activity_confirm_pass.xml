@@ -100,7 +100,7 @@
         <Button
             android:id="@+id/submit_button"
             android:layout_width="@dimen/TextFieldWidth"
-            android:layout_height="wrap_content"
+            android:layout_height="@dimen/buttonHeight"
             android:background="#84A17878"
             android:gravity="center"
             android:text="@string/reset_pass"
@@ -111,7 +111,7 @@
             app:layout_constraintHorizontal_bias="0.494"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/confirm_pass"
-            app:layout_constraintVertical_bias="0.189"
+            app:layout_constraintVertical_bias="0.100"
             tools:ignore="HardcodedText,MissingConstraints" />
 
     <com.google.android.material.button.MaterialButton
@@ -119,7 +119,7 @@
         style="@style/Widget.MaterialComponents.Button.TextButton"
         android:layout_width="wrap_content"
         android:layout_height="@dimen/TextButtonSize"
-        android:layout_margin="@dimen/TextButtonMargin"
+        android:layout_marginTop="@dimen/TextButtonMargin"
         android:foregroundTint="@color/gray_400"
         android:text="Back to Login!"
         android:textAllCaps="false"

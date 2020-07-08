@@ -6,6 +6,7 @@ import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.app.NotificationCompat;
+import androidx.core.content.ContextCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.FragmentPagerAdapter;
 import androidx.viewpager.widget.ViewPager;
@@ -42,7 +43,6 @@ import android.webkit.WebView;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
-import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -58,6 +58,7 @@ import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.appbar.MaterialToolbar;
+import com.google.android.material.badge.BadgeDrawable;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.switchmaterial.SwitchMaterial;
@@ -86,6 +87,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     User userInfo;
     private NewDbUsers db;
     Dialog communication, signοut_dlg, no_internet, switchOnOff;
+    BadgeDrawable badgeDrawable;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -99,7 +101,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         no_internet = new Dialog(this);
         switchOnOff = new Dialog(this);
 
-
         progressDialog();
 
         noConnection();
@@ -108,6 +109,17 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         displayData();
 
+        bottomNav = findViewById(R.id.bottom_navigation);
+        badgeDrawable = bottomNav.getOrCreateBadge(R.id.notifications);
+        badgeDrawable.setBackgroundColor(Color.RED);
+        badgeDrawable.setBadgeTextColor(Color.WHITE);
+        badgeDrawable.setMaxCharacterCount(2000);
+        badgeDrawable.setNumber(5);
+        badgeDrawable.setVisible(true);
+     /*      if(badgeDrawable !=null){
+            badgeDrawable.setVisible(false);
+            badgeDrawable.clearNumber();
+        }*/
     }
 
     @Override
@@ -151,7 +163,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         });
         viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
 
-        bottomNav = findViewById(R.id.bottom_navigation);
+
         Menu menu = bottomNav.getMenu();
         MenuItem menuItem = menu.getItem(0);
         menuItem.setChecked(true);
@@ -176,6 +188,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                         String message = "There is no Notifications";
                         Notification notification = new NotificationCompat.Builder(getApplicationContext(), CHANNEL_ID)
                                 .setSmallIcon(R.drawable.ic_announcement_black_24dp)
+                                .setBadgeIconType(NotificationCompat.BADGE_ICON_SMALL)
                                 .setContentTitle(title)
                                 .setContentText(message)
                                 .setPriority(NotificationCompat.PRIORITY_DEFAULT)
@@ -183,11 +196,16 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                                 .setAutoCancel(true)
                                 .build();
                         notificationManager.notify(1, notification);
+
+                        if(badgeDrawable.isVisible()){
+                            bottomNav.removeBadge(R.id.notifications);
+                        }
                         break;
                 }
                 return false;
             }
         });
+
     }
 
     public void noConnection() {
@@ -210,12 +228,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 }
             });
 
-        }else{
+        } else {
             progressDialog();
         }
     }
 
-    private void progressDialog(){
+    public void progressDialog() {
         final ProgressDialog progressDialog = new ProgressDialog(MainActivity.this);
         progressDialog.show();
         progressDialog.setContentView(R.layout.progress_dialog);
@@ -277,6 +295,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                     return;
                 } else {
                     Intent upload_img = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+
                     startActivityForResult(upload_img, 0);
                 }
             }
@@ -361,7 +380,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         signοut_dlg.show();
     }
 
-    public void settings(){
+    public void settings() {
         switchOnOff.setContentView(R.layout.settings);
         switchOnOff.setCancelable(true);
         final SwitchMaterial switch_on;
@@ -369,7 +388,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         switch_on.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (switch_on.isChecked()){
+                if (switch_on.isChecked()) {
 
                 }
             }
@@ -413,4 +432,5 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     public void onBackPressed() {
         moveTaskToBack(true);
     }
+
 }

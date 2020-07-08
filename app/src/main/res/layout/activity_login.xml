@@ -79,6 +79,7 @@
             style="@style/Widget.MaterialComponents.Button.TextButton"
             android:layout_width="wrap_content"
             android:layout_height="@dimen/TextButtonSize"
+            android:layout_marginTop="@dimen/TextButtonMargin"
             android:foregroundTint="@color/gray_400"
             android:text="@string/new_user_register_now"
             android:textAllCaps="false"
@@ -97,7 +98,6 @@
             style="@style/Widget.MaterialComponents.Button.TextButton"
             android:layout_width="wrap_content"
             android:layout_height="@dimen/TextButtonSize"
-            android:layout_margin="@dimen/TextButtonMargin"
             android:foregroundTint="@color/gray_400"
             android:text="Forgot your Password?"
             android:textAllCaps="false"
@@ -107,14 +107,13 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/register_now"
-            app:layout_constraintVertical_bias="0.700"
-            tools:ignore="HardcodedText,MissingConstraints" />
+            app:layout_constraintVertical_bias="0.700" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/login_button"
             android:layout_width="@dimen/TextFieldWidth"
-            android:layout_height="wrap_content"
-            android:layout_margin="20dp"
+            android:layout_height="@dimen/buttonHeight"
+            android:layout_margin="15dp"
             android:background="#84A17878"
             android:foregroundTint="@color/gray_400"
             android:gravity="center"
@@ -124,8 +123,7 @@
             app:layout_constraintBottom_toTopOf="@+id/register_now"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/password"
-            tools:ignore="HardcodedText,MissingConstraints,UnknownId" />
+            app:layout_constraintTop_toBottomOf="@+id/password" />
 
         <com.google.android.gms.common.SignInButton
             android:id="@+id/gmail"

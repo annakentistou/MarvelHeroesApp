@@ -1,6 +1,5 @@
 package com.codehub.marvelheroesapp.Activities;
 
-import android.app.Dialog;
 import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
@@ -8,9 +7,6 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
-import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.os.Handler;
 import android.text.Editable;
@@ -18,8 +14,6 @@ import android.text.TextWatcher;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
 
 import androidx.annotation.NonNull;
@@ -38,6 +32,7 @@ import com.codehub.marvelheroesapp.Adapters.Adapter;
 import com.codehub.marvelheroesapp.R;
 import com.codehub.marvelheroesapp.json.HeroesModel;
 import com.codehub.marvelheroesapp.viewmodels.CharViewModelNew;
+import com.google.android.material.badge.BadgeDrawable;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.util.ArrayList;
@@ -52,7 +47,7 @@ public class SearchActivity extends AppCompatActivity {
     private List<HeroesModel> filtered;
     private CharViewModelNew viewModel; //initialize ViewModel
     private NotificationManager notificationManager;
-    Dialog  no_internet;
+    BadgeDrawable badgeDrawable;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -61,6 +56,14 @@ public class SearchActivity extends AppCompatActivity {
         recyclerView = findViewById(R.id.recycler_view_for_all);
 
         progressDialog();
+
+        bottomNav = findViewById(R.id.bottom_navigation);
+        badgeDrawable = bottomNav.getOrCreateBadge(R.id.notifications);
+        badgeDrawable.setBackgroundColor(Color.RED);
+        badgeDrawable.setBadgeTextColor(Color.WHITE);
+        badgeDrawable.setMaxCharacterCount(2000);
+        badgeDrawable.setNumber(5);
+        badgeDrawable.setVisible(true);
 
         notificationManager = (NotificationManager)getSystemService(Context.NOTIFICATION_SERVICE);
 
@@ -140,8 +143,6 @@ public class SearchActivity extends AppCompatActivity {
     public void onPostResume() {
         super.onPostResume();
 
-        //Bottom Navigation Menu management  31/5/2020
-        bottomNav = findViewById(R.id.bottom_navigation);
         Menu menu = bottomNav.getMenu();
         MenuItem menuItem = menu.getItem(1);
         menuItem.setChecked(true);
@@ -175,6 +176,10 @@ public class SearchActivity extends AppCompatActivity {
                                 .setAutoCancel(true)
                                 .build();
                         notificationManager.notify(1, notification);
+
+                        if(badgeDrawable.isVisible()){
+                            bottomNav.removeBadge(R.id.notifications);
+                        }
                         break;
                 }
                 return false;

@@ -5,9 +5,10 @@
     <dimen name="ImageButtonSize">28dp</dimen>
     <dimen name="ImageButtonPad">15dp</dimen>
     <dimen name="EditTextWidth">350dp</dimen>
+    <dimen name="buttonHeight">60dp</dimen>
     <dimen name="TextFieldWidth">320dp</dimen>
     <dimen name="MicroIconsWidth">40dp</dimen>
-    <dimen name="TextButtonMargin">1dp</dimen>
+    <dimen name="TextButtonMargin">5dp</dimen>
     <dimen name="margins_in_listview">5dp</dimen>
     <dimen name="thumnails_dimens">100dp</dimen>
     <dimen name="padding_top">5dp</dimen>

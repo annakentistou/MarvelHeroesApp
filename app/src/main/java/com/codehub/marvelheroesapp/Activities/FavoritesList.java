@@ -7,6 +7,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.graphics.Color;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -29,6 +31,7 @@ import com.codehub.marvelheroesapp.DatabaseFiles.NewDbUsers;
 import com.codehub.marvelheroesapp.DatabaseFiles.User;
 import com.codehub.marvelheroesapp.R;
 import com.codehub.marvelheroesapp.json.HeroesModel;
+import com.google.android.material.badge.BadgeDrawable;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.util.ArrayList;
@@ -41,9 +44,9 @@ public class FavoritesList extends AppCompatActivity {
     private FavDB favDB;
     private List<FavoriteHero> favHero = new ArrayList<>();
     FavAdapter favAdapter;
-
-    BottomNavigationView bottomNav;
     private NotificationManager notificationManager;
+    BottomNavigationView bottomNav;
+    BadgeDrawable badgeDrawable;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,6 +59,14 @@ public class FavoritesList extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true); //display back button in toolbar
         notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
 
+        bottomNav = findViewById(R.id.bottom_navigation);
+        badgeDrawable = bottomNav.getOrCreateBadge(R.id.notifications);
+        badgeDrawable.setBackgroundColor(Color.BLUE);
+        badgeDrawable.setBadgeTextColor(Color.WHITE);
+        badgeDrawable.setMaxCharacterCount(2000);
+        badgeDrawable.setNumber(5);
+        badgeDrawable.setVisible(true);
+
     }
 
     @Override
@@ -67,6 +78,7 @@ public class FavoritesList extends AppCompatActivity {
         ItemTouchHelper itemTouchHelper = new ItemTouchHelper(simpleCallback);
         itemTouchHelper.attachToRecyclerView(recyclerView); // set swipe to recyclerview
         loadData();
+
     }
 
     private void loadData() {
@@ -124,7 +136,6 @@ public class FavoritesList extends AppCompatActivity {
     protected void onPostResume() {
         super.onPostResume();
 
-        bottomNav = findViewById(R.id.bottom_navigation);
         Menu menu = bottomNav.getMenu();
         MenuItem menuItem = menu.getItem(2);
         menuItem.setChecked(true);
@@ -159,6 +170,10 @@ public class FavoritesList extends AppCompatActivity {
                                 .setAutoCancel(true)
                                 .build();
                         notificationManager.notify(1, notification);
+
+                        if(badgeDrawable.isVisible()){
+                            bottomNav.removeBadge(R.id.notifications);
+                        }
                         break;
                 }
                 return false;
