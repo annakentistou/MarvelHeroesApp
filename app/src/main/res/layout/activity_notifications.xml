@@ -18,7 +18,7 @@
             android:id="@+id/topAppBar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/com_facebook_blue"
+            android:background="@color/com_facebook_button_background_color"
             android:paddingTop="10dp"
             android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar" />
 
@@ -41,10 +41,10 @@
         android:layout_height="wrap_content"
         android:layout_gravity="bottom"
         android:layout_alignParentBottom="true"
-        android:background="@color/com_facebook_blue"
+        android:background="@color/com_facebook_button_background_color"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:itemBackground="@color/com_facebook_blue"
+        app:itemBackground="@color/com_facebook_button_background_color"
         app:itemIconTint="@android:color/white"
         app:itemTextColor="@android:color/white"
         app:menu="@menu/bottom_navigation_menu" />

@@ -2,12 +2,12 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="@drawable/dialog_background">
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <androidx.cardview.widget.CardView
-        android:layout_width="200dp"
-        android:layout_height="300dp"
+        android:layout_width="250dp"
+        android:layout_height="350dp"
+        app:cardCornerRadius="10dp"
         app:cardBackgroundColor="@color/dark_green"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -20,8 +20,8 @@
 
     <ImageView
         android:id="@+id/no_network"
-        android:layout_width="120dp"
-        android:layout_height="120dp"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
         android:layout_margin="10dp"
         android:src="@drawable/no_connection_green"
         app:layout_constraintTop_toTopOf="parent"
@@ -30,11 +30,12 @@
 
         <TextView
             android:id="@+id/msg"
-            android:layout_width="180dp"
+            android:layout_width="220dp"
             android:layout_height="wrap_content"
             android:text="@string/noInternet"
-            android:layout_margin="30dp"
-            android:textSize="10sp"
+            android:layout_margin="50dp"
+            android:textAlignment="center"
+            android:textSize="12sp"
             android:textColor="@color/white"
             android:textStyle="bold"
             app:layout_constraintTop_toBottomOf="@+id/no_network"
@@ -43,7 +44,7 @@
 
         <Button
             android:id="@+id/try_again"
-            android:layout_width="180dp"
+            android:layout_width="220dp"
             android:layout_height="wrap_content"
             android:text="Try Again"
             android:textAllCaps="false"

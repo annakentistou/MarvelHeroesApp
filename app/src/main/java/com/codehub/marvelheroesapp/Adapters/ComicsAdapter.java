@@ -2,12 +2,15 @@ package com.codehub.marvelheroesapp.Adapters;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.res.Configuration;
+import android.os.Handler;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -19,17 +22,18 @@ import com.codehub.marvelheroesapp.json.ComicsModel;
 import com.codehub.marvelheroesapp.json.CreatorsNameModel;
 import com.squareup.picasso.Picasso;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class ComicsAdapter extends RecyclerView.Adapter<ComicsAdapter.ViewHolder> {
 
     private LayoutInflater inflater;
     private List<ComicsModel> comics;
+    private Context ctx;
 
     public ComicsAdapter(Context ctx, List<ComicsModel> comics) {
         this.inflater = LayoutInflater.from(ctx);
         this.comics = comics;
+        this.ctx = ctx;
     }
 
     @NonNull
@@ -41,7 +45,7 @@ public class ComicsAdapter extends RecyclerView.Adapter<ComicsAdapter.ViewHolder
 
     @Override
     public void onBindViewHolder(@NonNull final ViewHolder holder, int position) {
-        final ComicsModel comicsItem =  comics.get(position);
+        final ComicsModel comicsItem = comics.get(position);
         final String title = comicsItem.getTitle();
         final String description = comicsItem.getDescription();
         final String extension = comicsItem.getThumbnail().getExtension();
@@ -49,16 +53,18 @@ public class ComicsAdapter extends RecyclerView.Adapter<ComicsAdapter.ViewHolder
         final List<CreatorsNameModel> creatorsName = comics.get(position).getCreators().getItems();
         Log.i("Creator", creatorsName.toString());
 
-            for(int j = 0; j < creatorsName.size(); j++){
-                if (creatorsName.size() != 0) {
-                    holder.creator.setText("Creator: " + creatorsName.get(j).getName());
-                } else {
-                    holder.creator.setText("There is no Creator");
-                }
+        for (int j = 0; j < creatorsName.size(); j++) {
+            if (creatorsName.size() != 0) {
+                holder.creator.setText("Creator: " + creatorsName.get(j).getName());
+            } else {
+                holder.creator.setText("There is no Creator");
             }
+        }
 
         holder.name.setText(title);
-        Picasso.get().load(image).into(holder.image);
+
+        Picasso.get().load(image).placeholder(R.drawable.loading).into(holder.image);
+
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override

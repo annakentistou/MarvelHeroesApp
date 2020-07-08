@@ -60,6 +60,7 @@ import com.google.android.gms.tasks.Task;
 import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
+import com.google.android.material.switchmaterial.SwitchMaterial;
 import com.google.android.material.tabs.TabLayout;
 
 import java.io.FileNotFoundException;
@@ -84,8 +85,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private static final int PERMISSION_REQUEST_CODE = 100;
     User userInfo;
     private NewDbUsers db;
-    Dialog communication, signοut_dlg, no_internet;
-    WebView webView;
+    Dialog communication, signοut_dlg, no_internet, switchOnOff;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -97,6 +97,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         communication = new Dialog(this);
         signοut_dlg = new Dialog(this);
         no_internet = new Dialog(this);
+        switchOnOff = new Dialog(this);
+
 
         progressDialog();
 
@@ -301,6 +303,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 gotoActivity(About.class);
                 break;
             case R.id.settings:
+                settings();
                 break;
             default:
                 break;
@@ -324,6 +327,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     public void signOutPopup() {
         signοut_dlg.setContentView(R.layout.logout_dialog);
+        signοut_dlg.setCancelable(false);
         Button cancelbtn, soutbtn;
         cancelbtn = signοut_dlg.findViewById(R.id.cancel_btn);
         soutbtn = signοut_dlg.findViewById(R.id.sign_out_btn);
@@ -355,6 +359,24 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         });
         signοut_dlg.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         signοut_dlg.show();
+    }
+
+    public void settings(){
+        switchOnOff.setContentView(R.layout.settings);
+        switchOnOff.setCancelable(true);
+        final SwitchMaterial switch_on;
+        switch_on = switchOnOff.findViewById(R.id.switchOnOff);
+        switch_on.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (switch_on.isChecked()){
+
+                }
+            }
+        });
+
+        switchOnOff.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        switchOnOff.show();
     }
 
     private void gotoActivity(Class activityName) {

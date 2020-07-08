@@ -67,7 +67,7 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder> {
         holder.numOfComics.setText("Comics: " + numOfComics);
         holder.numOfSeries.setText("Series: " + numOfSeries);
 
-        Picasso.get().load(img).into(holder.image);
+        Picasso.get().load(img).placeholder(R.drawable.loading).into(holder.image);
         Log.i("image", img);
 
         readCursorData(heroItem, holder);

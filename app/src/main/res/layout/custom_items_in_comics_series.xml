@@ -37,6 +37,15 @@
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintVertical_bias="1.0"/>
 
+       <!--     <ProgressBar
+                android:id="@+id/progress_bar"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                app:layout_constraintTop_toTopOf="@+id/thumbnail"
+                app:layout_constraintStart_toStartOf="@+id/thumbnail"
+                app:layout_constraintEnd_toEndOf="@+id/thumbnail"
+                app:layout_constraintBottom_toBottomOf="@+id/thumbnail"/>-->
+
             <TextView
                 android:id="@+id/title"
                 android:layout_width="0dp"

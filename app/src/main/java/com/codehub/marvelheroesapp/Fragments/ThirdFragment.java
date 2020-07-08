@@ -36,10 +36,6 @@ import com.google.gson.Gson;
 import java.util.ArrayList;
 import java.util.List;
 
-
-/**
- * A simple {@link Fragment} subclass.
- */
 public class ThirdFragment extends Fragment {
 
     private View view;
@@ -47,7 +43,7 @@ public class ThirdFragment extends Fragment {
     private SeriesAdapter myadapter;
     private List<SeriesModel> series;
     private List<CreatorsNameModel> creators;
-    private static String JSON_URL="https://gateway.marvel.com/v1/public/series?limit=30&ts=1&apikey=cbc3143464c6ede991022c465a83c158&hash=96b097677f87d6beb9af6fd11c1bd405";
+    private static String JSON_URL="https://gateway.marvel.com/v1/public/series?limit=100&ts=1&apikey=cbc3143464c6ede991022c465a83c158&hash=96b097677f87d6beb9af6fd11c1bd405";
     SwipeRefreshLayout swipeRefreshLayout;
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -76,7 +72,7 @@ public class ThirdFragment extends Fragment {
                             swipeRefreshLayout.setRefreshing(false);
                         }
                     }
-                }, 2000);
+                }, 3000);
             }
         });
     }

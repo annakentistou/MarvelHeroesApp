@@ -31,13 +31,6 @@ public class NotificationsActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_notifications);
-
-        notificationManager = (NotificationManager)getSystemService(Context.NOTIFICATION_SERVICE);
-
-        Intent intent = new Intent(this, MainActivity.class);
-        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-        final PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, intent, 0);
-
     }
 
     @Override

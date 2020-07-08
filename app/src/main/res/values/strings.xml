@@ -47,6 +47,7 @@
     <string name="nav_header_subtitle">android.studio@android.com</string>
     <string name="nav_header_desc">Navigation header</string>
     <string name="action_settings">Settings</string>
+    <string name="showNotifications">Show Notifications</string>
 
     <string name="menu_home">Home</string>
     <string name="about">About</string>
@@ -57,7 +58,7 @@
     <string name="contactMe">Find me on GitHub</string>
     <string name="contactMe2">Find me on LinkedIn</string>
 
-    <string name="noInternet">No Internet connection found.\nCheck your connection or try again.</string>
+    <string name="noInternet">No Internet connection found.\nCheck your connection and try again.</string>
     <!--KeyHash-->
     <string name="app_id">563705977662214</string>
     <string name="facebook_login_protocol">fb563705977662214</string>

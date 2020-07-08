@@ -3,12 +3,14 @@ package com.codehub.marvelheroesapp.Adapters;
 
 import android.content.Context;
 import android.content.Intent;
+import android.telecom.Call;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -19,6 +21,7 @@ import com.codehub.marvelheroesapp.Activities.ItemDetails;
 import com.codehub.marvelheroesapp.R;
 import com.codehub.marvelheroesapp.json.CreatorsNameModel;
 import com.codehub.marvelheroesapp.json.SeriesModel;
+import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
@@ -59,7 +62,8 @@ public class SeriesAdapter extends RecyclerView.Adapter<SeriesAdapter.ViewHolder
         }
 
         holder.Name.setText(title);
-        Picasso.get().load(image).into(holder.image);
+
+        Picasso.get().load(image).placeholder(R.drawable.loading).into(holder.image);
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -125,7 +125,6 @@ public class SearchActivity extends AppCompatActivity {
         }, 3000);
     }
 
-    //filter for search view 31/5/2020
     private void filter(String text) {
 
         List<HeroesModel> filteredList = new ArrayList<>();

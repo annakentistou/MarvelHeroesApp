@@ -21,18 +21,15 @@
             android:background="@color/gray_800"
             android:theme="@style/ThemeOverlay.AppCompat.Dark">
 
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/ic_search_black_24dp" />
-
             <EditText
                 android:id="@id/search_bar"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="35dp"
                 android:layout_marginStart="10dp"
-                android:background="@android:color/transparent"
-                android:hint="Search..." />
+                android:layout_marginEnd="10dp"
+                android:drawableStart="@drawable/ic_search_black_24dp"
+                android:background="@drawable/editext_border"
+                android:hint="Search a Hero..." />
 
         </com.google.android.material.appbar.MaterialToolbar>
     </com.google.android.material.appbar.AppBarLayout>
@@ -42,6 +39,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="65dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginEnd="5dp"
         android:layout_marginBottom="10dp"
         android:divider="@color/gray_400"
         android:orientation="vertical"
