@@ -5,16 +5,30 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/gray_400"
-    android:fillViewport="true"
     tools:context=".Activities.ItemDetails">
+    <!--android:fillViewport="true"-->
 
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/topAppBar"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:background="@color/PrimaryRed"
+        android:layout_height="?attr/actionBarSize"
+        android:background="#c62828"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"/>
+
+<!--    <com.google.android.material.appbar.MaterialToolbar
+        android:id="@+id/toolBar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/DarkRed"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark"
+        app:menu="@menu/top_app_bar"
+        app:title="@string/app_name"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        />-->
+        <!--app:navigationIcon="@drawable/ic_keyboard_backspace_white_24dp"-->
+   <!-- </com.google.android.material.appbar.AppBarLayout>-->
 
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"

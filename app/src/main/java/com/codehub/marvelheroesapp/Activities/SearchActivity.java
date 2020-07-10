@@ -3,7 +3,6 @@ package com.codehub.marvelheroesapp.Activities;
 import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
-import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
@@ -14,12 +13,17 @@ import android.text.TextWatcher;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.biometric.BiometricManager;
+import androidx.biometric.BiometricPrompt;
 import androidx.core.app.NotificationCompat;
+import androidx.core.content.ContextCompat;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -37,6 +41,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.Executor;
 
 import static com.codehub.marvelheroesapp.CreateNotificationChannel.CHANNEL_ID;
 
@@ -45,9 +50,10 @@ public class SearchActivity extends AppCompatActivity {
     RecyclerView recyclerView;
     Adapter myAdapter;
     private List<HeroesModel> filtered;
-    private CharViewModelNew viewModel; //initialize ViewModel
+    private CharViewModelNew viewModel;
     private NotificationManager notificationManager;
     BadgeDrawable badgeDrawable;
+    ProgressDialog progress;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -55,14 +61,15 @@ public class SearchActivity extends AppCompatActivity {
         setContentView(R.layout.activity_search);
         recyclerView = findViewById(R.id.recycler_view_for_all);
 
-        progressDialog();
+        progress = new ProgressDialog();
+        progress.progressDialog(SearchActivity.this);
 
         bottomNav = findViewById(R.id.bottom_navigation);
         badgeDrawable = bottomNav.getOrCreateBadge(R.id.notifications);
         badgeDrawable.setBackgroundColor(Color.RED);
         badgeDrawable.setBadgeTextColor(Color.WHITE);
         badgeDrawable.setMaxCharacterCount(2000);
-        badgeDrawable.setNumber(5);
+        badgeDrawable.setNumber(3);
         badgeDrawable.setVisible(true);
 
         notificationManager = (NotificationManager)getSystemService(Context.NOTIFICATION_SERVICE);
@@ -114,20 +121,6 @@ public class SearchActivity extends AppCompatActivity {
         });
     }
 
-    private void progressDialog(){
-        final ProgressDialog progressDialog = new ProgressDialog(SearchActivity.this);
-        progressDialog.show();
-        progressDialog.setContentView(R.layout.progress_dialog);
-        progressDialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
-        Handler handler = new Handler();
-        handler.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                progressDialog.dismiss();
-            }
-        }, 3000);
-    }
-
     private void filter(String text) {
 
         List<HeroesModel> filteredList = new ArrayList<>();
@@ -151,14 +144,12 @@ public class SearchActivity extends AppCompatActivity {
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch (item.getItemId()) {
                     case R.id.home_page:
-                        Intent intent = new Intent(SearchActivity.this, MainActivity.class);
-                        startActivity(intent);
+                       goToActivity(MainActivity.class);
                         break;
                     case R.id.search_view:
                         break;
                     case R.id.myfavoriteList:
-                        Intent fav_intent = new Intent(SearchActivity.this, FavoritesList.class);
-                        startActivity(fav_intent);
+                        goToActivity(FavoritesList.class);
                         break;
                     case R.id.notifications:
                         Intent notif_intent = new Intent(SearchActivity.this, NotificationsActivity.class);
@@ -185,6 +176,11 @@ public class SearchActivity extends AppCompatActivity {
                 return false;
             }
         });
+    }
+
+    private void goToActivity(Class activityName){
+        Intent intent = new Intent(SearchActivity.this, activityName);
+        startActivity(intent);
     }
 }
 

@@ -1,26 +1,16 @@
 package com.codehub.marvelheroesapp.Activities;
 
-import android.app.ProgressDialog;
-import android.os.Bundle;
+import android.content.Context;
 import android.os.Handler;
-import android.text.NoCopySpan;
 
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.codehub.marvelheroesapp.R;
 
-public class ProgressBar extends AppCompatActivity {
-    ProgressDialog progressDialog;
+public class ProgressDialog extends AppCompatActivity {
 
-    @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        progressDialog();
-    }
-
-    public void progressDialog() {
-        progressDialog = new ProgressDialog(getApplicationContext());
+    public void progressDialog(Context activityName){
+        final android.app.ProgressDialog progressDialog = new android.app.ProgressDialog(activityName);
         progressDialog.show();
         progressDialog.setContentView(R.layout.progress_dialog);
         progressDialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);

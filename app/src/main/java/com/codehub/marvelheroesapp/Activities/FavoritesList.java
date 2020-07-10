@@ -44,9 +44,10 @@ public class FavoritesList extends AppCompatActivity {
     private FavDB favDB;
     private List<FavoriteHero> favHero = new ArrayList<>();
     FavAdapter favAdapter;
-    private NotificationManager notificationManager;
+    NotificationManager notificationManager;
     BottomNavigationView bottomNav;
     BadgeDrawable badgeDrawable;
+    BuildNotification buildNotification;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,6 +58,7 @@ public class FavoritesList extends AppCompatActivity {
         recyclerView.setHasFixedSize(true);
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true); //display back button in toolbar
+
         notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
 
         bottomNav = findViewById(R.id.bottom_navigation);
@@ -64,9 +66,8 @@ public class FavoritesList extends AppCompatActivity {
         badgeDrawable.setBackgroundColor(Color.BLUE);
         badgeDrawable.setBadgeTextColor(Color.WHITE);
         badgeDrawable.setMaxCharacterCount(2000);
-        badgeDrawable.setNumber(5);
+        badgeDrawable.setNumber(3);
         badgeDrawable.setVisible(true);
-
     }
 
     @Override
@@ -78,7 +79,6 @@ public class FavoritesList extends AppCompatActivity {
         ItemTouchHelper itemTouchHelper = new ItemTouchHelper(simpleCallback);
         itemTouchHelper.attachToRecyclerView(recyclerView); // set swipe to recyclerview
         loadData();
-
     }
 
     private void loadData() {
@@ -144,12 +144,10 @@ public class FavoritesList extends AppCompatActivity {
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch (item.getItemId()) {
                     case R.id.home_page:
-                        Intent intent = new Intent(FavoritesList.this, MainActivity.class);
-                        startActivity(intent);
+                        goToActivity(MainActivity.class);
                         break;
                     case R.id.search_view:
-                        Intent search_intent = new Intent(FavoritesList.this, SearchActivity.class);
-                        startActivity(search_intent);
+                        goToActivity(SearchActivity.class);
                         break;
                     case R.id.myfavoriteList:
 
@@ -171,6 +169,8 @@ public class FavoritesList extends AppCompatActivity {
                                 .build();
                         notificationManager.notify(1, notification);
 
+                        /*buildNotification.activityContext(FavoritesList.this);*/
+
                         if(badgeDrawable.isVisible()){
                             bottomNav.removeBadge(R.id.notifications);
                         }
@@ -179,5 +179,10 @@ public class FavoritesList extends AppCompatActivity {
                 return false;
             }
         });
+    }
+
+    private void goToActivity(Class activityName){
+        Intent search_intent = new Intent(FavoritesList.this, activityName);
+        startActivity(search_intent);
     }
 }

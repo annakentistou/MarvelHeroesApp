@@ -10,8 +10,8 @@
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/topAppBar"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:background="@color/PrimaryRed"/>
+        android:layout_height="?attr/actionBarSize"
+        android:background="#c62828"/>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_view_for_all"

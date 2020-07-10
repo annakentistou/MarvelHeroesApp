@@ -172,9 +172,7 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder> {
                     viewHolder.add_to_fav.setBackgroundResource(R.drawable.ic_favorite_black_24dp);
                 } else if (item_fav_status == 0) {
                     viewHolder.add_to_fav.setBackgroundResource(R.drawable.ic_favorite_border_black_24dp);
-                }/* else {
-                    viewHolder.add_to_fav.setBackgroundResource(R.drawable.ic_favorite_border_black_24dp);
-                }*/
+                }
             }
         } finally {
             if (cursor != null && cursor.isClosed())

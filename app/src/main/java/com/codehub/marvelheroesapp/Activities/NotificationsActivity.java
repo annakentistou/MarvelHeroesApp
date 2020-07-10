@@ -46,16 +46,13 @@ public class NotificationsActivity extends AppCompatActivity {
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch (item.getItemId()) {
                     case R.id.home_page:
-                        Intent intent = new Intent(NotificationsActivity.this, MainActivity.class);
-                        startActivity(intent);
+                        goToActivity(MainActivity.class);
                         break;
                     case R.id.search_view:
-                        Intent search_intent = new Intent(NotificationsActivity.this, SearchActivity.class);
-                        startActivity(search_intent);
+                        goToActivity(SearchActivity.class);
                         break;
                     case R.id.myfavoriteList:
-                        Intent fav_intent = new Intent(NotificationsActivity.this, FavoritesList.class);
-                        startActivity(fav_intent);
+                        goToActivity(FavoritesList.class);
                         break;
                     case R.id.notifications:
 
@@ -64,5 +61,10 @@ public class NotificationsActivity extends AppCompatActivity {
                 return false;
             }
         });
+    }
+
+    private void goToActivity(Class activityName){
+        Intent intent = new Intent(NotificationsActivity.this, activityName);
+        startActivity(intent);
     }
 }

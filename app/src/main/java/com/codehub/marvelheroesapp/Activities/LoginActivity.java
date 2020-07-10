@@ -1,14 +1,21 @@
 package com.codehub.marvelheroesapp.Activities;
 
 import android.content.Intent;
+
+import androidx.appcompat.widget.AppCompatImageButton;
+import androidx.biometric.BiometricManager;
+import androidx.biometric.BiometricPrompt;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 
 import com.codehub.marvelheroesapp.DatabaseFiles.NewDbUsers;
 import com.codehub.marvelheroesapp.R;
@@ -21,11 +28,17 @@ import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.textfield.TextInputLayout;
 
+import java.util.concurrent.Executor;
+
 public class LoginActivity extends AppCompatActivity {
 
-  GoogleSignInClient googleSignInClient;
-  SignInButton google_btn;
-  private static final int RC_SIGN_IN = 100;
+    GoogleSignInClient googleSignInClient;
+    SignInButton google_btn;
+    private static final int RC_SIGN_IN = 100;
+    private Executor executor;
+    private BiometricPrompt biometricPrompt;
+    private BiometricPrompt.PromptInfo promptInfo;
+    AppCompatImageButton fingerPrint;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,6 +51,8 @@ public class LoginActivity extends AppCompatActivity {
                 .build();
 
         googleSignInClient = GoogleSignIn.getClient(this, signInOptions);
+
+        fingerprint();
     }
 
     @Override
@@ -52,7 +67,7 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
-        final TextInputLayout usrname,pass;
+        final TextInputLayout usrname, pass;
 
         Button login_btn;
         final NewDbUsers db;
@@ -67,15 +82,15 @@ public class LoginActivity extends AppCompatActivity {
             public void onClick(View v) {
                 String username = usrname.getEditText().getText().toString().trim();
                 String password = pass.getEditText().getText().toString().trim();
-                boolean check_mail = db.login(username,password);
-                if (check_mail == true){
-                    Toast.makeText(getApplicationContext(),"Login Successful!",Toast.LENGTH_SHORT).show();
+                boolean check_mail = db.login(username, password);
+                if (check_mail == true) {
+                    Toast.makeText(getApplicationContext(), "Login Successful!", Toast.LENGTH_SHORT).show();
                     Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                     intent.putExtra("TAKE_USERNAME", username);
                     startActivity(intent);
                     finish();
-                }else{
-                    Toast.makeText(getApplicationContext(),"Wrong Username or Password",Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(getApplicationContext(), "Wrong Username or Password", Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -122,10 +137,10 @@ public class LoginActivity extends AppCompatActivity {
         }
     }
 
-    private void updateUI(@Nullable GoogleSignInAccount account){
-        if(account != null){
+    private void updateUI(@Nullable GoogleSignInAccount account) {
+        if (account != null) {
             gotoActivity(MainActivity.class);
-        }else {
+        } else {
             Toast.makeText(LoginActivity.this, "Something goes wrong", Toast.LENGTH_LONG).show();
         }
     }
@@ -134,10 +149,75 @@ public class LoginActivity extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
         GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(this);
-        if(account != null) {
-           gotoActivity(MainActivity.class);
-           finish();
+        if (account != null) {
+            gotoActivity(MainActivity.class);
+            finish();
         }
+    }
+
+    private void fingerprint(){
+        BiometricManager biometricManager = BiometricManager.from(this);
+        switch (biometricManager.canAuthenticate()) {
+            case BiometricManager.BIOMETRIC_SUCCESS:
+                Log.d("MY_APP_TAG", "App can authenticate using biometrics.");
+                break;
+            case BiometricManager.BIOMETRIC_ERROR_NO_HARDWARE:
+                Log.e("MY_APP_TAG", "No biometric features available on this device.");
+                break;
+            case BiometricManager.BIOMETRIC_ERROR_HW_UNAVAILABLE:
+                Log.e("MY_APP_TAG", "Biometric features are currently unavailable.");
+                break;
+            case BiometricManager.BIOMETRIC_ERROR_NONE_ENROLLED:
+                Log.e("MY_APP_TAG", "The user hasn't associated " +
+                        "any biometric credentials with their account.");
+                break;
+        }
+
+        executor = ContextCompat.getMainExecutor(this);
+
+            biometricPrompt = new BiometricPrompt(LoginActivity.this,
+                    executor, new BiometricPrompt.AuthenticationCallback() {
+                @Override
+                public void onAuthenticationError(int errorCode,
+                                                  @NonNull CharSequence errString) {
+                    super.onAuthenticationError(errorCode, errString);
+                    Toast.makeText(getApplicationContext(),
+                            "Authentication message: " + errString, Toast.LENGTH_SHORT)
+                            .show();
+                }
+
+                @Override
+                public void onAuthenticationSucceeded(
+                        @NonNull BiometricPrompt.AuthenticationResult result) {
+                    super.onAuthenticationSucceeded(result);
+                    Toast.makeText(getApplicationContext(),
+                            "Authentication succeeded!", Toast.LENGTH_SHORT).show();
+                    gotoActivity(MainActivity.class);
+                }
+
+                @Override
+                public void onAuthenticationFailed() {
+                    super.onAuthenticationFailed();
+                    Toast.makeText(getApplicationContext(), "Authentication failed",
+                            Toast.LENGTH_SHORT)
+                            .show();
+                }
+            });
+
+
+        promptInfo = new BiometricPrompt.PromptInfo.Builder()
+                .setTitle("Login")
+                .setSubtitle("Log in using your fingerprint")
+                .setNegativeButtonText("Cancel")
+                .build();
+
+        fingerPrint = findViewById(R.id.fingerprt);
+        fingerPrint.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                biometricPrompt.authenticate(promptInfo);
+            }
+        });
     }
 
     @Override

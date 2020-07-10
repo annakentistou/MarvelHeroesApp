@@ -18,7 +18,6 @@ import android.app.Dialog;
 import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
-import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -88,6 +87,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private NewDbUsers db;
     Dialog communication, signοut_dlg, no_internet, switchOnOff;
     BadgeDrawable badgeDrawable;
+    ProgressDialog progress;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -101,7 +101,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         no_internet = new Dialog(this);
         switchOnOff = new Dialog(this);
 
-        progressDialog();
+        progress = new ProgressDialog();
+        progress.progressDialog(MainActivity.this);
 
         noConnection();
 
@@ -114,7 +115,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         badgeDrawable.setBackgroundColor(Color.RED);
         badgeDrawable.setBadgeTextColor(Color.WHITE);
         badgeDrawable.setMaxCharacterCount(2000);
-        badgeDrawable.setNumber(5);
+        badgeDrawable.setNumber(3);
         badgeDrawable.setVisible(true);
      /*      if(badgeDrawable !=null){
             badgeDrawable.setVisible(false);
@@ -229,22 +230,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             });
 
         } else {
-            progressDialog();
+            progress.progressDialog(MainActivity.this);
         }
-    }
-
-    public void progressDialog() {
-        final ProgressDialog progressDialog = new ProgressDialog(MainActivity.this);
-        progressDialog.show();
-        progressDialog.setContentView(R.layout.progress_dialog);
-        progressDialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
-        Handler handler = new Handler();
-        handler.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                progressDialog.dismiss();
-            }
-        }, 3000);
     }
 
     private void displayData() {
@@ -295,7 +282,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                     return;
                 } else {
                     Intent upload_img = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-
                     startActivityForResult(upload_img, 0);
                 }
             }
